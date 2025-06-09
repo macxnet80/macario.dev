@@ -13,7 +13,7 @@ import {
   Workflow
 } from 'lucide-react'
 import { useState } from 'react'
-import { MotionHighlight } from '@/components/animate-ui/effects/motion-highlight'
+
 
 const tools = [
   {
@@ -195,7 +195,12 @@ export default function SkillsSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {activeData.map((item, index) => (
-            <MotionHighlight key={item.title} hover className="rounded-2xl">
+            <motion.div 
+              key={item.title} 
+              className="rounded-2xl"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
               <div className="glass rounded-2xl p-8 border border-white/10">
                 <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.color} p-3 mb-6 flex items-center justify-center`}>
                   <item.icon className="w-full h-full text-white" />
@@ -208,7 +213,7 @@ export default function SkillsSection() {
                   ))}
                 </ul>
               </div>
-            </MotionHighlight>
+            </motion.div>
           ))}
         </div>
       </div>
