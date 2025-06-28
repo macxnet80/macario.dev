@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'Lars Macario - No/Low-Code Developer | Moderne Web-Lösungen ohne Code',
@@ -87,7 +88,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#6366f1" />
         <link rel="canonical" href="https://macario.dev" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
