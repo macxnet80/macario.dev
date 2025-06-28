@@ -30,7 +30,34 @@ export async function POST(request: NextRequest) {
       phone: data.phone || null,
       ai_analysis: data.aiAnalysis || null,
       status: 'new' as const,
-      notes: null
+      notes: null,
+      
+      // Adress-Felder (optional)
+      street: null,
+      postal_code: null,
+      city: null,
+      country: null,
+      
+      // Angebots-Felder (werden später vom Admin gesetzt)
+      offer_amount: null,
+      offer_date: null,
+      offer_status: null,
+      contract_status: null,
+      offer_description: null,
+      offer_description_optimized: null,
+      
+      // Business-Felder (werden später vom Admin gesetzt)
+      lead_source: 'website' as const,
+      priority_level: null,
+      next_followup: null,
+      estimated_hours: null,
+      hourly_rate: null,
+      
+      // Tracking-Felder (werden automatisch gesetzt)
+      first_contact_date: new Date().toISOString(),
+      last_contact_date: null,
+      project_start_date: null,
+      project_end_date: null
     }
 
     console.log('Neue Projektanfrage:', {
