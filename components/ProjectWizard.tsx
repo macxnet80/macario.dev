@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   ChevronRight, 
   ChevronLeft, 
+  ChevronDown,
   Globe, 
   Smartphone, 
   ShoppingCart, 
@@ -680,6 +681,26 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
 
 // Step 6: Success Step
 function SuccessStep() {
+  const [showEmailOptions, setShowEmailOptions] = useState(false)
+  
+  const emailServices = [
+    {
+      name: 'Gmail',
+      url: 'https://mail.google.com/mail/?view=cm&fs=1&to=lars.macario@gmail.com&su=Projektanfrage%20über%20macario.dev&body=Hallo%20Lars,%0D%0A%0D%0AIch%20habe%20über%20deine%20Website%20eine%20Projektanfrage%20gestellt%20und%20möchte%20gerne%20mehr%20Details%20besprechen.%0D%0A%0D%0AViele%20Grüße',
+      icon: '📧'
+    },
+    {
+      name: 'Outlook',
+      url: 'https://outlook.live.com/mail/0/deeplink/compose?to=lars.macario@gmail.com&subject=Projektanfrage%20über%20macario.dev&body=Hallo%20Lars,%0D%0A%0D%0AIch%20habe%20über%20deine%20Website%20eine%20Projektanfrage%20gestellt%20und%20möchte%20gerne%20mehr%20Details%20besprechen.%0D%0A%0D%0AViele%20Grüße',
+      icon: '📮'
+    },
+    {
+      name: 'Standard E-Mail App',
+      url: 'mailto:lars.macario@gmail.com?subject=Projektanfrage%20über%20macario.dev&body=Hallo%20Lars,%0D%0A%0D%0AIch%20habe%20über%20deine%20Website%20eine%20Projektanfrage%20gestellt%20und%20möchte%20gerne%20mehr%20Details%20besprechen.%0D%0A%0D%0AViele%20Grüße',
+      icon: '✉️'
+    }
+  ]
+
   return (
     <div className="text-center py-12">
       <motion.div
@@ -697,15 +718,40 @@ function SuccessStep() {
       </p>
       
       <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div className="relative">
+          <button
+            onClick={() => setShowEmailOptions(!showEmailOptions)}
+            className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
+          >
+            <Mail className="w-5 h-5" />
+            E-Mail schreiben
+            <ChevronDown className={`w-4 h-4 transition-transform ${showEmailOptions ? 'rotate-180' : ''}`} />
+          </button>
+          
+          {showEmailOptions && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 backdrop-blur-sm border border-white/10 rounded-xl p-2 z-10"
+            >
+              {emailServices.map((service) => (
+                <a
+                  key={service.name}
+                  href={service.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-lg transition-all text-left"
+                  onClick={() => setShowEmailOptions(false)}
+                >
+                  <span className="text-xl">{service.icon}</span>
+                  <span className="text-sm">{service.name}</span>
+                </a>
+              ))}
+            </motion.div>
+          )}
+        </div>
         <a
-          href="mailto:lars.macario@gmail.com"
-          className="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
-        >
-          <Mail className="w-5 h-5" />
-          E-Mail schreiben
-        </a>
-        <a
-          href="https://calendly.com/larsmacario"
+          href="https://calendly.com/lars_macario/online-meeting"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 rounded-xl p-4 transition-all"
