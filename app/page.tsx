@@ -6,10 +6,14 @@ import SkillsSection from '@/components/SkillsSection'
 import ProjectShowcase, { KIAutomatisierungSection } from '@/components/ProjectShowcase'
 import AIAssistant from '@/components/AIAssistant'
 import CTA from '@/components/CTA'
+import StructuredData from '@/components/StructuredData'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <>
+      <StructuredData />
+      <main className="min-h-screen bg-background">
       {/* Hero Section */}
       <Hero />
 
@@ -36,5 +40,9 @@ export default function Home() {
         <div className="absolute bottom-40 right-1/4 w-4 h-4 bg-primary/20 rounded-full animate-pulse delay-1000" />
       </div>
     </main>
+
+    {/* Footer */}
+    <Footer />
+    </>
   )
 } 

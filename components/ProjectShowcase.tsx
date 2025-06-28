@@ -1,50 +1,19 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, TrendingUp, Clock, CheckCircle, Code2, Database, Bot, ArrowRight, Users, BarChart2 } from 'lucide-react'
-
-const projects = [
-  {
-    id: 1,
-    title: 'Fitness-Tracker App',
-    description: 'Eine intuitive Mobile App für Personal Trainer und ihre Kunden. Trainingspläne, Fortschrittsverfolgung und Ernährungstipps - alles in einer App.',
-    tools: ['Glide', 'Airtable', 'Stripe'],
-    image: '/api/placeholder/600/400',
-    features: ['Personalisierte Trainingspläne', 'Progress Tracking', 'In-App Zahlungen'],
-    color: 'from-blue-500 to-cyan-500'
-  },
-  {
-    id: 2,
-    title: 'KI-Kundenservice Bot',
-    description: 'Ein intelligenter Chatbot, der Kundenanfragen automatisch beantwortet und bei Bedarf an menschliche Mitarbeiter weiterleitet.',
-    tools: ['OpenAI', 'Make.com', 'Slack'],
-    image: '/api/placeholder/600/400',
-    features: ['24/7 Verfügbarkeit', 'Mehrsprachig', 'Nahtlose Übergabe'],
-    color: 'from-purple-500 to-pink-500'
-  },
-  {
-    id: 3,
-    title: 'Vertriebs-Dashboard',
-    description: 'Ein Echtzeit-Dashboard für Vertriebsteams mit automatisierten Reports und KPI-Tracking.',
-    tools: ['Softr', 'Airtable', 'Zapier'],
-    image: '/api/placeholder/600/400',
-    features: ['Live-Daten', 'Automatische Reports', 'Team-Performance'],
-    color: 'from-green-500 to-emerald-500'
-  },
-  {
-    id: 4,
-    title: 'Automatisierte Buchhaltung',
-    description: 'Ein Workflow-System, das Rechnungen automatisch verarbeitet, kategorisiert und in die Buchhaltung überträgt.',
-    tools: ['Make.com', 'Google Sheets', 'Stripe'],
-    image: '/api/placeholder/600/400',
-    features: ['OCR-Erkennung', 'Auto-Kategorisierung', 'Echtzeit-Sync'],
-    color: 'from-orange-500 to-red-500'
-  }
-]
+import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, TrendingUp, Clock, CheckCircle, Code2, Database, Bot, ArrowRight, Users, BarChart2, Loader2, AlertCircle } from 'lucide-react'
+import { useProjects } from '@/hooks/useProjects'
+import Image from 'next/image'
 
 export default function ProjectShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [mounted, setMounted] = useState(false)
+  const { projects, loading, error } = useProjects()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % projects.length)
@@ -52,6 +21,120 @@ export default function ProjectShowcase() {
 
   const prevProject = () => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+  }
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Projekt-Showcase
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Entdecke einige meiner erfolgreich umgesetzten Projekte - 
+              alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
+            </p>
+          </div>
+          <div className="glass rounded-3xl p-12 text-center">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
+            <p className="text-gray-300">Wird geladen...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Loading State
+  if (loading) {
+    return (
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Projekt-Showcase
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Entdecke einige meiner erfolgreich umgesetzten Projekte - 
+              alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
+            </p>
+          </motion.div>
+          
+          <div className="glass rounded-3xl p-12 text-center">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
+            <p className="text-gray-300">Projekte werden geladen...</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // Error State
+  if (error) {
+    return (
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Projekt-Showcase
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Entdecke einige meiner erfolgreich umgesetzten Projekte - 
+              alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
+            </p>
+          </motion.div>
+          
+          <div className="glass rounded-3xl p-12 text-center">
+            <AlertCircle className="w-12 h-12 mx-auto mb-4 text-red-400" />
+            <p className="text-gray-300 mb-4">{error}</p>
+            <p className="text-sm text-gray-400">Fallback-Daten werden angezeigt</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  // No projects available
+  if (!projects || projects.length === 0) {
+    return (
+      <section className="py-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Projekt-Showcase
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Entdecke einige meiner erfolgreich umgesetzten Projekte - 
+              alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
+            </p>
+          </motion.div>
+          
+          <div className="glass rounded-3xl p-12 text-center">
+            <Database className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+            <p className="text-gray-300">Keine Projekte verfügbar</p>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   const currentProject = projects[currentIndex]
@@ -124,12 +207,23 @@ export default function ProjectShowcase() {
                 <div className="relative">
                   <div className={`absolute inset-0 bg-gradient-to-r ${currentProject.color} opacity-20 rounded-2xl`} />
                   <div className="relative bg-gray-800 rounded-2xl p-8 h-full flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
-                        <ExternalLink className="w-16 h-16 text-white" />
+                    {currentProject.image_url ? (
+                      <div className="relative w-full h-64 rounded-xl overflow-hidden">
+                        <Image
+                          src={currentProject.image_url}
+                          alt={currentProject.title}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                      <p className="text-gray-400">Projekt-Demo verfügbar</p>
-                    </div>
+                    ) : (
+                      <div className="text-center">
+                        <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
+                          <ExternalLink className="w-16 h-16 text-white" />
+                        </div>
+                        <p className="text-gray-400">Projekt-Demo verfügbar</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -141,6 +235,7 @@ export default function ProjectShowcase() {
             <button
               onClick={prevProject}
               className="p-3 rounded-full glass hover:bg-white/10 transition-colors"
+              disabled={projects.length <= 1}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
@@ -162,6 +257,7 @@ export default function ProjectShowcase() {
             <button
               onClick={nextProject}
               className="p-3 rounded-full glass hover:bg-white/10 transition-colors"
+              disabled={projects.length <= 1}
             >
               <ChevronRight className="w-6 h-6" />
             </button>

@@ -1,0 +1,194 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { ArrowLeft, Mail, Phone, MapPin } from 'lucide-react'
+import Link from 'next/link'
+
+export default function Impressum() {
+  return (
+    <main className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background Effects - gleich wie auf der Landingpage */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-background to-pink-900/20" />
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
+        {/* Navigation zurück */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <Link 
+            href="/"
+            className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            Zurück zur Startseite
+          </Link>
+        </motion.div>
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+            Impressum
+          </h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Angaben gemäß § 5 TMG
+          </p>
+        </motion.div>
+
+        {/* Impressum Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="glass rounded-3xl p-8 lg:p-12 border border-white/10"
+        >
+          {/* Kontaktinformationen */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center border border-primary/30">
+                  <MapPin className="w-5 h-5 text-primary" />
+                </div>
+                Kontaktdaten
+              </h2>
+              
+              <div className="space-y-4 text-gray-300">
+                <div className="flex flex-col">
+                  <span className="font-semibold text-white text-lg">Lars Macario</span>
+                  <span className="text-gray-400">No/Low-Code Developer</span>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                    <div>
+                      <div>Klingenberg 11</div>
+                      <div>25451 Quickborn</div>
+                      <div>Deutschland</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-4 h-4 text-primary flex-shrink-0" />
+                    <a 
+                      href="mailto:lars.macario@gmail.com"
+                      className="hover:text-primary transition-colors"
+                    >
+                      lars.macario@gmail.com
+                    </a>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                    <a 
+                      href="tel:+4917663404901"
+                      className="hover:text-primary transition-colors"
+                    >
+                      +49 176 63404901
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Rechtliche Hinweise */}
+            <div className="border-t border-white/10 pt-8">
+              <h3 className="text-xl font-bold text-white mb-4">Rechtliche Hinweise</h3>
+              
+              <div className="space-y-6 text-gray-300 text-sm leading-relaxed">
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Haftung für Inhalte</h4>
+                  <p>
+                    Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den 
+                    allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht 
+                    unter der Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach 
+                    Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Haftung für Links</h4>
+                  <p>
+                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. 
+                    Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten 
+                    Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Urheberrecht</h4>
+                  <p>
+                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen 
+                    Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der 
+                    Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* EU-Streitschlichtung */}
+            <div className="border-t border-white/10 pt-8">
+              <h3 className="text-xl font-bold text-white mb-4">EU-Streitschlichtung</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+                <a 
+                  href="https://ec.europa.eu/consumers/odr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline ml-1"
+                >
+                  https://ec.europa.eu/consumers/odr/
+                </a>
+                <br />
+                Unsere E-Mail-Adresse finden Sie oben im Impressum.
+              </p>
+            </div>
+
+            {/* Verbraucherstreitbeilegung */}
+            <div className="border-t border-white/10 pt-8">
+              <h3 className="text-xl font-bold text-white mb-4">Verbraucherstreitbeilegung</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer 
+                Verbraucherschlichtungsstelle teilzunehmen.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Back to top / CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-lg font-medium transition-all glow"
+          >
+            Zurück zur Startseite
+          </Link>
+        </motion.div>
+      </div>
+
+      {/* Floating particles effect - gleich wie auf der Landingpage */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-2 h-2 bg-primary/30 rounded-full animate-pulse" />
+        <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500/30 rounded-full animate-pulse delay-300" />
+        <div className="absolute bottom-20 left-1/3 w-2 h-2 bg-pink-500/30 rounded-full animate-pulse delay-700" />
+        <div className="absolute bottom-40 right-1/4 w-4 h-4 bg-primary/20 rounded-full animate-pulse delay-1000" />
+      </div>
+    </main>
+  )
+} 
