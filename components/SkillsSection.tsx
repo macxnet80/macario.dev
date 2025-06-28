@@ -141,6 +141,8 @@ const skillsTab = [
     description: 'Professionelle Hosting-Lösungen mit globaler Verfügbarkeit',
     features: [
       'Vercel Deployment',
+      'CDN Integration',
+      'SSL Zertifikate',
     ],
     color: 'from-gray-700 to-gray-900',
   },
