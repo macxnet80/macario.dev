@@ -197,14 +197,32 @@ export default function AdminPage() {
       <div className="border-b border-white/10 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary to-purple-400 rounded-xl flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gradient-to-r from-primary to-purple-400 rounded-xl flex items-center justify-center">
+                  <Shield className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold text-white">Admin Panel</h1>
+                  <p className="text-gray-400 mt-1">Verwalte deine Website</p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold text-white">Projekt CMS</h1>
-                <p className="text-gray-400 mt-1">Verwalte deine Projekt-Showcase</p>
-              </div>
+              
+              {/* Navigation */}
+              <nav className="flex items-center gap-2">
+                <a
+                  href="/admin"
+                  className="px-4 py-2 bg-primary/20 text-primary rounded-lg border border-primary/30 font-medium"
+                >
+                  Projekte
+                </a>
+                <a
+                  href="/admin/crm"
+                  className="px-4 py-2 bg-white/10 text-gray-300 rounded-lg border border-white/20 hover:bg-white/20 transition-all font-medium"
+                >
+                  CRM
+                </a>
+              </nav>
             </div>
             <div className="flex items-center gap-3">
               <button

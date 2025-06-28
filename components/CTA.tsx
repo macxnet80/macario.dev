@@ -1,29 +1,33 @@
 'use client'
 
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Calendar, Mail, MessageCircle, ArrowRight } from 'lucide-react'
+import ProjectWizard from './ProjectWizard'
 
 export default function CTA() {
+  const [showWizard, setShowWizard] = useState(false)
+
   const contactOptions = [
     {
       icon: Calendar,
-      title: 'Termin buchen',
-      description: 'Kostenloses Erstgespräch vereinbaren',
-      action: 'https://calendly.com/your-link',
+      title: 'Projekt Anfrage',
+      description: 'Intelligenter Projekt-Konfigurator',
+      action: () => setShowWizard(true),
       color: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Mail,
       title: 'E-Mail schreiben',
       description: 'Direkt Kontakt aufnehmen',
-      action: 'mailto:hello@example.com',
+      action: 'mailto:lars.macario@gmail.com',
       color: 'from-purple-500 to-pink-500'
     },
     {
       icon: MessageCircle,
       title: 'WhatsApp',
       description: 'Schnell und unkompliziert',
-      action: 'https://wa.me/your-number',
+      action: 'https://wa.me/4917663404901',
       color: 'from-green-500 to-emerald-500'
     }
   ]
@@ -65,30 +69,55 @@ export default function CTA() {
 
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               {contactOptions.map((option, index) => (
-                <motion.a
-                  key={option.title}
-                  href={option.action}
-                  target={option.action.startsWith('http') ? '_blank' : undefined}
-                  rel={option.action.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all"
-                >
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${option.color} p-3 mb-4 mx-auto`}>
-                    <option.icon className="w-full h-full text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-2">{option.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4">{option.description}</p>
-                  
-                  <div className="flex items-center justify-center gap-2 text-primary group-hover:gap-3 transition-all">
-                    <span className="text-sm font-medium">Jetzt starten</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </motion.a>
+                typeof option.action === 'function' ? (
+                  <motion.button
+                    key={option.title}
+                    onClick={option.action}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                    whileHover={{ y: -5 }}
+                    className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all text-left w-full"
+                  >
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${option.color} p-3 mb-4 mx-auto`}>
+                      <option.icon className="w-full h-full text-white" />
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-2 text-center">{option.title}</h3>
+                    <p className="text-gray-400 text-sm mb-4 text-center">{option.description}</p>
+                    
+                    <div className="flex items-center justify-center gap-2 text-primary group-hover:gap-3 transition-all">
+                      <span className="text-sm font-medium">Jetzt starten</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.button>
+                ) : (
+                  <motion.a
+                    key={option.title}
+                    href={option.action}
+                    target={option.action.startsWith('http') ? '_blank' : undefined}
+                    rel={option.action.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                    whileHover={{ y: -5 }}
+                    className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all"
+                  >
+                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${option.color} p-3 mb-4 mx-auto`}>
+                      <option.icon className="w-full h-full text-white" />
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-2">{option.title}</h3>
+                    <p className="text-gray-400 text-sm mb-4">{option.description}</p>
+                    
+                    <div className="flex items-center justify-center gap-2 text-primary group-hover:gap-3 transition-all">
+                      <span className="text-sm font-medium">Jetzt starten</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </motion.a>
+                )
               ))}
             </div>
 
@@ -108,6 +137,11 @@ export default function CTA() {
           </div>
         </motion.div>
       </div>
+      
+      {/* Project Wizard Modal */}
+      {showWizard && (
+        <ProjectWizard onClose={() => setShowWizard(false)} />
+      )}
     </section>
   )
 } 

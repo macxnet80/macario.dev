@@ -106,6 +106,28 @@ html {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
+/* Custom slider styles */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
+.slider::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+}
+
 /* Chat bubble animations */
 @keyframes messageSlide {
   from {
@@ -121,3 +143,41 @@ html {
 .message-animation {
   animation: messageSlide 0.3s ease-out;
 } 
+
+/* Custom select styling - force dark theme */
+select {
+  color-scheme: dark !important;
+}
+
+select option {
+  background-color: #111827 !important;
+  background: #111827 !important;
+  color: white !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+select option:checked,
+select option:hover,
+select option:focus,
+select option:active {
+  background-color: #111827 !important;
+  background: #111827 !important;
+  color: white !important;
+}
+
+/* Browser-specific overrides */
+@supports (-webkit-appearance: none) {
+  select option {
+    background: #111827 !important;
+    color: white !important;
+  }
+}
+
+@-moz-document url-prefix() {
+  select option {
+    background-color: #111827 !important;
+    color: white !important;
+  }
+}

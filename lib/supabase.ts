@@ -27,6 +27,53 @@ export interface Project {
   updated_at: string
 }
 
+export interface ProjectRequest {
+  id: number
+  project_type: string
+  budget: number
+  timeline: string
+  priority: string
+  description: string
+  features: string[]
+  name: string
+  email: string
+  company: string | null
+  phone: string | null
+  ai_analysis: string | null
+  status: 'new' | 'contacted' | 'in_progress' | 'completed' | 'cancelled'
+  notes: string | null
+  
+  // Adress-Felder
+  street: string | null
+  postal_code: string | null
+  city: string | null
+  country: string | null
+  
+  // Angebots-Felder
+  offer_amount: number | null
+  offer_date: string | null
+  offer_status: 'pending' | 'sent' | 'accepted' | 'rejected' | null
+  contract_status: 'none' | 'draft' | 'sent' | 'signed' | 'completed' | null
+  offer_description: string | null
+  offer_description_optimized: string | null
+  
+  // Business-Felder
+  lead_source: 'website' | 'referral' | 'social_media' | 'direct' | 'other' | null
+  priority_level: 'low' | 'medium' | 'high' | 'urgent' | null
+  next_followup: string | null
+  estimated_hours: number | null
+  hourly_rate: number | null
+  
+  // Tracking-Felder
+  first_contact_date: string | null
+  last_contact_date: string | null
+  project_start_date: string | null
+  project_end_date: string | null
+  
+  created_at: string
+  updated_at: string
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -34,6 +81,11 @@ export interface Database {
         Row: Project
         Insert: Omit<Project, 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Omit<Project, 'id' | 'created_at' | 'updated_at'>>
+      }
+      project_requests: {
+        Row: ProjectRequest
+        Insert: Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>>
       }
     }
   }
@@ -134,6 +186,126 @@ export const projectsApi = {
       })))
     
     if (error) throw error
+  }
+}
+
+// API-Funktionen für Projektanfragen
+export const projectRequestsApi = {
+  // Projektanfrage erstellen
+  async createProjectRequest(request: Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .insert(request)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as ProjectRequest
+  },
+
+  // Alle Projektanfragen abrufen (für Admin)
+  async getAllProjectRequests() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as ProjectRequest[]
+  },
+
+  // Projektanfrage nach ID abrufen
+  async getProjectRequest(id: number) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .select('*')
+      .eq('id', id)
+      .single()
+    
+    if (error) throw error
+    return data as ProjectRequest
+  },
+
+  // Projektanfrage-Status aktualisieren
+  async updateProjectRequestStatus(id: number, status: ProjectRequest['status'], notes?: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const updates: any = { status }
+    if (notes !== undefined) updates.notes = notes
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as ProjectRequest
+  },
+
+  // Projektanfragen nach Status filtern
+  async getProjectRequestsByStatus(status: ProjectRequest['status']) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .select('*')
+      .eq('status', status)
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as ProjectRequest[]
+  },
+
+  // Vollständige Projektanfrage aktualisieren (für CRM)
+  async updateProjectRequest(id: number, updates: Partial<Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .update({ ...updates, updated_at: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as ProjectRequest
+  },
+
+  // CRM-spezifische Updates
+  async updateCRMFields(id: number, crmData: Partial<ProjectRequest>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('project_requests')
+      .update({ ...crmData, updated_at: new Date().toISOString() })
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as ProjectRequest
   }
 }
 
