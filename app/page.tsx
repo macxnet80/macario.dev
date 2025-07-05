@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import SkillsSection from '@/components/SkillsSection'
 import ProjectShowcase, { KIAutomatisierungSection } from '@/components/ProjectShowcase'
-import AIAssistant from '@/components/AIAssistant'
 import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
 import Footer from '@/components/Footer'
@@ -29,8 +28,7 @@ export default function Home() {
       {/* Call to Action */}
       <CTA />
 
-      {/* AI Assistant - Floating Widget */}
-      <AIAssistant />
+
 
       {/* Floating particles effect */}
       <div className="fixed inset-0 pointer-events-none">

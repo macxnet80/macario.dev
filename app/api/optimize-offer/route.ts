@@ -56,7 +56,7 @@ STIL:
 Antworte NUR mit der optimierten Beschreibung, ohne zusätzliche Kommentare.`
 
     const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4.1-mini",
       messages: [
         {
           role: "system",

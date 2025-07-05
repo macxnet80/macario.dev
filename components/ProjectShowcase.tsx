@@ -420,22 +420,43 @@ export function KIAutomatisierungSection() {
               <button
                 className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-base mt-2 disabled:bg-primary/50"
                 disabled={isLoading || !input.trim() || showContact}
-                onClick={() => {
+                onClick={async () => {
                   if (ideaCount >= 3) {
                     setShowContact(true)
                     return
                   }
                   setIsLoading(true)
-                  setTimeout(() => {
-                    const ideas = [
-                      `Basierend auf "${input}" könnte ich dir eine Mobile App mit KI-gestützter Analyse entwickeln. Die Umsetzung würde etwa 2-3 Wochen dauern.`,
-                      `Für "${input}" empfehle ich eine Lösung mit Supabase und n8n. Wir könnten automatisierte Workflows integrieren und das Ganze in 1-2 Wochen fertigstellen.`,
-                      `Interessante Idee! Für "${input}" würde sich eine Web-Applikation anbieten. Mit Vercel können wir ein benutzerfreundliches Interface umsetzen.`
+                  setResponse('')
+                  
+                  try {
+                    const response = await fetch('/api/generate-idea', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ input }),
+                    })
+                    
+                    const data = await response.json()
+                    
+                    if (data.success) {
+                      setResponse(data.idea)
+                    } else {
+                      throw new Error(data.message || 'Fehler bei der Ideen-Generierung')
+                    }
+                  } catch (error) {
+                    console.error('Fehler beim Generieren der Idee:', error)
+                    // Fallback bei Fehlern
+                    const fallbackIdeas = [
+                      `Basierend auf "${input}" könnte ich dir eine innovative Lösung mit modernen No/Low-Code Tools entwickeln. Die Umsetzung würde etwa 2-3 Wochen dauern.`,
+                      `Für "${input}" empfehle ich eine maßgeschneiderte Web-Applikation mit automatisierten Workflows. Das Projekt wäre in 1-2 Wochen umsetzbar.`,
+                      `Interessante Idee! Für "${input}" würde sich eine intelligente Plattform mit Echtzeit-Features anbieten. Mit modernen Tools schnell realisierbar.`
                     ]
-                    setResponse(ideas[Math.floor(Math.random() * ideas.length)])
-                    setIsLoading(false)
-                    setIdeaCount(c => c + 1)
-                  }, 1500)
+                    setResponse(fallbackIdeas[Math.floor(Math.random() * fallbackIdeas.length)])
+                  }
+                  
+                  setIsLoading(false)
+                  setIdeaCount(c => c + 1)
                 }}
               >
                 <Sparkles className="w-5 h-5" /> Lösung generieren
