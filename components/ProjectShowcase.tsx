@@ -369,24 +369,24 @@ export function KIAutomatisierungSection() {
         <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-10">
           Intelligente Web-Lösungen mit modernen Tools, die dein Business automatisieren und voranbringen
         </p>
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mb-12 px-4">
           <button
-            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none ${tab === 'ideen' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'ideen' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
             onClick={() => setTab('ideen')}
           >
-            <Sparkles className="inline w-5 h-5 mr-2" />Ideen-Generator
+            <Sparkles className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Ideen-Generator
           </button>
           <button
-            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none ${tab === 'auto' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'auto' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
             onClick={() => setTab('auto')}
           >
-            <Zap className="inline w-5 h-5 mr-2" />Automatisierungen
+            <Zap className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Automatisierungen
           </button>
           <button
-            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none ${tab === 'vorteile' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'vorteile' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
             onClick={() => setTab('vorteile')}
           >
-            <TrendingUp className="inline w-5 h-5 mr-2" />Vorteile
+            <TrendingUp className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Vorteile
           </button>
         </div>
         {/* Tab Inhalte */}
