@@ -65,33 +65,68 @@ export async function POST(request: NextRequest) {
       ...projectRequest
     })
 
+    let savedRequestId: number | null = null
+
     // Daten in Supabase speichern
     if (isSupabaseConfigured()) {
       try {
         const savedRequest = await projectRequestsApi.createProjectRequest(projectRequest)
+        savedRequestId = savedRequest.id
         console.log('✅ Projektanfrage erfolgreich in Supabase gespeichert:', savedRequest.id)
-        
-        return NextResponse.json({ 
-          success: true, 
-          message: 'Projektanfrage erfolgreich übermittelt',
-          requestId: savedRequest.id
-        })
       } catch (supabaseError) {
         console.error('❌ Supabase-Fehler:', supabaseError)
-        // Fallback: Auch wenn Supabase fehlschlägt, geben wir Erfolg zurück
-        // (die Daten wurden bereits geloggt)
-        return NextResponse.json({ 
-          success: true, 
-          message: 'Projektanfrage erfolgreich übermittelt (lokale Speicherung)'
-        })
+        // Fallback: Auch wenn Supabase fehlschlägt, fahren wir fort
       }
     } else {
       console.warn('⚠️ Supabase nicht konfiguriert - Daten nur geloggt')
-      return NextResponse.json({ 
-        success: true, 
-        message: 'Projektanfrage erfolgreich übermittelt (lokale Speicherung)'
-      })
     }
+
+    // n8n Webhook senden (parallel zur Supabase-Speicherung)
+    try {
+      const webhookUrl = 'https://auto.macario.dev/webhook/125bf416-5a16-46dc-bda5-43a6dd202d4d'
+      
+      // Daten für n8n Webhook formatieren
+      const webhookData = {
+        id: savedRequestId || undefined,
+        timestamp: new Date().toISOString(),
+        projectType: data.projectType,
+        budget: parseInt(data.budget),
+        timeline: data.timeline,
+        priority: data.priority,
+        description: data.description,
+        features: data.features || [],
+        name: data.name,
+        email: data.email,
+        company: data.company || '',
+        phone: data.phone || '',
+        aiAnalysis: data.aiAnalysis || '',
+        finalPrice: data.finalPrice || null,
+        source: 'website'
+      }
+
+      const webhookResponse = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+      })
+
+      if (webhookResponse.ok) {
+        console.log('✅ n8n Webhook erfolgreich gesendet')
+      } else {
+        console.error('❌ n8n Webhook-Fehler:', webhookResponse.status, webhookResponse.statusText)
+      }
+    } catch (webhookError) {
+      console.error('❌ Fehler beim Senden des n8n Webhooks:', webhookError)
+      // Webhook-Fehler sollten nicht die gesamte Anfrage zum Scheitern bringen
+    }
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Projektanfrage erfolgreich übermittelt',
+      requestId: savedRequestId
+    })
 
   } catch (error) {
     console.error('Fehler beim Speichern der Projektanfrage:', error)
