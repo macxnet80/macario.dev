@@ -153,7 +153,7 @@ function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
 function BudgetStep({ data, updateData, onNext, onPrev }: StepProps) {
   const selectedType = projectTypes.find(t => t.id === data.projectType)
   const minBudget = selectedType?.basePrice || 1000
-  const maxBudget = minBudget * 5
+  const maxBudget = 25000
 
   return (
     <div className="space-y-6">
@@ -681,7 +681,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
 
 // Step 6: Success Step
 function SuccessStep() {
-  const [showEmailOptions, setShowEmailOptions] = useState(false)
+  const [showEmailModal, setShowEmailModal] = useState(false)
   
   const emailServices = [
     {
@@ -718,38 +718,13 @@ function SuccessStep() {
       </p>
       
       <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-        <div className="relative">
-          <button
-            onClick={() => setShowEmailOptions(!showEmailOptions)}
-            className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
-          >
-            <Mail className="w-5 h-5" />
-            E-Mail schreiben
-            <ChevronDown className={`w-4 h-4 transition-transform ${showEmailOptions ? 'rotate-180' : ''}`} />
-          </button>
-          
-          {showEmailOptions && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="absolute top-full left-0 right-0 mt-2 bg-gray-900/95 backdrop-blur-sm border border-white/10 rounded-xl p-2 z-10"
-            >
-              {emailServices.map((service) => (
-                <a
-                  key={service.name}
-                  href={service.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full p-3 hover:bg-white/10 rounded-lg transition-all text-left"
-                  onClick={() => setShowEmailOptions(false)}
-                >
-                  <span className="text-xl">{service.icon}</span>
-                  <span className="text-sm">{service.name}</span>
-                </a>
-              ))}
-            </motion.div>
-          )}
-        </div>
+        <button
+          onClick={() => setShowEmailModal(true)}
+          className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
+        >
+          <Mail className="w-5 h-5" />
+          E-Mail schreiben
+        </button>
         <a
           href="https://calendly.com/lars_macario/online-meeting"
           target="_blank"
@@ -760,15 +735,53 @@ function SuccessStep() {
           Termin buchen
         </a>
         <a
-          href="https://wa.me/4917663404901"
+          href="https://t.me/larsmacario"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 rounded-xl p-4 transition-all"
+          className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 rounded-xl p-4 transition-all"
         >
           <MessageSquare className="w-5 h-5" />
-          WhatsApp
+          Telegram
         </a>
       </div>
+
+      {/* E-Mail Modal */}
+      {showEmailModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-gray-900/95 backdrop-blur-sm border border-white/10 rounded-2xl p-6 w-full max-w-md"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold">E-Mail App wählen</h3>
+              <button
+                onClick={() => setShowEmailModal(false)}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
+              >
+                ✕
+              </button>
+            </div>
+            
+            <div className="space-y-2">
+              {emailServices.map((service) => (
+                <a
+                  key={service.name}
+                  href={service.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full p-4 hover:bg-white/10 rounded-xl transition-all text-left border border-white/10 hover:border-white/20"
+                  onClick={() => setShowEmailModal(false)}
+                >
+                  <span className="text-2xl">{service.icon}</span>
+                  <span className="font-medium">{service.name}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   )
 }
@@ -777,7 +790,7 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
   const [currentStep, setCurrentStep] = useState(0)
   const [data, setData] = useState<ProjectData>({
     projectType: '',
-    budget: 2000,
+    budget: 750, // Start with lowest base price
     timeline: '',
     features: [],
     priority: '',
@@ -789,7 +802,19 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
   })
 
   const updateData = (updates: Partial<ProjectData>) => {
-    setData(prev => ({ ...prev, ...updates }))
+    setData(prev => {
+      const newData = { ...prev, ...updates }
+      
+      // If projectType is being updated, always set budget to base price
+      if (updates.projectType) {
+        const selectedType = projectTypes.find(t => t.id === updates.projectType)
+        if (selectedType) {
+          newData.budget = selectedType.basePrice
+        }
+      }
+      
+      return newData
+    })
   }
 
   const nextStep = () => setCurrentStep(prev => prev + 1)
