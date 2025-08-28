@@ -74,6 +74,90 @@ export interface ProjectRequest {
   updated_at: string
 }
 
+// Projektmanagement Typen
+export interface Company {
+  id: string
+  name: string
+  description: string | null
+  email: string | null
+  phone: string | null
+  website: string | null
+  street: string | null
+  postal_code: string | null
+  city: string | null
+  country: string | null
+  industry: string | null
+  company_size: 'startup' | 'small' | 'medium' | 'large' | 'enterprise' | null
+  status: 'active' | 'inactive' | 'prospect' | 'archived'
+  hourly_rate: number | null
+  currency: string
+  notes: string | null
+  tags: string[] | null
+  is_active: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface PMProject {
+  id: string
+  company_id: string | null
+  name: string
+  description: string | null
+  project_type: 'website' | 'webapp' | 'ecommerce' | 'automation' | 'ai' | 'custom' | null
+  status: 'planning' | 'active' | 'on_hold' | 'completed' | 'cancelled'
+  priority: 'low' | 'medium' | 'high' | 'urgent'
+  start_date: string | null
+  end_date: string | null
+  estimated_hours: number | null
+  budget: number | null
+  hourly_rate: number | null
+  fixed_price: number | null
+  billing_type: 'hourly' | 'fixed' | 'milestone'
+  progress_percentage: number
+  tags: string[] | null
+  color: string
+  notes: string | null
+  is_active: boolean
+  created_at: string
+  updated_at: string
+}
+
+export interface Task {
+  id: string
+  project_id: string
+  parent_task_id: string | null
+  title: string
+  description: string | null
+  status: 'todo' | 'in_progress' | 'review' | 'completed' | 'cancelled'
+  priority: 'low' | 'medium' | 'high' | 'urgent'
+  estimated_hours: number | null
+  due_date: string | null
+  completed_at: string | null
+  assigned_to: string | null
+  order_index: number
+  category: string | null
+  tags: string[] | null
+  notes: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface TimeEntry {
+  id: string
+  project_id: string
+  task_id: string | null
+  start_time: string
+  end_time: string | null
+  duration_minutes: number | null
+  description: string | null
+  activity_type: 'development' | 'design' | 'meeting' | 'research' | 'testing' | 'other' | null
+  is_billable: boolean
+  hourly_rate: number | null
+  user_name: string
+  created_at: string
+  updated_at: string
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -86,6 +170,26 @@ export interface Database {
         Row: ProjectRequest
         Insert: Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Omit<ProjectRequest, 'id' | 'created_at' | 'updated_at'>>
+      }
+      companies: {
+        Row: Company
+        Insert: Omit<Company, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<Company, 'id' | 'created_at' | 'updated_at'>>
+      }
+      pm_projects: {
+        Row: PMProject
+        Insert: Omit<PMProject, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<PMProject, 'id' | 'created_at' | 'updated_at'>>
+      }
+      tasks: {
+        Row: Task
+        Insert: Omit<Task, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<Task, 'id' | 'created_at' | 'updated_at'>>
+      }
+      time_entries: {
+        Row: TimeEntry
+        Insert: Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'>>
       }
     }
   }
@@ -401,5 +505,540 @@ export const storageApi = {
       console.error('❌ List files error:', error)
       return []
     }
+  }
+}
+
+// ===== PROJEKTMANAGEMENT APIs =====
+
+// Companies API
+export const companiesApi = {
+  // Alle Unternehmen abrufen
+  async getAllCompanies() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('companies')
+      .select('*')
+      .order('name')
+    
+    if (error) throw error
+    return data as Company[]
+  },
+
+  // Aktive Unternehmen abrufen
+  async getActiveCompanies() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('companies')
+      .select('*')
+      .eq('is_active', true)
+      .order('name')
+    
+    if (error) throw error
+    return data as Company[]
+  },
+
+  // Unternehmen erstellen
+  async createCompany(company: Omit<Company, 'id' | 'created_at' | 'updated_at'>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('companies')
+      .insert(company)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as Company
+  },
+
+  // Unternehmen aktualisieren
+  async updateCompany(id: string, updates: Partial<Omit<Company, 'id' | 'created_at' | 'updated_at'>>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('companies')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as Company
+  },
+
+  // Unternehmen löschen
+  async deleteCompany(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { error } = await supabase
+      .from('companies')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
+  },
+
+  // Unternehmen nach ID abrufen
+  async getCompany(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('companies')
+      .select('*')
+      .eq('id', id)
+      .single()
+    
+    if (error) throw error
+    return data as Company
+  }
+}
+
+// PM Projects API
+export const pmProjectsApi = {
+  // Alle Projekte abrufen
+  async getAllProjects() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .select(`
+        *,
+        companies (
+          id,
+          name,
+          email,
+          hourly_rate
+        )
+      `)
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as (PMProject & { companies?: Company })[]
+  },
+
+  // Projekte nach Unternehmen abrufen
+  async getProjectsByCompany(companyId: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .select('*')
+      .eq('company_id', companyId)
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as PMProject[]
+  },
+
+  // Aktive Projekte abrufen
+  async getActiveProjects() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .select(`
+        *,
+        companies (
+          id,
+          name,
+          email
+        )
+      `)
+      .eq('is_active', true)
+      .in('status', ['planning', 'active'])
+      .order('created_at', { ascending: false })
+    
+    if (error) throw error
+    return data as (PMProject & { companies?: Company })[]
+  },
+
+  // Projekt erstellen
+  async createProject(project: Omit<PMProject, 'id' | 'created_at' | 'updated_at'>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .insert(project)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as PMProject
+  },
+
+  // Projekt aktualisieren
+  async updateProject(id: string, updates: Partial<Omit<PMProject, 'id' | 'created_at' | 'updated_at'>>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as PMProject
+  },
+
+  // Projekt löschen
+  async deleteProject(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { error } = await supabase
+      .from('pm_projects')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
+  },
+
+  // Projekt nach ID abrufen
+  async getProject(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('pm_projects')
+      .select(`
+        *,
+        companies (
+          id,
+          name,
+          email,
+          hourly_rate
+        )
+      `)
+      .eq('id', id)
+      .single()
+    
+    if (error) throw error
+    return data as PMProject & { companies?: Company }
+  }
+}
+
+// Tasks API
+export const tasksApi = {
+  // Alle Aufgaben abrufen
+  async getAllTasks() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('tasks')
+      .select(`
+        *,
+        pm_projects (
+          id,
+          name,
+          company_id,
+          companies (
+            name
+          )
+        )
+      `)
+      .order('order_index')
+    
+    if (error) throw error
+    return data as (Task & { pm_projects?: PMProject & { companies?: Company } })[]
+  },
+
+  // Aufgaben nach Projekt abrufen
+  async getTasksByProject(projectId: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('tasks')
+      .select('*')
+      .eq('project_id', projectId)
+      .order('order_index')
+    
+    if (error) throw error
+    return data as Task[]
+  },
+
+  // Aufgabe erstellen
+  async createTask(task: Omit<Task, 'id' | 'created_at' | 'updated_at'>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert(task)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as Task
+  },
+
+  // Aufgabe aktualisieren
+  async updateTask(id: string, updates: Partial<Omit<Task, 'id' | 'created_at' | 'updated_at'>>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('tasks')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as Task
+  },
+
+  // Aufgabe löschen
+  async deleteTask(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { error } = await supabase
+      .from('tasks')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
+  },
+
+  // Aufgaben-Status aktualisieren
+  async updateTaskStatus(id: string, status: Task['status']) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const updates: any = { status }
+    if (status === 'completed') {
+      updates.completed_at = new Date().toISOString()
+    }
+    
+    const { data, error } = await supabase
+      .from('tasks')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as Task
+  }
+}
+
+// Time Entries API
+export const timeEntriesApi = {
+  // Alle Zeiteinträge abrufen
+  async getAllTimeEntries() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('time_entries')
+      .select(`
+        *,
+        pm_projects (
+          id,
+          name,
+          companies (
+            name
+          )
+        ),
+        tasks (
+          id,
+          title
+        )
+      `)
+      .order('start_time', { ascending: false })
+    
+    if (error) throw error
+    return data as (TimeEntry & { 
+      pm_projects?: PMProject & { companies?: Company }
+      tasks?: Task 
+    })[]
+  },
+
+  // Zeiteinträge nach Projekt abrufen
+  async getTimeEntriesByProject(projectId: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('time_entries')
+      .select(`
+        *,
+        tasks (
+          id,
+          title
+        )
+      `)
+      .eq('project_id', projectId)
+      .order('start_time', { ascending: false })
+    
+    if (error) throw error
+    return data as (TimeEntry & { tasks?: Task })[]
+  },
+
+  // Zeiteintrag erstellen
+  async createTimeEntry(entry: Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('time_entries')
+      .insert(entry)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as TimeEntry
+  },
+
+  // Zeiteintrag aktualisieren
+  async updateTimeEntry(id: string, updates: Partial<Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'>>) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('time_entries')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    
+    if (error) throw error
+    return data as TimeEntry
+  },
+
+  // Zeiteintrag löschen
+  async deleteTimeEntry(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { error } = await supabase
+      .from('time_entries')
+      .delete()
+      .eq('id', id)
+    
+    if (error) throw error
+  },
+
+  // Aktiven Timer starten
+  async startTimer(projectId: string, taskId?: string, description?: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const entry: Omit<TimeEntry, 'id' | 'created_at' | 'updated_at'> = {
+      project_id: projectId,
+      task_id: taskId || null,
+      start_time: new Date().toISOString(),
+      end_time: null,
+      duration_minutes: null,
+      description: description || null,
+      activity_type: 'development',
+      is_billable: true,
+      hourly_rate: null,
+      user_name: 'Admin'
+    }
+    
+    return this.createTimeEntry(entry)
+  },
+
+  // Timer stoppen
+  async stopTimer(id: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const endTime = new Date().toISOString()
+    
+    // Erst den aktuellen Eintrag abrufen
+    const { data: currentEntry, error: fetchError } = await supabase
+      .from('time_entries')
+      .select('start_time')
+      .eq('id', id)
+      .single()
+    
+    if (fetchError) throw fetchError
+    
+    // Dauer berechnen
+    const startTime = new Date(currentEntry.start_time)
+    const endTimeDate = new Date(endTime)
+    const durationMinutes = Math.round((endTimeDate.getTime() - startTime.getTime()) / (1000 * 60))
+    
+    return this.updateTimeEntry(id, {
+      end_time: endTime,
+      duration_minutes: durationMinutes
+    })
+  },
+
+  // Zeiteinträge nach Zeitraum abrufen
+  async getTimeEntriesByDateRange(startDate: string, endDate: string) {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('time_entries')
+      .select(`
+        *,
+        pm_projects (
+          id,
+          name,
+          companies (
+            name
+          )
+        ),
+        tasks (
+          id,
+          title
+        )
+      `)
+      .gte('start_time', startDate)
+      .lte('start_time', endDate)
+      .order('start_time', { ascending: false })
+    
+    if (error) throw error
+    return data as (TimeEntry & { 
+      pm_projects?: PMProject & { companies?: Company }
+      tasks?: Task 
+    })[]
   }
 } 

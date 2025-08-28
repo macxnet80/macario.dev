@@ -203,13 +203,19 @@ export default function CRMPage() {
                   href="/admin"
                   className="px-4 py-2 bg-white/10 text-gray-300 rounded-lg border border-white/20 hover:bg-white/20 transition-all font-medium"
                 >
-                  Projekte
+                  Portfolio
                 </a>
                 <a
                   href="/admin/crm"
                   className="px-4 py-2 bg-primary/20 text-primary rounded-lg border border-primary/30 font-medium"
                 >
                   CRM
+                </a>
+                <a
+                  href="/admin/projects"
+                  className="px-4 py-2 bg-white/10 text-gray-300 rounded-lg border border-white/20 hover:bg-white/20 transition-all font-medium"
+                >
+                  Projekte
                 </a>
               </nav>
             </div>
