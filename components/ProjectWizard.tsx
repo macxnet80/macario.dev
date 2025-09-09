@@ -726,7 +726,7 @@ function SuccessStep() {
           E-Mail schreiben
         </button>
         <a
-          href="https://calendly.com/lars_macario/online-meeting"
+          href="https://zeeg.me/larsmacario/30min"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 rounded-xl p-4 transition-all"

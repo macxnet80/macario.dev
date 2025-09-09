@@ -270,7 +270,7 @@ export default function TimeTrackingPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background p-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="w-[95vw] mx-auto">
           <div className="text-center py-20">
             <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
             <p className="text-gray-300">Zeittracking wird geladen...</p>
@@ -283,7 +283,7 @@ export default function TimeTrackingPage() {
   if (!projectId || !project) {
     return (
       <div className="min-h-screen bg-background p-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="w-[95vw] mx-auto">
           <div className="text-center py-20">
             <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Kein Projekt ausgewählt</h3>

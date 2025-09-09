@@ -24,6 +24,8 @@ import {
   Users,
   Timer
 } from 'lucide-react'
+import TimeTrackingModal from '@/components/TimeTrackingModal'
+import GlobalTimerButton from '@/components/GlobalTimerButton'
 import { pmProjectsApi, companiesApi, tasksApi, PMProject, Company, Task, isSupabaseConfigured } from '@/lib/supabase'
 
 const statusConfig = {
@@ -80,6 +82,8 @@ export default function ProjectsPage() {
   const [editingProject, setEditingProject] = useState<PMProject | null>(null)
   const [isCreating, setIsCreating] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [showTimeModal, setShowTimeModal] = useState(false)
+  const [selectedProjectForTimer, setSelectedProjectForTimer] = useState<string>('')
 
   // Daten laden
   const loadData = async () => {
@@ -194,6 +198,12 @@ export default function ProjectsPage() {
     }
   }
 
+  // Timer öffnen
+  const openTimerModal = (projectId: string) => {
+    setSelectedProjectForTimer(projectId)
+    setShowTimeModal(true)
+  }
+
   // Gefilterte Projekte
   const filteredProjects = projects.filter(project => {
     const matchesSearch = 
@@ -233,7 +243,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-white/10 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-8 py-6">
+        <div className="w-[95vw] mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4">
@@ -281,7 +291,7 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-8">
+      <div className="w-[95vw] mx-auto p-8">
         {/* Dashboard */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -539,6 +549,15 @@ export default function ProjectsPage() {
                       ))}
                     </select>
                     
+                    {/* Timer starten */}
+                    <button
+                      onClick={() => openTimerModal(project.id)}
+                      className="p-2 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-all"
+                      title="Timer starten"
+                    >
+                      <Timer className="w-4 h-4" />
+                    </button>
+                    
                     {/* Zu Aufgaben */}
                     <a
                       href={`/admin/tasks?project=${project.id}`}
@@ -587,6 +606,20 @@ export default function ProjectsPage() {
           onCompanySaved={loadData}
         />
       )}
+
+      {/* Time Tracking Modal */}
+      <TimeTrackingModal
+        isOpen={showTimeModal}
+        onClose={() => setShowTimeModal(false)}
+        preSelectedProject={selectedProjectForTimer}
+        onTimerUpdate={(isRunning, entry) => {
+          // Optional: Timer-Status in der Hauptansicht anzeigen
+          console.log('Timer Update:', isRunning, entry)
+        }}
+      />
+
+      {/* Global Timer Button */}
+      <GlobalTimerButton />
     </div>
   )
 }

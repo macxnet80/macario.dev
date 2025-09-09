@@ -19,6 +19,8 @@ import {
   Timer,
   Building2
 } from 'lucide-react'
+import TimeTrackingModal from '@/components/TimeTrackingModal'
+import GlobalTimerButton from '@/components/GlobalTimerButton'
 import { tasksApi, pmProjectsApi, timeEntriesApi, Task, PMProject, Company, isSupabaseConfigured } from '@/lib/supabase'
 
 const statusConfig = {
@@ -66,6 +68,8 @@ export default function TasksPage() {
   const [isCreating, setIsCreating] = useState(false)
   const [saving, setSaving] = useState(false)
   const [projectId, setProjectId] = useState<string>('')
+  const [showTimeModal, setShowTimeModal] = useState(false)
+  const [selectedTaskForTimer, setSelectedTaskForTimer] = useState<string>('')
 
   // URL Parameter für Project-Filter
   useEffect(() => {
@@ -176,17 +180,10 @@ export default function TasksPage() {
     }
   }
 
-  // Timer starten
-  const startTimer = async (taskId: string) => {
-    if (!projectId) return
-    
-    try {
-      await timeEntriesApi.startTimer(projectId, taskId, 'Zeiterfassung gestartet')
-      alert('Timer gestartet!')
-    } catch (error) {
-      console.error('Fehler beim Starten des Timers:', error)
-      alert('Fehler beim Starten des Timers')
-    }
+  // Timer öffnen
+  const openTimerModal = (taskId?: string) => {
+    setSelectedTaskForTimer(taskId || '')
+    setShowTimeModal(true)
   }
 
   // Gefilterte Aufgaben
@@ -253,7 +250,7 @@ export default function TasksPage() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-white/10 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-8 py-6">
+        <div className="w-[95vw] mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4">
@@ -326,7 +323,7 @@ export default function TasksPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-8">
+      <div className="w-[95vw] mx-auto p-8">
         {/* Projekt-Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -466,16 +463,6 @@ export default function TasksPage() {
                             <button
                               onClick={(e) => {
                                 e.stopPropagation()
-                                startTimer(task.id)
-                              }}
-                              className="p-1 rounded bg-green-500/20 text-green-400 hover:bg-green-500/30 transition-all"
-                              title="Timer starten"
-                            >
-                              <Play className="w-3 h-3" />
-                            </button>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation()
                                 handleDeleteTask(task.id)
                               }}
                               className="p-1 rounded bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all"
@@ -550,6 +537,8 @@ export default function TasksPage() {
                     )
                   })}
 
+
+                  
                   {/* Add Task Button */}
                   <button
                     onClick={handleCreateTask}
@@ -596,6 +585,20 @@ export default function TasksPage() {
           onChange={setEditingTask}
         />
       )}
+
+      {/* Time Tracking Modal */}
+      <TimeTrackingModal
+        isOpen={showTimeModal}
+        onClose={() => setShowTimeModal(false)}
+        preSelectedProject={projectId}
+        preSelectedTask={selectedTaskForTimer}
+        onTimerUpdate={(isRunning, entry) => {
+          console.log('Timer Update:', isRunning, entry)
+        }}
+      />
+
+      {/* Global Timer Button */}
+      <GlobalTimerButton />
     </div>
   )
 }

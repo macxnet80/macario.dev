@@ -181,7 +181,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background p-8">
-        <div className="max-w-6xl mx-auto">
+        <div className="w-[95vw] mx-auto">
           <div className="text-center py-20">
             <div className="animate-spin w-12 h-12 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
             <p className="text-gray-300">Admin-Panel wird geladen...</p>
@@ -195,7 +195,7 @@ export default function AdminPage() {
       <div className="min-h-screen bg-background">
         {/* Header */}
       <div className="border-b border-white/10 bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-8 py-6">
+        <div className="w-[95vw] mx-auto px-8 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-4">
@@ -251,7 +251,7 @@ export default function AdminPage() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto p-8">
+      <div className="w-[95vw] mx-auto p-8">
         {/* Projekt-Liste */}
         <DndContext
           sensors={sensors}
