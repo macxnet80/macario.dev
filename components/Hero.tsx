@@ -41,7 +41,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <p className="text-gray-300 text-lg">
-              Hallo! Ich bin <span className="text-primary font-semibold">Lars</span>
+              Hej! Ich bin <span className="text-primary font-semibold">Lars</span>
             </p>
           </motion.div>
 
@@ -103,7 +103,7 @@ export default function Hero() {
               {/* Avatar Image */}
               <div className="w-full h-full relative rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/avatar.png"
+                  src="/lars_macario_no_code_dev.jpg"
                   alt="Lars - No/Low-Code Developer"
                   fill
                   className="object-cover"
@@ -123,9 +123,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 grid grid-cols-2 gap-4"
+            className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 grid grid-cols-2 gap-4 w-80 -ml-8"
           >
-            <div className="glass rounded-2xl p-4 border border-white/10">
+            <div className="glass rounded-2xl p-4 border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all duration-300">
               <div className="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center mb-3 border border-green-500/30">
                 <Zap className="w-6 h-6 text-green-400" />
               </div>
@@ -133,7 +133,7 @@ export default function Hero() {
               <p className="text-sm text-gray-300">Durchschnitt 3 Wochen von Idee zu Live-Website</p>
             </div>
 
-            <div className="glass rounded-2xl p-4 border border-white/10">
+            <div className="glass rounded-2xl p-4 border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all duration-300">
               <div className="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center mb-3 border border-purple-500/30">
                 <Sparkles className="w-6 h-6 text-purple-400" />
               </div>
