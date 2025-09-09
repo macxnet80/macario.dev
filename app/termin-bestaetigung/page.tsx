@@ -23,6 +23,13 @@ interface BookingData {
   time?: string
   duration?: string
   meetingType?: string
+  schedulingPageName?: string
+  eventStartTime?: string
+  eventEndTime?: string
+  inviteeTimezone?: string
+  assignedTo?: string
+  inviteeUuid?: string
+  answer1?: string
 }
 
 export default function TerminBestaetigung() {
@@ -34,23 +41,36 @@ export default function TerminBestaetigung() {
     const urlParams = new URLSearchParams(window.location.search)
     const data: BookingData = {}
     
-    // Common Zeeg parameters
-    if (urlParams.get('name')) data.name = urlParams.get('name')!
-    if (urlParams.get('email')) data.email = urlParams.get('email')!
-    if (urlParams.get('phone')) data.phone = urlParams.get('phone')!
-    if (urlParams.get('date')) data.date = urlParams.get('date')!
-    if (urlParams.get('time')) data.time = urlParams.get('time')!
-    if (urlParams.get('duration')) data.duration = urlParams.get('duration')!
-    if (urlParams.get('meeting_type')) data.meetingType = urlParams.get('meeting_type')!
+    // Zeeg specific parameters
+    if (urlParams.get('invitee_full_name')) data.name = decodeURIComponent(urlParams.get('invitee_full_name')!)
+    if (urlParams.get('invitee_email')) data.email = decodeURIComponent(urlParams.get('invitee_email')!)
+    if (urlParams.get('scheduling_page_name')) data.schedulingPageName = decodeURIComponent(urlParams.get('scheduling_page_name')!)
+    if (urlParams.get('event_start_time')) data.eventStartTime = urlParams.get('event_start_time')!
+    if (urlParams.get('event_end_time')) data.eventEndTime = urlParams.get('event_end_time')!
+    if (urlParams.get('invitee_timezone')) data.inviteeTimezone = decodeURIComponent(urlParams.get('invitee_timezone')!)
+    if (urlParams.get('assigned_to')) data.assignedTo = decodeURIComponent(urlParams.get('assigned_to')!)
+    if (urlParams.get('invitee_uuid')) data.inviteeUuid = urlParams.get('invitee_uuid')!
+    if (urlParams.get('answer_1')) data.answer1 = decodeURIComponent(urlParams.get('answer_1')!)
+    
+    // Parse date and time from event_start_time
+    if (data.eventStartTime) {
+      try {
+        const startDate = new Date(data.eventStartTime)
+        data.date = startDate.toISOString().split('T')[0]
+        data.time = startDate.toTimeString().split(' ')[0].substring(0, 5)
+      } catch (error) {
+        console.error('Error parsing date:', error)
+      }
+    }
     
     setBookingData(data)
     setIsLoading(false)
   }, [])
 
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Termin wird bestätigt'
+    if (!dateString && !bookingData.eventStartTime) return 'Termin wird bestätigt'
     try {
-      const date = new Date(dateString)
+      const date = bookingData.eventStartTime ? new Date(bookingData.eventStartTime) : new Date(dateString!)
       return date.toLocaleDateString('de-DE', {
         weekday: 'long',
         year: 'numeric',
@@ -58,17 +78,24 @@ export default function TerminBestaetigung() {
         day: 'numeric'
       })
     } catch {
-      return dateString
+      return dateString || 'Termin wird bestätigt'
     }
   }
 
   const formatTime = (timeString?: string) => {
-    if (!timeString) return 'Zeit wird bestätigt'
+    if (!timeString && !bookingData.eventStartTime) return 'Zeit wird bestätigt'
     try {
-      const [hours, minutes] = timeString.split(':')
+      if (bookingData.eventStartTime) {
+        const date = new Date(bookingData.eventStartTime)
+        return date.toLocaleTimeString('de-DE', {
+          hour: '2-digit',
+          minute: '2-digit'
+        })
+      }
+      const [hours, minutes] = timeString!.split(':')
       return `${hours}:${minutes} Uhr`
     } catch {
-      return timeString
+      return timeString || 'Zeit wird bestätigt'
     }
   }
 
@@ -140,6 +167,14 @@ export default function TerminBestaetigung() {
                 </div>
               )}
               
+              {bookingData.answer1 && (
+                <div className="flex items-center gap-3">
+                  <MessageSquare className="w-5 h-5 text-gray-400" />
+                  <span className="text-gray-300">Nachricht:</span>
+                  <span className="font-medium">{bookingData.answer1}</span>
+                </div>
+              )}
+              
               <div className="border-t border-white/10 pt-4 mt-4">
                 <div className="flex items-center gap-3 mb-2">
                   <Calendar className="w-5 h-5 text-primary" />
@@ -153,11 +188,19 @@ export default function TerminBestaetigung() {
                   <span className="font-medium">{formatTime(bookingData.time)}</span>
                 </div>
                 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 mb-2">
                   <MapPin className="w-5 h-5 text-primary" />
                   <span className="text-gray-300">Format:</span>
                   <span className="font-medium">Online-Meeting (30 Minuten)</span>
                 </div>
+                
+                {bookingData.inviteeTimezone && (
+                  <div className="flex items-center gap-3">
+                    <Clock className="w-5 h-5 text-primary" />
+                    <span className="text-gray-300">Zeitzone:</span>
+                    <span className="font-medium">{bookingData.inviteeTimezone}</span>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
@@ -223,6 +266,21 @@ export default function TerminBestaetigung() {
               Bei Fragen: Telegram
             </a>
           </motion.div>
+
+          {/* Debug Info - Remove in production */}
+          {process.env.NODE_ENV === 'development' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-4 mt-8"
+            >
+              <h4 className="text-yellow-400 font-semibold mb-2">Debug Info (Development only):</h4>
+              <pre className="text-xs text-gray-300 overflow-auto">
+                {JSON.stringify(bookingData, null, 2)}
+              </pre>
+            </motion.div>
+          )}
 
           {/* Contact Info */}
           <motion.div
