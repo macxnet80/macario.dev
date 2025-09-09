@@ -81,7 +81,7 @@ const tools = [
     title: 'OpenAI API',
     description: 'KI-Integration für smarte Anwendungen',
     features: [
-      'GPT-4 & GPT-3.5',
+      'Aktuelle GPT-Modelle',
       'Text & Chatbots',
       'Automatisierte Analysen',
       'Individuelle KI-Lösungen',
