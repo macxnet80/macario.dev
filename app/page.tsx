@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Hero from '@/components/Hero'
+import EmotionalStory from '@/components/EmotionalStory'
 import SkillsSection from '@/components/SkillsSection'
 import ProjectShowcase, { KIAutomatisierungSection } from '@/components/ProjectShowcase'
 import CTA from '@/components/CTA'
@@ -15,6 +16,9 @@ export default function Home() {
       <main className="min-h-screen bg-background">
       {/* Hero Section */}
       <Hero />
+
+      {/* Emotional Story Section */}
+      <EmotionalStory />
 
       {/* Skills Section */}
       <SkillsSection />

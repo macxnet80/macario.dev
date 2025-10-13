@@ -71,7 +71,7 @@ Viele Grüße`
   const contactOptions = [
     {
       icon: Calendar,
-      title: 'Projekt Anfrage',
+      title: 'Kostenloses Erstgespräch',
       description: 'Intelligenter Projekt-Konfigurator',
       action: () => setShowWizard(true),
       color: 'from-blue-500 to-cyan-500'
@@ -113,7 +113,7 @@ Viele Grüße`
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold mb-6"
             >
-              Lass uns gemeinsam loslegen!
+              Dein Projekt starten
             </motion.h2>
             
             <motion.p
@@ -162,7 +162,7 @@ Viele Grüße`
                   <p className="text-gray-400 text-sm mb-4 text-center">{option.description}</p>
                   
                   <div className="flex items-center justify-center gap-2 text-primary group-hover:gap-3 transition-all duration-300 ease-out">
-                    <span className="text-sm font-medium">Jetzt starten</span>
+                    <span className="text-sm font-medium">Projekt starten</span>
                     <motion.div
                       whileHover={{ x: 3 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}

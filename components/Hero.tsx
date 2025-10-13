@@ -1,17 +1,47 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowDown, Sparkles, Zap } from 'lucide-react'
 import Image from 'next/image'
+import ProjectWizard from './ProjectWizard'
 
 export default function Hero() {
+  const [showWizard, setShowWizard] = useState(false)
+  const [showFloatingCTA, setShowFloatingCTA] = useState(false)
+  const heroRef = useRef<HTMLElement>(null)
+  
   const scrollToSkills = () => {
     const skillsSection = document.querySelector('#skills-section')
     skillsSection?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // Intersection Observer für Floating CTA
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // CTA erscheint wenn Hero aus dem Viewport ist
+        setShowFloatingCTA(!entry.isIntersecting)
+      },
+      {
+        threshold: 0.1, // 10% des Hero-Bereichs muss sichtbar sein
+        rootMargin: '-50px 0px 0px 0px' // 50px Puffer nach oben
+      }
+    )
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current)
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <section className="min-h-screen bg-background flex items-center relative overflow-hidden">
+    <section ref={heroRef} className="min-h-screen bg-background flex items-center relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-background to-pink-900/20" />
       <div className="absolute inset-0">
@@ -34,60 +64,55 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Greeting */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <p className="text-gray-300 text-lg">
-              Hej! Ich bin <span className="text-primary font-semibold">Lars</span>
-            </p>
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl lg:text-6xl font-bold text-white leading-tight mb-6"
           >
-            Ich baue{' '}
-            <span className="gradient-text">moderne Lösungen</span>{' '}
-            ohne Code, mit{' '}
-            <span className="relative">
-              Köpfchen
-              <div className="absolute -bottom-2 left-0 w-full h-3 bg-primary/30 -z-10 transform -rotate-1 rounded" />
-            </span>
+            <div className="mb-2 whitespace-nowrap">Deine Idee.</div>
+            <div className="mb-2 whitespace-nowrap">Dein digitales Produkt.</div>
+            <div className="text-primary whitespace-nowrap">In 2 Wochen live.</div>
           </motion.h1>
 
           {/* Description */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-xl text-gray-300 max-w-lg"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-300 max-w-2xl mb-8"
           >
-            Von der einfachen Website bis zur komplexen Web-Anwendung – ich 
-            verwandle deine Vision mit{' '}
-            <span className="text-primary font-medium">Cursor, Supabase und Vercel</span>{' '}
-            in digitale Realität.
+            Mit No/Low-Code und gezielter KI-Integration baue ich dir ein skalierbares MVP oder moderne Web-Lösung – blitzschnell, transparent und mit echten Business-Outcomes.
           </motion.p>
 
-          {/* CTA Button */}
-          <motion.button
+          {/* CTA Buttons */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={scrollToSkills}
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-lg font-medium transition-all glow"
+            className="flex flex-col sm:flex-row gap-4 mt-8"
           >
-            <Sparkles className="w-5 h-5" />
-            Entdecke meine Lösungen
-            <ArrowDown className="w-5 h-5" />
-          </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowWizard(true)}
+              className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full text-base font-medium transition-all glow"
+            >
+              <Sparkles className="w-4 h-4" />
+              Kostenloses Erstgespräch buchen
+            </motion.button>
+            
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={scrollToSkills}
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full text-base font-medium transition-all border border-white/30"
+            >
+              <ArrowDown className="w-4 h-4" />
+              Lösungen entdecken
+            </motion.button>
+          </motion.div>
         </div>
 
         {/* Right Content - Avatar & Features */}
@@ -130,7 +155,7 @@ export default function Hero() {
                 <Zap className="w-6 h-6 text-green-400" />
               </div>
               <h3 className="font-semibold text-white mb-1">Schnell</h3>
-              <p className="text-sm text-gray-300">Durchschnitt 3 Wochen von Idee zu Live-Website</p>
+              <p className="text-sm text-gray-300">Durchschnitt 2 Wochen von Idee zu Live-Website</p>
             </div>
 
             <div className="glass rounded-2xl p-4 border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all duration-300">
@@ -160,6 +185,48 @@ export default function Hero() {
           <ArrowDown className="w-6 h-6 text-gray-400" />
         </motion.div>
       </motion.div>
+      
+      {/* Project Wizard Modal */}
+      {showWizard && (
+        <ProjectWizard onClose={() => setShowWizard(false)} />
+      )}
+
+      {/* Floating CTA Button */}
+      <AnimatePresence>
+        {showFloatingCTA && (
+          <motion.div
+            initial={{ opacity: 0, y: 100, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 100, scale: 0.8 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 30,
+              duration: 0.3 
+            }}
+            className="fixed bottom-6 right-6 z-40"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowWizard(true)}
+              className="group relative bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-full shadow-2xl shadow-primary/30 border border-primary/20 backdrop-blur-sm transition-all duration-300 flex items-center gap-3 font-medium text-base"
+            >
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              >
+                <Sparkles className="w-5 h-5" />
+              </motion.div>
+              <span className="hidden sm:inline">Projekt anfrage</span>
+              <span className="sm:hidden">Anfrage</span>
+              
+              {/* Glow effect */}
+              <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl -z-10 group-hover:bg-primary/30 transition-all duration-300" />
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 } 
