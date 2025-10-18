@@ -37,6 +37,7 @@ interface ProjectData {
   company: string
   phone: string
   description: string
+  source: string
 }
 
 interface StepProps {
@@ -86,7 +87,7 @@ const projectTypes = [
     features: ['Workflow Design', 'API Integrationen', 'Datenverarbeitung', 'Monitoring']
   },
   {
-    id: 'ai',
+    id: 'ai-integration',
     title: 'KI-Integration',
     description: 'Chatbots oder KI-gestützte Features',
     icon: Bot,
@@ -105,10 +106,17 @@ const timelineOptions = [
 ]
 
 const priorityOptions = [
-  { id: 'speed', label: 'Schnelle Umsetzung', icon: Zap },
-  { id: 'quality', label: 'Höchste Qualität', icon: Star },
-  { id: 'budget', label: 'Kostenoptimiert', icon: Euro },
-  { id: 'features', label: 'Maximale Features', icon: Sparkles }
+  { id: 'speed', label: 'Speed', icon: Zap },
+  { id: 'quality', label: 'Quality', icon: Star },
+  { id: 'budget', label: 'Budget', icon: Euro },
+  { id: 'features', label: 'Features', icon: Sparkles }
+]
+
+const sourceOptions = [
+  { id: 'website', label: 'malt.de', icon: Globe },
+  { id: 'google', label: 'Google', icon: Globe },
+  { id: 'social-media', label: 'Social Media', icon: MessageSquare },
+  { id: 'referral', label: 'Empfehlung', icon: User }
 ]
 
 // Step 1: Project Type Selection
@@ -400,6 +408,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   const [aiAnalysis, setAiAnalysis] = useState<string>('')
   const [showAnalysis, setShowAnalysis] = useState(false)
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
+  const [emailError, setEmailError] = useState<string>('')
 
   const selectedType = projectTypes.find(t => t.id === data.projectType)
   const timelineOption = timelineOptions.find(t => t.id === data.timeline)
@@ -420,15 +429,44 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
     }
   }
 
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
   const handleSubmit = async () => {
-    if (!data.name || !data.email || !privacyAccepted) return
+    if (!data.name || !data.email || !data.source || !privacyAccepted) return
     
+    // E-Mail-Format validieren
+    if (!isValidEmail(data.email)) {
+      setEmailError('Bitte geben Sie eine gültige E-Mail-Adresse ein.')
+      return
+    }
+    
+    setEmailError('') // Fehler zurücksetzen
     setIsSubmitting(true)
+    
+    // Transform data for webhook with German labels
+    const selectedType = projectTypes.find(t => t.id === data.projectType)
+    const timelineOption = timelineOptions.find(t => t.id === data.timeline)
+    const priorityOption = priorityOptions.find(p => p.id === data.priority)
+    const sourceOption = sourceOptions.find(s => s.id === data.source)
+    
+    const transformedData = {
+      ...data,
+      projectType: selectedType?.title || data.projectType,
+      timeline: timelineOption?.label || data.timeline,
+      priority: priorityOption?.label || data.priority,
+      source: sourceOption?.label || data.source,
+      finalPrice,
+      aiAnalysis
+    }
+    
     try {
       await fetch('/api/submit-project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, finalPrice, aiAnalysis })
+        body: JSON.stringify(transformedData)
       })
       onNext() // Go to success step
     } catch (error) {
@@ -512,10 +550,23 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
               <input
                 type="email"
                 value={data.email}
-                onChange={(e) => updateData({ email: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50"
+                onChange={(e) => {
+                  updateData({ email: e.target.value })
+                  setEmailError('') // Fehler beim Tippen zurücksetzen
+                }}
+                className={`w-full bg-white/10 border rounded-xl p-3 outline-none focus:ring-2 transition-all ${
+                  emailError 
+                    ? 'border-red-500 focus:ring-red-500/50' 
+                    : 'border-white/10 focus:ring-primary/50'
+                }`}
                 placeholder="deine@email.com"
               />
+              {emailError && (
+                <p className="text-red-400 text-sm mt-1 flex items-center gap-1">
+                  <span>⚠️</span>
+                  {emailError}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">Unternehmen</label>
@@ -536,6 +587,25 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50"
                 placeholder="+49 123 456789 (optional)"
               />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Wie hast du von mir erfahren? *</label>
+              <div className="grid grid-cols-2 gap-2">
+                {sourceOptions.map((option) => (
+                  <button
+                    key={option.id}
+                    onClick={() => updateData({ source: option.id })}
+                    className={`p-3 rounded-xl border-2 transition-all text-left flex items-center gap-2 ${
+                      data.source === option.id
+                        ? 'border-primary bg-primary/10'
+                        : 'border-white/10 bg-white/5 hover:border-white/20'
+                    }`}
+                  >
+                    <option.icon className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium">{option.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
 
           </div>
@@ -686,7 +756,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </button>
         <button
           onClick={handleSubmit}
-          disabled={!data.name || !data.email || !privacyAccepted || isSubmitting}
+          disabled={!data.name || !data.email || !data.source || !privacyAccepted || isSubmitting}
           className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
@@ -825,7 +895,8 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
     email: '',
     company: '',
     phone: '',
-    description: ''
+    description: '',
+    source: ''
   })
 
   const updateData = (updates: Partial<ProjectData>) => {
@@ -870,7 +941,9 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold">Projekt-Konfigurator</h1>
-            <p className="text-gray-400">Schritt {currentStep + 1} von {steps.length - 1}</p>
+            {currentStep < steps.length - 1 && (
+              <p className="text-gray-400">Schritt {currentStep + 1} von {steps.length - 1}</p>
+            )}
           </div>
           <button
             onClick={onClose}
@@ -881,16 +954,18 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* Progress Bar */}
-        <div className="px-6 pt-4">
-          <div className="w-full bg-white/10 rounded-full h-2">
-            <motion.div
-              className="bg-gradient-to-r from-primary to-purple-500 h-2 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: `${((currentStep + 1) / (steps.length - 1)) * 100}%` }}
-              transition={{ duration: 0.3 }}
-            />
+        {currentStep < steps.length - 1 && (
+          <div className="px-6 pt-4">
+            <div className="w-full bg-white/10 rounded-full h-2">
+              <motion.div
+                className="bg-gradient-to-r from-primary to-purple-500 h-2 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${((currentStep + 1) / (steps.length - 1)) * 100}%` }}
+                transition={{ duration: 0.3 }}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Content */}
         <div className="p-6">

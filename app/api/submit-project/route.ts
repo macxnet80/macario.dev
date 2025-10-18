@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { projectRequestsApi, isSupabaseConfigured } from '@/lib/supabase'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,78 +15,25 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Daten für Supabase vorbereiten
-    const projectRequest = {
-      project_type: data.projectType,
-      budget: parseInt(data.budget),
+    console.log('Neue Projektanfrage:', {
+      timestamp: new Date().toISOString(),
+      projectType: data.projectType,
+      budget: data.budget,
       timeline: data.timeline,
       priority: data.priority,
       description: data.description,
-      features: data.features || [],
       name: data.name,
       email: data.email,
-      company: data.company || null,
-      phone: data.phone || null,
-      ai_analysis: data.aiAnalysis || null,
-      status: 'new' as const,
-      notes: null,
-      
-      // Adress-Felder (optional)
-      street: null,
-      postal_code: null,
-      city: null,
-      country: null,
-      
-      // Angebots-Felder (werden später vom Admin gesetzt)
-      offer_amount: null,
-      offer_date: null,
-      offer_status: null,
-      contract_status: null,
-      offer_description: null,
-      offer_description_optimized: null,
-      
-      // Business-Felder (werden später vom Admin gesetzt)
-      lead_source: 'website' as const,
-      priority_level: null,
-      next_followup: null,
-      estimated_hours: null,
-      hourly_rate: null,
-      
-      // Tracking-Felder (werden automatisch gesetzt)
-      first_contact_date: new Date().toISOString(),
-      last_contact_date: null,
-      project_start_date: null,
-      project_end_date: null
-    }
-
-    console.log('Neue Projektanfrage:', {
-      timestamp: new Date().toISOString(),
-      ...projectRequest
+      company: data.company,
+      phone: data.phone
     })
 
-    let savedRequestId: number | null = null
-
-    // Daten in Supabase speichern
-    if (isSupabaseConfigured()) {
-      try {
-        const savedRequest = await projectRequestsApi.createProjectRequest(projectRequest)
-        savedRequestId = savedRequest.id
-        console.log('✅ Projektanfrage erfolgreich in Supabase gespeichert:', savedRequest.id)
-      } catch (supabaseError) {
-        console.error('❌ Supabase-Fehler:', supabaseError)
-        // Fallback: Auch wenn Supabase fehlschlägt, fahren wir fort
-      }
-    } else {
-      console.warn('⚠️ Supabase nicht konfiguriert - Daten nur geloggt')
-    }
-
-    // n8n Webhook senden (parallel zur Supabase-Speicherung)
+    // n8n Webhook senden
     try {
       const webhookUrl = 'https://auto.macario.dev/webhook/125bf416-5a16-46dc-bda5-43a6dd202d4d'
       
       // Daten für n8n Webhook formatieren
       const webhookData = {
-        id: savedRequestId || undefined,
         timestamp: new Date().toISOString(),
         projectType: data.projectType,
         budget: parseInt(data.budget),
@@ -124,8 +70,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ 
       success: true, 
-      message: 'Projektanfrage erfolgreich übermittelt',
-      requestId: savedRequestId
+      message: 'Projektanfrage erfolgreich übermittelt'
     })
 
   } catch (error) {
