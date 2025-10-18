@@ -399,6 +399,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [aiAnalysis, setAiAnalysis] = useState<string>('')
   const [showAnalysis, setShowAnalysis] = useState(false)
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
 
   const selectedType = projectTypes.find(t => t.id === data.projectType)
   const timelineOption = timelineOptions.find(t => t.id === data.timeline)
@@ -420,7 +421,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   }
 
   const handleSubmit = async () => {
-    if (!data.name || !data.email) return
+    if (!data.name || !data.email || !privacyAccepted) return
     
     setIsSubmitting(true)
     try {
@@ -468,7 +469,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
             {data.description && (
               <div className="pt-3 border-t border-white/10">
                 <span className="text-gray-400 block mb-2">Projektbeschreibung:</span>
-                <p className="text-gray-300 text-xs leading-relaxed bg-white/5 rounded-lg p-3 max-h-20 overflow-y-auto">
+                <p className="text-gray-300 text-xs leading-relaxed bg-white/5 rounded-lg p-3 max-h-20 overflow-y-auto break-words">
                   {data.description}
                 </p>
               </div>
@@ -538,6 +539,32 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
             </div>
 
           </div>
+        </div>
+      </div>
+
+      {/* Privacy Policy Checkbox */}
+      <div className="max-w-2xl mx-auto">
+        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={privacyAccepted}
+              onChange={(e) => setPrivacyAccepted(e.target.checked)}
+              className="mt-1 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
+            />
+            <div className="text-sm text-gray-300">
+              <span className="text-white">Ich akzeptiere die </span>
+              <a 
+                href="/datenschutz" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-primary/80 underline"
+              >
+                Datenschutzerklärung
+              </a>
+              <span className="text-white"> und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Projektanfrage zu. *</span>
+            </div>
+          </label>
         </div>
       </div>
 
@@ -659,7 +686,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </button>
         <button
           onClick={handleSubmit}
-          disabled={!data.name || !data.email || isSubmitting}
+          disabled={!data.name || !data.email || !privacyAccepted || isSubmitting}
           className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (

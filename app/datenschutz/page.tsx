@@ -129,12 +129,20 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-white mb-3">Kontaktformular</h3>
+                <h3 className="font-semibold text-white mb-3">Projektanfrage-Formular</h3>
+                <p className="mb-3">
+                  Wenn Sie über unser Projektanfrage-Formular eine Anfrage stellen, werden folgende Daten erfasst und verarbeitet:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4 mb-3">
+                  <li>Name und E-Mail-Adresse (erforderlich)</li>
+                  <li>Unternehmen und Telefonnummer (optional)</li>
+                  <li>Projektbeschreibung und gewünschte Features</li>
+                  <li>Budget und Timeline-Angaben</li>
+                  <li>Prioritäten und Projekttyp</li>
+                </ul>
                 <p>
-                  Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben 
-                  aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung 
-                  der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht 
-                  ohne Ihre Einwilligung weiter.
+                  Diese Daten werden zur Bearbeitung Ihrer Projektanfrage und für den Fall von Anschlussfragen 
+                  bei uns gespeichert. Die Daten geben wir nicht ohne Ihre Einwilligung weiter.
                 </p>
               </div>
             </div>
@@ -177,11 +185,27 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-white mb-3">Supabase</h3>
-                <p>
-                  Für Backend-Services nutzen wir Supabase. Anbieter ist Supabase Inc., 
+                <h3 className="font-semibold text-white mb-3">Supabase (Datenbank)</h3>
+                <p className="mb-3">
+                  Für die Speicherung Ihrer Projektanfragen nutzen wir Supabase. Anbieter ist Supabase Inc., 
                   San Francisco, USA. Supabase verarbeitet Daten in unserem Auftrag und hat sich 
                   verpflichtet, angemessene Datenschutzmaßnahmen zu implementieren.
+                </p>
+                <p>
+                  Ihre Projektanfrage-Daten werden in der Supabase-Datenbank gespeichert und sind nur für 
+                  die Bearbeitung Ihrer Anfrage zugänglich.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-white mb-3">Notion (Projektmanagement)</h3>
+                <p className="mb-3">
+                  Für das Projektmanagement und die Verwaltung von Kundenanfragen nutzen wir Notion. 
+                  Anbieter ist Notion Labs, Inc., San Francisco, USA.
+                </p>
+                <p>
+                  Ihre Projektanfrage-Daten werden auch in Notion gespeichert, um den Projektworkflow 
+                  zu verwalten und Sie optimal betreuen zu können.
                 </p>
               </div>
             </div>
