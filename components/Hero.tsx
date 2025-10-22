@@ -69,10 +69,32 @@ export default function Hero() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 min-h-screen flex flex-col justify-center pb-20">
-        {/* Avatar and Description - Top Left */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-8 sm:mb-16 absolute top-16 sm:top-20 left-4 sm:left-6 right-4 sm:right-auto">
+        {/* Mobile Layout - Avatar and Description above headline */}
+        <div className="block sm:hidden mb-8">
+          <div className="flex items-center gap-4 mb-4">
+            {/* Avatar */}
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+              <Image
+                src="/lars_macario_no_code_dev.jpg"
+                alt="Lars - No/Low-Code Developer"
+                width={80}
+                height={80}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </div>
+            
+            {/* Description */}
+            <div className="text-white leading-relaxed text-sm">
+            Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP oder eine moderne Web-Lösung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout - Avatar and Description - Top Left */}
+        <div className="hidden sm:flex items-start gap-6 mb-16 absolute top-20 left-6">
           {/* Avatar */}
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
             <Image
               src="/lars_macario_no_code_dev.jpg"
               alt="Lars - No/Low-Code Developer"
@@ -84,7 +106,7 @@ export default function Hero() {
           </div>
           
           {/* Description */}
-          <div className="text-white leading-relaxed max-w-md text-sm sm:text-base text-center sm:text-left">
+          <div className="text-white leading-relaxed max-w-md text-base text-left">
           Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP oder eine moderne Web-Lösung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
           </div>
         </div>
