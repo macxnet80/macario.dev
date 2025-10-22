@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Magnet } from 'lucide-react';
-import { cn } from '@repo/shadcn-ui/lib/utils';
+import { cn } from '@/lib/utils';
 
 interface Particle {
   id: number;

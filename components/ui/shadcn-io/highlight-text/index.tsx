@@ -9,7 +9,7 @@ import {
   type UseInViewOptions,
 } from 'motion/react';
 
-import { cn } from '@repo/shadcn-ui/lib/utils';
+import { cn } from '@/lib/utils';
 
 type HighlightTextProps = HTMLMotionProps<'span'> & {
   text: string;
