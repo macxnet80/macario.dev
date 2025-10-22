@@ -51,30 +51,28 @@ export default function Hero() {
       </div>
 
       {/* Header */}
-      <div className="relative z-10 pt-8 pb-4">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center justify-between">
+      <div className="relative z-10 pt-4 sm:pt-8 pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
             {/* Name */}
-            <div className="text-2xl font-bold text-[#f6f6f6]">Lars Macario</div>
+            <div className="text-xl sm:text-2xl font-bold text-[#f6f6f6]">Lars Macario</div>
             
-            {/* Status Info */}
-            <div className="flex items-center gap-4">
-              <span className="text-white">Hamburg/Remote</span>
-              <div className="w-px h-4 bg-secondary/30"></div>
-              <div className="flex items-center gap-2">
+            {/* Status Badge */}
+            <div className="flex items-center gap-2">
+              <span className="bg-green-400/10 text-green-400 border border-green-400/20 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-400 font-medium">Verfügbar für neue Projekte</span>
-              </div>
+                Verfügbar für neue Projekte
+              </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 min-h-screen flex flex-col justify-center pb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 min-h-screen flex flex-col justify-center pb-20">
         {/* Avatar and Description - Top Left */}
-        <div className="flex items-start gap-6 mb-16 absolute top-20 left-6">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mb-8 sm:mb-16 absolute top-16 sm:top-20 left-4 sm:left-6 right-4 sm:right-auto">
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
             <Image
               src="/lars_macario_no_code_dev.jpg"
               alt="Lars - No/Low-Code Developer"
@@ -86,7 +84,7 @@ export default function Hero() {
           </div>
           
           {/* Description */}
-          <div className="text-white leading-relaxed max-w-md">
+          <div className="text-white leading-relaxed max-w-md text-sm sm:text-base text-center sm:text-left">
           Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP oder eine moderne Web-Lösung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
           </div>
         </div>
@@ -94,13 +92,13 @@ export default function Hero() {
         {/* Main Content - Bottom of Viewport */}
         <div className="w-full">
           {/* Main Headline - Center */}
-          <div className="text-center lg:text-left mb-8">
-            <h1 className="text-6xl lg:text-8xl font-bold text-[#f6f6f6] leading-tight">
-              <div className="mb-4">Deine Idee.</div>
-              <div className="mb-4">Dein digitales Produkt.</div>
+          <div className="text-center lg:text-left mb-6 sm:mb-8">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#f6f6f6] leading-tight">
+              <div className="mb-2 sm:mb-4">Deine Idee.</div>
+              <div className="mb-2 sm:mb-4">Dein digitales Produkt.</div>
               <HighlightText 
                 text="In 2 Wochen live." 
-                className="text-green-400 text-6xl lg:text-8xl font-bold"
+                className="text-green-400 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
               />
             </h1>
           </div>
