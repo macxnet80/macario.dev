@@ -19,8 +19,7 @@ type HighlightTextProps = HTMLMotionProps<'span'> & {
   transition?: Transition;
 };
 
-function HighlightText({
-  ref,
+const HighlightText = React.forwardRef<HTMLSpanElement, HighlightTextProps>(({
   text,
   className,
   inView = false,
@@ -28,9 +27,9 @@ function HighlightText({
   inViewOnce = true,
   transition = { duration: 2, ease: 'easeInOut' },
   ...props
-}: HighlightTextProps) {
+}, ref) => {
   const localRef = React.useRef<HTMLSpanElement>(null);
-  React.useImperativeHandle(ref, () => localRef.current as HTMLSpanElement);
+  const spanRef = ref || localRef;
 
   const inViewResult = useInView(localRef, {
     once: inViewOnce,
@@ -40,7 +39,7 @@ function HighlightText({
 
   return (
     <motion.span
-      ref={localRef}
+      ref={spanRef}
       data-slot="highlight-text"
       initial={{
         backgroundSize: '0% 100%',
@@ -61,6 +60,8 @@ function HighlightText({
       {text}
     </motion.span>
   );
-}
+});
+
+HighlightText.displayName = 'HighlightText';
 
 export { HighlightText, type HighlightTextProps };
