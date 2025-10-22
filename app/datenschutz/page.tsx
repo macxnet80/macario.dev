@@ -7,11 +7,11 @@ import Link from 'next/link'
 export default function Datenschutz() {
   return (
     <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Effects - gleich wie auf der Landingpage */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-background to-pink-900/20" />
+      {/* Background Effects - gleich wie Hero-Bereich */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
@@ -282,13 +282,6 @@ export default function Datenschutz() {
         </motion.div>
       </div>
 
-      {/* Floating particles effect - gleich wie auf der Landingpage */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-2 h-2 bg-primary/30 rounded-full animate-pulse" />
-        <div className="absolute top-40 right-20 w-3 h-3 bg-purple-500/30 rounded-full animate-pulse delay-300" />
-        <div className="absolute bottom-20 left-1/3 w-2 h-2 bg-pink-500/30 rounded-full animate-pulse delay-700" />
-        <div className="absolute bottom-40 right-1/4 w-4 h-4 bg-primary/20 rounded-full animate-pulse delay-1000" />
-      </div>
     </main>
   )
 } 
