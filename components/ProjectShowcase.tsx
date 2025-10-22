@@ -169,13 +169,13 @@ export default function ProjectShowcase() {
               transition={{ duration: 0.5 }}
               className="rounded-3xl overflow-hidden bg-[#121212]"
             >
-              <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 h-[600px] bg-[#121212] rounded-3xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 p-4 md:p-8 lg:p-12 min-h-[400px] md:h-[600px] bg-[#121212] rounded-3xl">
                 {/* Project Info */}
-                <div className="space-y-6 flex flex-col justify-between">
-                  <div className="space-y-6">
+                <div className="space-y-4 md:space-y-6 flex flex-col justify-between order-2 md:order-1">
+                  <div className="space-y-4 md:space-y-6">
                     <div>
-                      <h3 className="text-3xl font-bold mb-3 text-[#f6f6f6]">{currentProject.title}</h3>
-                      <p className="text-[#e7e7e7] text-lg">{currentProject.description}</p>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[#f6f6f6]">{currentProject.title}</h3>
+                      <p className="text-[#e7e7e7] text-base md:text-lg">{currentProject.description}</p>
                     </div>
 
                     <div>
@@ -184,7 +184,7 @@ export default function ProjectShowcase() {
                         {currentProject.tools.map((tool) => (
                           <span
                             key={tool}
-                            className="px-3 py-1 rounded-full bg-white/20 text-white text-sm"
+                            className="px-2 md:px-3 py-1 rounded-full bg-white/20 text-white text-xs md:text-sm"
                           >
                             {tool}
                           </span>
@@ -197,8 +197,8 @@ export default function ProjectShowcase() {
                       <ul className="space-y-2">
                         {currentProject.features.map((feature) => (
                           <li key={feature} className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-primary" />
-                            <span className="text-[#e7e7e7]">{feature}</span>
+                            <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
+                            <span className="text-[#e7e7e7] text-sm md:text-base">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -207,11 +207,11 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Project Image */}
-                <div className="relative">
+                <div className="relative order-1 md:order-2">
                   <div className={`absolute inset-0 bg-gradient-to-r ${currentProject.color} opacity-20 rounded-2xl`} />
-                  <div className="relative bg-gray-800 rounded-2xl p-8 h-full flex items-center justify-center">
+                  <div className="relative bg-gray-800 rounded-2xl p-4 md:p-8 h-64 md:h-full flex items-center justify-center">
                     {currentProject.image_url ? (
-                      <div className="relative w-full h-64 rounded-xl overflow-hidden">
+                      <div className="relative w-full h-full rounded-xl overflow-hidden">
                         <Image
                           src={currentProject.image_url}
                           alt={currentProject.title}
@@ -221,10 +221,10 @@ export default function ProjectShowcase() {
                       </div>
                     ) : (
                       <div className="text-center">
-                        <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
-                          <ExternalLink className="w-16 h-16 text-white" />
+                        <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
+                          <ExternalLink className="w-12 h-12 md:w-16 md:h-16 text-white" />
                         </div>
-                        <p className="text-[#e7e7e7]">Projekt-Demo verfügbar</p>
+                        <p className="text-[#e7e7e7] text-sm md:text-base">Projekt-Demo verfügbar</p>
                       </div>
                     )}
                   </div>
@@ -234,36 +234,43 @@ export default function ProjectShowcase() {
           </AnimatePresence>
 
           {/* Navigation */}
-          <div className="flex justify-center gap-4 mt-8">
-            <button
-              onClick={prevProject}
-              className="p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
-              disabled={projects.length <= 1}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <div className="flex items-center gap-2">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    index === currentIndex 
-                      ? 'w-8 bg-[#d1d1d1]' 
-                      : 'bg-gray-500 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 md:mt-8">
+            <div className="flex items-center gap-4">
+              <button
+                onClick={prevProject}
+                className="p-2 md:p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
+                disabled={projects.length <= 1}
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+              
+              <div className="flex items-center gap-2">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentIndex 
+                        ? 'w-6 md:w-8 bg-[#d1d1d1]' 
+                        : 'w-2 bg-gray-500 hover:bg-gray-400'
+                    }`}
+                  />
+                ))}
+              </div>
 
-            <button
-              onClick={nextProject}
-              className="p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
-              disabled={projects.length <= 1}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+              <button
+                onClick={nextProject}
+                className="p-2 md:p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
+                disabled={projects.length <= 1}
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            </div>
+            
+            {/* Mobile indicator */}
+            <div className="text-sm text-[#e7e7e7] mt-2 sm:mt-0">
+              {currentIndex + 1} von {projects.length}
+            </div>
           </div>
         </div>
       </div>
