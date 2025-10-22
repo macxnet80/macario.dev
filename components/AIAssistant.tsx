@@ -100,7 +100,7 @@ export default function AIAssistant() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: "spring", damping: 20 }}
-            className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] glass rounded-2xl shadow-2xl overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] bg-[#121212] border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
           >
             {/* Header */}
             <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 flex items-center justify-between">
@@ -125,7 +125,7 @@ export default function AIAssistant() {
             <div className="p-6 max-h-[500px] overflow-y-auto">
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-gray-300 mb-4">
+                  <p className="text-sm text-white mb-4">
                     Beschreibe deine Geschäftsidee und ich zeige dir, wie wir sie mit No/Low-Code umsetzen können.
                   </p>
                   
@@ -133,7 +133,7 @@ export default function AIAssistant() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="z.B. Ich möchte eine App für Restaurants..."
-                    className="w-full bg-white/5 border border-white/10 rounded-xl p-3 min-h-[100px] outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none text-sm"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl p-3 min-h-[100px] outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none text-sm text-white placeholder:text-gray-400"
                   />
                 </div>
 
@@ -162,7 +162,7 @@ export default function AIAssistant() {
                     className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/20 text-center"
                   >
                     <h4 className="font-semibold mb-2 text-sm text-primary">Du hast 3 Ideen ausprobiert!</h4>
-                    <p className="text-gray-300 text-sm mb-4">Lass uns persönlich sprechen, um die beste Lösung für dein Projekt zu finden.</p>
+                    <p className="text-white text-sm mb-4">Lass uns persönlich sprechen, um die beste Lösung für dein Projekt zu finden.</p>
                     <div className="flex flex-col gap-2">
                       <a href="mailto:hello@example.com" className="bg-primary text-white rounded-lg px-4 py-2 font-medium hover:bg-primary/90 transition-all">Jetzt Kontakt aufnehmen</a>
                       <button
@@ -181,7 +181,7 @@ export default function AIAssistant() {
                       <Sparkles className="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" />
                       <div>
                         <h4 className="font-semibold mb-2 text-sm">Mein Vorschlag:</h4>
-                        <p className="text-gray-300 text-sm">{response}</p>
+                        <p className="text-white text-sm">{response}</p>
                         <button 
                           onClick={() => setIsOpen(false)}
                           className="mt-3 text-primary hover:text-primary/80 font-medium text-xs"

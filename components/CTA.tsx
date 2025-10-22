@@ -93,14 +93,14 @@ Viele Grüße`
   ]
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-20 px-6 bg-[#121212]">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="glass rounded-3xl p-12 md:p-16 text-center relative overflow-hidden"
+          className="rounded-3xl p-12 md:p-16 text-center relative overflow-hidden bg-[#121212] border border-white/10"
         >
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-purple-500/20" />
@@ -121,7 +121,7 @@ Viele Grüße`
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto"
+              className="text-xl text-[#e7e7e7] mb-12 max-w-3xl mx-auto"
             >
               Bereit, deine Idee in die Realität umzusetzen? 
               Wähle den Weg, der am besten zu dir passt.
@@ -145,7 +145,7 @@ Viele Grüße`
                     scale: 0.98,
                     transition: { duration: 0.1 }
                   }}
-                  className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 ease-out text-left w-full"
+                  className="group bg-[#121212] rounded-2xl p-6 border border-white/10 hover:border-white/20 hover:bg-[#1a1a1a] hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 ease-out text-left w-full"
                 >
                   <motion.div 
                     className={`w-14 h-14 rounded-xl bg-gradient-to-r ${option.color} p-3 mb-4 mx-auto`}
@@ -159,7 +159,7 @@ Viele Grüße`
                   </motion.div>
                   
                   <h3 className="text-xl font-semibold mb-2 text-center">{option.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4 text-center">{option.description}</p>
+                  <p className="text-[#e7e7e7] text-sm mb-4 text-center">{option.description}</p>
                   
                   <div className="flex items-center justify-center gap-2 text-primary group-hover:gap-3 transition-all duration-300 ease-out">
                     <span className="text-sm font-medium">Projekt starten</span>
@@ -179,7 +179,7 @@ Viele Grüße`
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-sm text-gray-400"
+              className="text-sm text-[#e7e7e7]"
             >
               <p>
                 Keine Lust auf Formulare? Kein Problem! 
@@ -202,7 +202,7 @@ Viele Grüße`
             <div className="text-center">
               <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-4">E-Mail schreiben</h3>
-              <p className="text-gray-400 mb-6">
+              <p className="text-[#e7e7e7] mb-6">
                 Wähle deinen bevorzugten E-Mail-Anbieter oder kopiere die Adresse:
               </p>
               

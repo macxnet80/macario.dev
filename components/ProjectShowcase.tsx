@@ -11,6 +11,7 @@ export default function ProjectShowcase() {
   const [mounted, setMounted] = useState(false)
   const { projects, loading, error } = useProjects()
 
+
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -26,20 +27,20 @@ export default function ProjectShowcase() {
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#121212]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </div>
           <div className="glass rounded-3xl p-12 text-center">
             <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
-            <p className="text-gray-300">Wird geladen...</p>
+            <p className="text-[#e7e7e7]">Wird geladen...</p>
           </div>
         </div>
       </section>
@@ -49,7 +50,7 @@ export default function ProjectShowcase() {
   // Loading State
   if (loading) {
     return (
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#121212]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +62,7 @@ export default function ProjectShowcase() {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
@@ -69,7 +70,7 @@ export default function ProjectShowcase() {
           
           <div className="glass rounded-3xl p-12 text-center">
             <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
-            <p className="text-gray-300">Projekte werden geladen...</p>
+            <p className="text-[#e7e7e7]">Projekte werden geladen...</p>
           </div>
         </div>
       </section>
@@ -79,7 +80,7 @@ export default function ProjectShowcase() {
   // Error State
   if (error) {
     return (
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#121212]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +92,7 @@ export default function ProjectShowcase() {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
@@ -99,8 +100,8 @@ export default function ProjectShowcase() {
           
           <div className="glass rounded-3xl p-12 text-center">
             <AlertCircle className="w-12 h-12 mx-auto mb-4 text-red-400" />
-            <p className="text-gray-300 mb-4">{error}</p>
-            <p className="text-sm text-gray-400">Fallback-Daten werden angezeigt</p>
+            <p className="text-[#e7e7e7] mb-4">{error}</p>
+            <p className="text-sm text-[#e7e7e7]">Fallback-Daten werden angezeigt</p>
           </div>
         </div>
       </section>
@@ -110,7 +111,7 @@ export default function ProjectShowcase() {
   // No projects available
   if (!projects || projects.length === 0) {
     return (
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 bg-[#121212]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -122,15 +123,15 @@ export default function ProjectShowcase() {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </motion.div>
           
           <div className="glass rounded-3xl p-12 text-center">
-            <Database className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-            <p className="text-gray-300">Keine Projekte verfügbar</p>
+            <Database className="w-12 h-12 mx-auto mb-4 text-[#e7e7e7]" />
+            <p className="text-[#e7e7e7]">Keine Projekte verfügbar</p>
           </div>
         </div>
       </section>
@@ -140,7 +141,7 @@ export default function ProjectShowcase() {
   const currentProject = projects[currentIndex]
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-20 px-6 bg-[#121212]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -152,7 +153,7 @@ export default function ProjectShowcase() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Projekt-Showcase
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
             Entdecke einige meiner erfolgreich umgesetzten Projekte - 
             alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
           </p>
@@ -166,40 +167,42 @@ export default function ProjectShowcase() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
-              className="glass rounded-3xl overflow-hidden"
+              className="rounded-3xl overflow-hidden bg-[#121212]"
             >
-              <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8 p-8 md:p-12 h-[600px] bg-[#121212] rounded-3xl">
                 {/* Project Info */}
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-3xl font-bold mb-3">{currentProject.title}</h3>
-                    <p className="text-gray-300 text-lg">{currentProject.description}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-3">EINGESETZTE TOOLS</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {currentProject.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="px-3 py-1 rounded-full bg-white/10 text-sm"
-                        >
-                          {tool}
-                        </span>
-                      ))}
+                <div className="space-y-6 flex flex-col justify-between">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-3xl font-bold mb-3 text-[#f6f6f6]">{currentProject.title}</h3>
+                      <p className="text-[#e7e7e7] text-lg">{currentProject.description}</p>
                     </div>
-                  </div>
 
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-400 mb-3">KEY FEATURES</h4>
-                    <ul className="space-y-2">
-                      {currentProject.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-primary" />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div>
+                      <h4 className="text-sm font-semibold text-[#e7e7e7] mb-3">EINGESETZTE TOOLS</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {currentProject.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="px-3 py-1 rounded-full bg-white/20 text-white text-sm"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-[#e7e7e7] mb-3">KEY FEATURES</h4>
+                      <ul className="space-y-2">
+                        {currentProject.features.map((feature) => (
+                          <li key={feature} className="flex items-center gap-2">
+                            <Sparkles className="w-4 h-4 text-primary" />
+                            <span className="text-[#e7e7e7]">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
 
@@ -221,7 +224,7 @@ export default function ProjectShowcase() {
                         <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
                           <ExternalLink className="w-16 h-16 text-white" />
                         </div>
-                        <p className="text-gray-400">Projekt-Demo verfügbar</p>
+                        <p className="text-[#e7e7e7]">Projekt-Demo verfügbar</p>
                       </div>
                     )}
                   </div>
@@ -234,7 +237,7 @@ export default function ProjectShowcase() {
           <div className="flex justify-center gap-4 mt-8">
             <button
               onClick={prevProject}
-              className="p-3 rounded-full glass hover:bg-white/10 transition-colors"
+              className="p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
               disabled={projects.length <= 1}
             >
               <ChevronLeft className="w-6 h-6" />
@@ -247,8 +250,8 @@ export default function ProjectShowcase() {
                   onClick={() => setCurrentIndex(index)}
                   className={`w-2 h-2 rounded-full transition-all ${
                     index === currentIndex 
-                      ? 'w-8 bg-primary' 
-                      : 'bg-white/30 hover:bg-white/50'
+                      ? 'w-8 bg-[#d1d1d1]' 
+                      : 'bg-gray-500 hover:bg-gray-400'
                   }`}
                 />
               ))}
@@ -256,7 +259,7 @@ export default function ProjectShowcase() {
 
             <button
               onClick={nextProject}
-              className="p-3 rounded-full glass hover:bg-white/10 transition-colors"
+              className="p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
               disabled={projects.length <= 1}
             >
               <ChevronRight className="w-6 h-6" />
@@ -363,27 +366,27 @@ export function KIAutomatisierungSection() {
   ]
 
   return (
-    <section className="py-20 px-6 bg-background">
+    <section className="py-20 px-6 bg-[#111111]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-primary mb-2">KI & Automatisierung</h2>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center mb-10">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white mb-2">KI & Automatisierung</h2>
+        <p className="text-xl text-white max-w-3xl mx-auto text-center mb-10">
           Intelligente Web-Lösungen mit modernen Tools, die dein Business automatisieren und voranbringen
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 mb-12 px-4">
           <button
-            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'ideen' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'ideen' ? 'bg-[#d1d1d1] text-black shadow-lg scale-105' : 'bg-background text-white hover:bg-white/10'}`}
             onClick={() => setTab('ideen')}
           >
             <Sparkles className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Ideen-Generator
           </button>
           <button
-            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'auto' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'auto' ? 'bg-[#d1d1d1] text-black shadow-lg scale-105' : 'bg-background text-white hover:bg-white/10'}`}
             onClick={() => setTab('auto')}
           >
             <Zap className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Automatisierungen
           </button>
           <button
-            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'vorteile' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'vorteile' ? 'bg-[#d1d1d1] text-black shadow-lg scale-105' : 'bg-background text-white hover:bg-white/10'}`}
             onClick={() => setTab('vorteile')}
           >
             <TrendingUp className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Vorteile
@@ -397,10 +400,10 @@ export function KIAutomatisierungSection() {
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold mb-2 text-white">KI-Ideen Generator</h3>
-              <p className="text-gray-300 mb-4">Beschreibe deine Web-Projekt Idee und erhalte konkrete Umsetzungsvorschläge mit modernen Tools</p>
+              <p className="text-white mb-4">Beschreibe deine Web-Projekt Idee und erhalte konkrete Umsetzungsvorschläge mit modernen Tools</p>
             </div>
             <div className="mb-4 text-left">
-              <span className="text-gray-400 text-sm font-semibold">Oder wähle ein Beispiel:</span>
+              <span className="text-white text-sm font-semibold">Oder wähle ein Beispiel:</span>
               <div className="flex flex-wrap gap-2 mt-2">
                 {beispiele.map((b) => (
                   <button key={b} className="bg-white/10 hover:bg-primary/20 text-primary-foreground px-4 py-2 rounded-lg text-sm transition-all"
@@ -413,12 +416,12 @@ export function KIAutomatisierungSection() {
                 type="text"
                 value={input}
                 onChange={e => setInput(e.target.value)}
-                className="w-full rounded-xl p-4 bg-white/10 border border-white/10 text-white placeholder:text-gray-400 focus:ring-2 focus:ring-primary/40 outline-none mb-4"
+                className="w-full rounded-xl p-4 bg-white/10 border border-white/10 text-white placeholder:text-[#e7e7e7] focus:ring-2 focus:ring-primary/40 outline-none mb-4"
                 placeholder="z.B. Eine Website für lokale Hundesitter, die Termine buchen und Hundebesitzer verwalten können..."
                 disabled={showContact}
               />
               <button
-                className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-base mt-2 disabled:bg-primary/50"
+                className="w-full bg-[#e7e7e7] hover:bg-[#e7e7e7]/90 text-black py-3 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-base mt-2 disabled:bg-[#e7e7e7]/50"
                 disabled={isLoading || !input.trim() || showContact}
                 onClick={async () => {
                   if (ideaCount >= 3) {
@@ -468,9 +471,9 @@ export function KIAutomatisierungSection() {
                   className="bg-white/10 rounded-xl p-4 border border-purple-500/20 text-center mt-6"
                 >
                   <h4 className="font-semibold mb-2 text-sm text-primary">Du hast 3 Ideen ausprobiert!</h4>
-                  <p className="text-gray-300 text-sm mb-4">Lass uns persönlich sprechen, um die beste Lösung für dein Projekt zu finden.</p>
+                  <p className="text-white text-sm mb-4">Lass uns persönlich sprechen, um die beste Lösung für dein Projekt zu finden.</p>
                   <div className="flex flex-col gap-2">
-                    <a href="mailto:hello@example.com" className="bg-primary text-white rounded-lg px-4 py-2 font-medium hover:bg-primary/90 transition-all">Jetzt Kontakt aufnehmen</a>
+                    <a href="mailto:hello@example.com" className="bg-[#e7e7e7] text-black rounded-lg px-4 py-2 font-medium hover:bg-[#e7e7e7]/90 transition-all">Jetzt Kontakt aufnehmen</a>
                     <button
                       onClick={() => { setShowContact(false); setIdeaCount(0); setInput(''); setResponse(''); }}
                       className="bg-white/10 text-primary rounded-lg px-4 py-2 font-medium hover:bg-white/20 transition-all"
@@ -487,7 +490,7 @@ export function KIAutomatisierungSection() {
                     <Sparkles className="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-semibold mb-2 text-sm">Mein Vorschlag:</h4>
-                      <p className="text-gray-300 text-sm">{response}</p>
+                      <p className="text-white text-sm">{response}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -503,17 +506,17 @@ export function KIAutomatisierungSection() {
                   <a.icon className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-white">{a.title}</h3>
-                <p className="text-gray-300 mb-3">{a.desc}</p>
+                <p className="text-white mb-3">{a.desc}</p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   {a.tools.map((t) => (
-                    <span key={t} className="bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-medium">{t}</span>
+                    <span key={t} className="bg-[#b0b0b0] text-black px-3 py-1 rounded-full text-xs font-medium">{t}</span>
                   ))}
                 </div>
                 <div className="mt-2">
-                  <span className="text-gray-400 text-xs font-semibold">Vorteile:</span>
+                  <span className="text-white text-xs font-semibold">Vorteile:</span>
                   <ul className="mt-1 space-y-1">
                     {a.vorteile.map((v) => (
-                      <li key={v} className="flex items-center gap-2 text-green-400 text-sm"><CheckCircle className="w-4 h-4" />{v}</li>
+                      <li key={v} className="flex items-center gap-2 text-[#b0b0b0] text-sm"><CheckCircle className="w-4 h-4" />{v}</li>
                     ))}
                   </ul>
                 </div>
@@ -531,7 +534,7 @@ export function KIAutomatisierungSection() {
                   </div>
                   <h3 className="text-3xl font-bold text-primary mb-1">{v.title}</h3>
                   <div className="text-lg font-semibold text-white mb-1">{v.subtitle}</div>
-                  <p className="text-gray-300 text-base">{v.desc}</p>
+                  <p className="text-white text-base">{v.desc}</p>
                 </div>
               ))}
             </div>
@@ -545,7 +548,7 @@ export function KIAutomatisierungSection() {
                     </div>
                     <div className="text-2xl font-bold text-primary mb-1">{i + 1}</div>
                     <div className="font-semibold text-white mb-1">{s.title}</div>
-                    <div className="text-gray-300 text-sm">{s.desc}</div>
+                    <div className="text-white text-sm">{s.desc}</div>
                   </div>
                 ))}
               </div>

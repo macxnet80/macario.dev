@@ -125,7 +125,7 @@ function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Welche Art von Projekt planst du?</h2>
-        <p className="text-gray-300">Wähle den Projekttyp, der am besten zu deiner Vision passt</p>
+        <p className="text-[#e7e7e7]">Wähle den Projekttyp, der am besten zu deiner Vision passt</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -140,7 +140,7 @@ function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
             whileTap={{ scale: 0.98 }}
             className={`p-6 rounded-2xl border-2 transition-all text-left ${
               data.projectType === type.id
-                ? 'border-primary bg-primary/10'
+                ? 'border-[#d1d1d1] bg-[#d1d1d1]/10'
                 : 'border-white/10 bg-white/5 hover:border-white/20'
             }`}
           >
@@ -148,8 +148,8 @@ function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
               <type.icon className="w-full h-full text-white" />
             </div>
             <h3 className="text-xl font-semibold mb-2">{type.title}</h3>
-            <p className="text-gray-400 text-sm mb-4">{type.description}</p>
-            <div className="text-primary font-medium">ab {type.basePrice}€</div>
+            <p className="text-[#e7e7e7] text-sm mb-4">{type.description}</p>
+            <div className="text-[#d1d1d1] font-medium">ab {type.basePrice}€</div>
           </motion.button>
         ))}
       </div>
@@ -167,16 +167,16 @@ function BudgetStep({ data, updateData, onNext, onPrev }: StepProps) {
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Was ist dein Budget?</h2>
-        <p className="text-gray-300">Bewege den Slider um dein gewünschtes Budget festzulegen</p>
+        <p className="text-[#e7e7e7]">Bewege den Slider um dein gewünschtes Budget festzulegen</p>
       </div>
 
       <div className="max-w-md mx-auto">
         <div className="mb-8">
           <div className="text-center mb-6">
-            <div className="text-4xl font-bold text-primary mb-2">
+            <div className="text-4xl font-bold text-[#d1d1d1] mb-2">
               {data.budget.toLocaleString('de-DE')}€
             </div>
-            <div className="text-gray-400">Geschätztes Projektbudget</div>
+            <div className="text-[#e7e7e7]">Geschätztes Projektbudget</div>
           </div>
           
           <input
@@ -189,7 +189,7 @@ function BudgetStep({ data, updateData, onNext, onPrev }: StepProps) {
             className="w-full h-3 bg-white/10 rounded-lg appearance-none cursor-pointer slider"
           />
           
-          <div className="flex justify-between text-sm text-gray-400 mt-2">
+          <div className="flex justify-between text-sm text-[#e7e7e7] mt-2">
             <span>{minBudget.toLocaleString('de-DE')}€</span>
             <span>{maxBudget.toLocaleString('de-DE')}€</span>
           </div>
@@ -205,7 +205,7 @@ function BudgetStep({ data, updateData, onNext, onPrev }: StepProps) {
           </button>
           <button
             onClick={onNext}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all"
           >
             Weiter
             <ChevronRight className="w-4 h-4" />
@@ -222,14 +222,14 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
     <div className="space-y-8">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Timeline & Prioritäten</h2>
-        <p className="text-gray-300">Wann soll das Projekt fertig sein und was ist dir wichtig?</p>
+        <p className="text-[#e7e7e7]">Wann soll das Projekt fertig sein und was ist dir wichtig?</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
         {/* Timeline */}
         <div>
           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <Clock className="w-5 h-5 text-primary" />
+            <Clock className="w-5 h-5 text-[#d1d1d1]" />
             Gewünschte Timeline
           </h3>
           <div className="space-y-3">
@@ -239,7 +239,7 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
                 onClick={() => updateData({ timeline: option.id })}
                 className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                   data.timeline === option.id
-                    ? 'border-primary bg-primary/10'
+                    ? 'border-[#d1d1d1] bg-[#d1d1d1]/10'
                     : 'border-white/10 bg-white/5 hover:border-white/20'
                 }`}
               >
@@ -247,7 +247,7 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
                   <span className="font-medium">{option.label}</span>
                   {option.multiplier !== 1.0 && (
                     <span className={`text-sm px-2 py-1 rounded ${
-                      option.multiplier > 1 ? 'bg-red-500/20 text-red-400' : 'bg-green-500/20 text-green-400'
+                      option.multiplier > 1 ? 'bg-red-500/20 text-red-400' : 'bg-[#b0b0b0] text-black'
                     }`}>
                       {option.multiplier > 1 ? '+' : ''}{((option.multiplier - 1) * 100).toFixed(0)}%
                     </span>
@@ -261,7 +261,7 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
         {/* Priority */}
         <div>
           <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-            <Star className="w-5 h-5 text-primary" />
+            <Star className="w-5 h-5 text-[#d1d1d1]" />
             Was ist dir wichtig?
           </h3>
           <div className="space-y-3">
@@ -271,12 +271,12 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
                 onClick={() => updateData({ priority: option.id })}
                 className={`w-full p-4 rounded-xl border-2 transition-all text-left ${
                   data.priority === option.id
-                    ? 'border-primary bg-primary/10'
+                    ? 'border-[#d1d1d1] bg-[#d1d1d1]/10'
                     : 'border-white/10 bg-white/5 hover:border-white/20'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <option.icon className="w-5 h-5 text-primary" />
+                  <option.icon className="w-5 h-5 text-[#d1d1d1]" />
                   <span className="font-medium">{option.label}</span>
                 </div>
               </button>
@@ -296,7 +296,7 @@ function TimelinePriorityStep({ data, updateData, onNext, onPrev }: StepProps) {
         <button
           onClick={onNext}
           disabled={!data.timeline || !data.priority}
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Weiter
           <ChevronRight className="w-4 h-4" />
@@ -314,23 +314,23 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
     <div className="space-y-8">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Erzähl uns mehr über dein Projekt</h2>
-        <p className="text-gray-300">Je detaillierter deine Beschreibung, desto besser können wir dir helfen</p>
+        <p className="text-[#e7e7e7]">Je detaillierter deine Beschreibung, desto besser können wir dir helfen</p>
       </div>
 
       <div className="max-w-2xl mx-auto">
         {/* Quick Info Summary */}
         <div className="bg-white/5 rounded-2xl p-6 border border-white/10 mb-8">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
+            <Sparkles className="w-5 h-5 text-[#d1d1d1]" />
             Dein Projekt bisher
           </h3>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span className="text-gray-400">Typ:</span>
+              <span className="text-[#e7e7e7]">Typ:</span>
               <span className="ml-2">{selectedType?.title}</span>
             </div>
             <div>
-              <span className="text-gray-400">Budget:</span>
+              <span className="text-[#e7e7e7]">Budget:</span>
               <span className="ml-2">{data.budget.toLocaleString('de-DE')}€</span>
             </div>
           </div>
@@ -346,7 +346,7 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
               value={data.description}
               onChange={(e) => updateData({ description: e.target.value })}
               rows={6}
-              className="w-full bg-white/10 border border-white/10 rounded-xl p-4 outline-none focus:ring-2 focus:ring-primary/50 resize-none text-base"
+              className="w-full bg-white/10 border border-white/10 rounded-xl p-4 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50 resize-none text-base"
               placeholder="Beschreibe dein Projekt so detailliert wie möglich:
 
 • Was ist das Ziel deines Projekts?
@@ -355,7 +355,7 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
 • Hast du schon konkrete Vorstellungen?
 • Gibt es Referenzen oder Inspirationen?"
             />
-            <div className="text-right text-sm text-gray-400 mt-2">
+            <div className="text-right text-sm text-[#e7e7e7] mt-2">
               {data.description.length} Zeichen
             </div>
           </div>
@@ -366,7 +366,7 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
               <Brain className="w-4 h-4 text-purple-400" />
               Beispiele für gute Beschreibungen:
             </h4>
-            <div className="space-y-2 text-sm text-gray-300">
+            <div className="space-y-2 text-sm text-[#e7e7e7]">
               <p>• "Ich möchte eine Buchungsplattform für Yogastudios mit Kalenderintegration und Zahlungsabwicklung"</p>
               <p>• "Ein Dashboard für mein E-Commerce Business mit Verkaufsstatistiken und Kundenanalyse"</p>
               <p>• "Eine Community-Plattform für Fotografen zum Teilen von Portfolios und Networking"</p>
@@ -385,7 +385,7 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
           <button
             onClick={onNext}
             disabled={!data.description.trim() || data.description.length < 50}
-            className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Weiter
             <ChevronRight className="w-4 h-4" />
@@ -480,7 +480,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
     <div className="space-y-8">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Fast geschafft!</h2>
-        <p className="text-gray-300">Lass uns deine Kontaktdaten erfassen und eine KI-Analyse erstellen</p>
+        <p className="text-[#e7e7e7]">Lass uns deine Kontaktdaten erfassen und eine KI-Analyse erstellen</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -489,25 +489,25 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
           <h3 className="text-xl font-semibold mb-4">Projekt-Zusammenfassung</h3>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-400">Projekttyp:</span>
+              <span className="text-[#e7e7e7]">Projekttyp:</span>
               <span>{selectedType?.title}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Budget:</span>
+              <span className="text-[#e7e7e7]">Budget:</span>
               <span>{data.budget.toLocaleString('de-DE')}€</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Timeline:</span>
+              <span className="text-[#e7e7e7]">Timeline:</span>
               <span>{timelineOption?.label}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-400">Priorität:</span>
+              <span className="text-[#e7e7e7]">Priorität:</span>
               <span>{priorityOptions.find(p => p.id === data.priority)?.label}</span>
             </div>
             {data.description && (
               <div className="pt-3 border-t border-white/10">
-                <span className="text-gray-400 block mb-2">Projektbeschreibung:</span>
-                <p className="text-gray-300 text-xs leading-relaxed bg-white/5 rounded-lg p-3 max-h-20 overflow-y-auto break-words">
+                <span className="text-[#e7e7e7] block mb-2">Projektbeschreibung:</span>
+                <p className="text-[#e7e7e7] text-xs leading-relaxed bg-white/5 rounded-lg p-3 max-h-20 overflow-y-auto break-words">
                   {data.description}
                 </p>
               </div>
@@ -515,7 +515,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
             <div className="border-t border-white/10 pt-3 mt-3">
               <div className="flex justify-between font-semibold">
                 <span>Geschätzter Preis:</span>
-                <span className="text-primary">{finalPrice.toLocaleString('de-DE')}€</span>
+                <span className="text-[#d1d1d1]">{finalPrice.toLocaleString('de-DE')}€</span>
               </div>
             </div>
           </div>
@@ -541,7 +541,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 type="text"
                 value={data.name}
                 onChange={(e) => updateData({ name: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
                 placeholder="Dein vollständiger Name"
               />
             </div>
@@ -557,7 +557,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 className={`w-full bg-white/10 border rounded-xl p-3 outline-none focus:ring-2 transition-all ${
                   emailError 
                     ? 'border-red-500 focus:ring-red-500/50' 
-                    : 'border-white/10 focus:ring-primary/50'
+                    : 'border-white/10 focus:ring-[#d1d1d1]/50'
                 }`}
                 placeholder="deine@email.com"
               />
@@ -574,7 +574,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 type="text"
                 value={data.company}
                 onChange={(e) => updateData({ company: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
                 placeholder="Dein Unternehmen (optional)"
               />
             </div>
@@ -584,7 +584,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 type="tel"
                 value={data.phone}
                 onChange={(e) => updateData({ phone: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-primary/50"
+                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
                 placeholder="+49 123 456789 (optional)"
               />
             </div>
@@ -597,11 +597,11 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                     onClick={() => updateData({ source: option.id })}
                     className={`p-3 rounded-xl border-2 transition-all text-left flex items-center gap-2 ${
                       data.source === option.id
-                        ? 'border-primary bg-primary/10'
+                        ? 'border-[#d1d1d1] bg-[#d1d1d1]/10'
                         : 'border-white/10 bg-white/5 hover:border-white/20'
                     }`}
                   >
-                    <option.icon className="w-4 h-4 text-primary" />
+                    <option.icon className="w-4 h-4 text-[#d1d1d1]" />
                     <span className="text-sm font-medium">{option.label}</span>
                   </button>
                 ))}
@@ -620,15 +620,15 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
               type="checkbox"
               checked={privacyAccepted}
               onChange={(e) => setPrivacyAccepted(e.target.checked)}
-              className="mt-1 w-4 h-4 text-primary bg-white/10 border-white/20 rounded focus:ring-primary focus:ring-2"
+              className="mt-1 w-4 h-4 text-[#d1d1d1] bg-white/10 border-white/20 rounded focus:ring-[#d1d1d1] focus:ring-2"
             />
-            <div className="text-sm text-gray-300">
+            <div className="text-sm text-[#e7e7e7]">
               <span className="text-white">Ich akzeptiere die </span>
               <a 
                 href="/datenschutz" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 underline"
+                className="text-[#d1d1d1] hover:text-[#d1d1d1]/80 underline"
               >
                 Datenschutzerklärung
               </a>
@@ -682,7 +682,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                           <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                             <Bot className="w-4 h-4 text-purple-400" />
                           </div>
-                          <p className="text-gray-300 leading-relaxed">{greeting}</p>
+                          <p className="text-[#e7e7e7] leading-relaxed">{greeting}</p>
                         </div>
                       </motion.div>
                     )}
@@ -757,7 +757,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         <button
           onClick={handleSubmit}
           disabled={!data.name || !data.email || !data.source || !privacyAccepted || isSubmitting}
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
             <>
@@ -804,9 +804,9 @@ function SuccessStep() {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ type: "spring", duration: 0.6 }}
-        className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6"
+        className="w-20 h-20 bg-[#b0b0b0]/20 rounded-full flex items-center justify-center mx-auto mb-6"
       >
-        <CheckCircle className="w-10 h-10 text-green-400" />
+        <CheckCircle className="w-10 h-10 text-[#b0b0b0]" />
       </motion.div>
       
       <h2 className="text-3xl font-bold mb-4">Perfekt! 🎉</h2>
@@ -826,7 +826,7 @@ function SuccessStep() {
           href="https://zeeg.me/larsmacario/30min"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 rounded-xl p-4 transition-all"
+          className="flex items-center justify-center gap-2 bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 rounded-xl p-4 transition-all"
         >
           <Calendar className="w-5 h-5" />
           Termin buchen
@@ -935,7 +935,7 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-background/95 backdrop-blur-sm rounded-3xl border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
+        className="bg-[#121212]/95 backdrop-blur-sm rounded-3xl border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
       >
         {/* Header */}
         <div className="p-6 border-b border-white/10 flex items-center justify-between">
@@ -958,7 +958,7 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
           <div className="px-6 pt-4">
             <div className="w-full bg-white/10 rounded-full h-2">
               <motion.div
-                className="bg-gradient-to-r from-primary to-purple-500 h-2 rounded-full"
+                className="bg-gradient-to-r from-[#d1d1d1] to-[#b0b0b0] h-2 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: `${((currentStep + 1) / (steps.length - 1)) * 100}%` }}
                 transition={{ duration: 0.3 }}

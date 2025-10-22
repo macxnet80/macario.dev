@@ -165,7 +165,7 @@ export default function SkillsSection() {
   const activeData = tab === 'tools' ? tools : skillsTab
 
   return (
-    <section id="skills-section" className="py-20 px-6 bg-background">
+    <section id="skills-section" className="py-20 px-6 bg-[#111111]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -177,19 +177,19 @@ export default function SkillsSection() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
             Meine Werkzeugkiste
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
             Mit diesen modernen Entwicklungstools verwandle ich deine Ideen in professionelle Websites und Web-Anwendungen
           </p>
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
           <button
-            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none ${tab === 'tools' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'tools' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
             onClick={() => setTab('tools')}
           >
             Tools & Plattformen
           </button>
           <button
-            className={`px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none ${tab === 'skills' ? 'bg-primary text-white shadow-lg scale-105' : 'bg-background text-primary-foreground hover:bg-primary/10'}`}
+            className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'skills' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
             onClick={() => setTab('skills')}
           >
             Fähigkeiten
@@ -199,21 +199,38 @@ export default function SkillsSection() {
           {activeData.map((item, index) => (
             <motion.div 
               key={item.title} 
-              className="rounded-2xl"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
+              className="rounded-3xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ 
+                scale: 1.03,
+                y: -5,
+                transition: { duration: 0.2 }
+              }}
             >
-              <div className="glass rounded-2xl p-8 border border-white/10">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${item.color} p-3 mb-6 flex items-center justify-center`}>
-                  <item.icon className="w-full h-full text-white" />
+              <div className="rounded-3xl p-8 border border-white/20 bg-[#121212] hover:bg-[#1a1a1a] transition-all duration-300 shadow-xl">
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${item.color} p-4 mb-6 flex items-center justify-center shadow-lg`}>
+                  <item.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-white">{item.title}</h3>
-                <p className="text-gray-300 mb-4 min-h-[48px]">{item.description}</p>
-                <ul className="list-disc pl-5 space-y-1 text-sm text-primary-foreground">
-                  {item.features.map((f) => (
-                    <li key={f} className="text-primary-foreground/90">{f}</li>
+                <h3 className="text-2xl font-bold mb-3 text-[#f6f6f6] drop-shadow-sm">{item.title}</h3>
+                <p className="text-[#e7e7e7] mb-6 min-h-[48px] leading-relaxed drop-shadow-sm">{item.description}</p>
+                <div className="space-y-3">
+                  {item.features.map((f, featureIndex) => (
+                    <motion.div
+                      key={f}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: (index * 0.1) + (featureIndex * 0.05) }}
+                      className="flex items-center gap-3"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-[#b0b0b0] flex-shrink-0 shadow-sm" />
+                      <span className="text-[#e7e7e7] text-sm font-medium drop-shadow-sm">{f}</span>
+                    </motion.div>
                   ))}
-                </ul>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -221,12 +238,19 @@ export default function SkillsSection() {
       </div>
       {/* CTA Section */}
       <div className="max-w-5xl mx-auto mt-20">
-        <div className="rounded-3xl bg-gradient-to-r from-blue-600 to-teal-500 shadow-xl p-10 md:p-14 text-center text-white">
-          <h3 className="text-2xl md:text-3xl font-bold mb-3">Bereit für dein Web-Projekt?</h3>
-          <p className="text-base md:text-lg font-medium">
+        <motion.div 
+          className="rounded-3xl border border-white/10 bg-[#121212] p-10 md:p-14 text-center text-white shadow-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          whileHover={{ scale: 1.02 }}
+        >
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Bereit für dein Web-Projekt?</h3>
+          <p className="text-base md:text-lg font-medium text-[#e7e7e7] leading-relaxed">
             Egal ob einfache Website oder komplexe Web-Anwendung – lass uns gemeinsam herausfinden, welche Lösung für dich am besten geeignet ist.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

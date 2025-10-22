@@ -121,14 +121,14 @@ export default function ChatInterface({ onComplete }: ChatInterfaceProps) {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto h-[600px] glass rounded-2xl flex flex-col">
+    <div className="w-full max-w-4xl mx-auto h-[600px] bg-[#121212] border border-white/10 rounded-2xl flex flex-col">
       {/* Chat Header */}
       <div className="p-6 border-b border-white/10">
         <h3 className="text-xl font-semibold flex items-center gap-2">
           <Bot className="w-6 h-6 text-primary" />
           Interaktiver Assistent
         </h3>
-        <p className="text-sm text-gray-400 mt-1">Entdecke meine Services im Dialog</p>
+        <p className="text-sm text-[#e7e7e7] mt-1">Entdecke meine Services im Dialog</p>
       </div>
 
       {/* Messages Container */}
@@ -176,7 +176,7 @@ export default function ChatInterface({ onComplete }: ChatInterfaceProps) {
 
               {message.sender === 'user' && (
                 <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center flex-shrink-0">
-                  <User className="w-5 h-5 text-secondary" />
+                  <User className="w-5 h-5 text-[#e7e7e7]" />
                 </div>
               )}
             </motion.div>

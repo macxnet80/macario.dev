@@ -16,13 +16,13 @@ export default function Footer() {
             >
               <Link 
                 href="/impressum"
-                className="text-gray-300 hover:text-primary transition-colors text-sm"
+                className="text-[#e7e7e7] hover:text-primary transition-colors text-sm"
               >
                 Impressum
               </Link>
               <Link 
                 href="/datenschutz"
-                className="text-gray-300 hover:text-primary transition-colors text-sm"
+                className="text-[#e7e7e7] hover:text-primary transition-colors text-sm"
               >
                 Datenschutz
               </Link>
@@ -36,8 +36,8 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h3 className="text-lg font-bold text-white mb-2">Lars Macario</h3>
-              <p className="text-gray-400 text-sm">No/Low-Code Developer</p>
+              <h3 className="text-lg font-bold text-[#f6f6f6] mb-2">Lars Macario</h3>
+              <p className="text-[#e7e7e7] text-sm">No/Low-Code Developer</p>
             </motion.div>
           </div>
 
@@ -48,7 +48,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <p className="text-gray-400 text-sm">
+              <p className="text-[#e7e7e7] text-sm">
                 © {new Date().getFullYear()} Lars Macario. Alle Rechte vorbehalten.
               </p>
             </motion.div>
@@ -63,7 +63,7 @@ export default function Footer() {
           className="border-t border-white/10 mt-8 pt-8"
         >
           <div className="text-center">
-            <p className="text-gray-500 text-xs">
+            <p className="text-[#e7e7e7] text-xs">
               Erstellt mit ❤️ und modernen No/Low-Code Tools
             </p>
           </div>

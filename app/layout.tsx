@@ -80,6 +80,9 @@ export default function RootLayout({
   return (
     <html lang="de" className="dark">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <meta name="msapplication-TileColor" content="#6366f1" />
         <meta name="msapplication-TileImage" content="/favicon/mstile-150x150.png" />
         <meta name="msapplication-square70x70logo" content="/favicon/mstile-70x70.png" />
