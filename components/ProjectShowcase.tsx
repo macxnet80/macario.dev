@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, TrendingUp, Clock, CheckCircle, Code2, Database, Bot, ArrowRight, Users, BarChart2, Loader2, AlertCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, CheckCircle, Code2, Database, Bot, Users, Loader2, AlertCircle } from 'lucide-react'
 import { useProjects } from '@/hooks/useProjects'
 import Image from 'next/image'
 
@@ -273,7 +273,7 @@ export default function ProjectShowcase() {
 
 // KI & Automatisierung Section (dunkles UI)
 export function KIAutomatisierungSection() {
-  const [tab, setTab] = useState<'ideen' | 'auto' | 'vorteile'>('ideen')
+  const [tab, setTab] = useState<'ideen' | 'auto'>('ideen')
   const [input, setInput] = useState('')
   const [response, setResponse] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -335,35 +335,7 @@ export function KIAutomatisierungSection() {
     },
   ]
 
-  // Vorteile
-  const vorteile = [
-    {
-      icon: Clock,
-      title: '80%',
-      subtitle: 'Zeit sparen',
-      desc: 'Bis zu 80% weniger manuelle Arbeit durch intelligente Automatisierung',
-    },
-    {
-      icon: TrendingUp,
-      title: '3x',
-      subtitle: 'Effizienz steigern',
-      desc: 'Moderne Tools für optimierte Prozesse und weniger Fehler',
-    },
-    {
-      icon: Zap,
-      title: '5 Tage',
-      subtitle: 'Schnelle Umsetzung',
-      desc: 'Mit Cursor, Supabase und Vercel in wenigen Tagen live',
-    },
-  ]
 
-  // 4 Schritte
-  const schritte = [
-    { icon: BarChart2, title: 'Analyse', desc: 'Anforderungen verstehen und Tech-Stack planen' },
-    { icon: Code2, title: 'Design', desc: 'Mit Cursor schnell Prototypen entwickeln' },
-    { icon: Database, title: 'Build', desc: 'Supabase Backend und n8n Automatisierung' },
-    { icon: ArrowRight, title: 'Deploy', desc: 'Vercel Deployment und Performance-Monitoring' },
-  ]
 
   return (
     <section className="py-20 px-6 bg-[#111111]">
@@ -384,12 +356,6 @@ export function KIAutomatisierungSection() {
             onClick={() => setTab('auto')}
           >
             <Zap className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Automatisierungen
-          </button>
-          <button
-            className={`px-4 sm:px-6 py-2 rounded-lg font-semibold shadow-md transition-all border border-white/10 focus:outline-none text-sm sm:text-base ${tab === 'vorteile' ? 'bg-[#d1d1d1] text-black shadow-lg scale-105' : 'bg-background text-white hover:bg-white/10'}`}
-            onClick={() => setTab('vorteile')}
-          >
-            <TrendingUp className="inline w-4 h-4 sm:w-5 sm:h-5 mr-2" />Vorteile
           </button>
         </div>
         {/* Tab Inhalte */}
@@ -495,9 +461,9 @@ export function KIAutomatisierungSection() {
           </div>
         )}
         {tab === 'auto' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {automations.map((a) => (
-              <div key={a.title} className="glass rounded-2xl p-8 border border-white/10">
+              <div key={a.title} className="glass rounded-2xl p-6 border border-white/10">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-center mb-4">
                   <a.icon className="w-7 h-7 text-white" />
                 </div>
@@ -519,37 +485,6 @@ export function KIAutomatisierungSection() {
               </div>
             ))}
           </div>
-        )}
-        {tab === 'vorteile' && (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {vorteile.map((v) => (
-                <div key={v.title} className="glass rounded-2xl p-8 border border-white/10 text-center">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-center mb-4 mx-auto">
-                    <v.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-primary mb-1">{v.title}</h3>
-                  <div className="text-lg font-semibold text-white mb-1">{v.subtitle}</div>
-                  <p className="text-white text-base">{v.desc}</p>
-                </div>
-              ))}
-            </div>
-            <div className="max-w-4xl mx-auto bg-white/5 rounded-3xl p-8 md:p-12 text-center shadow-xl border border-white/10">
-              <h3 className="text-2xl font-bold mb-6 text-white">Moderne Web-Entwicklung in 4 Schritten</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                {schritte.map((s, i) => (
-                  <div key={s.title} className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-center mb-3">
-                      <s.icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="text-2xl font-bold text-primary mb-1">{i + 1}</div>
-                    <div className="font-semibold text-white mb-1">{s.title}</div>
-                    <div className="text-white text-sm">{s.desc}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </>
         )}
       </div>
     </section>

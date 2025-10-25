@@ -99,7 +99,7 @@ export default function ProblemSection() {
               </p>
               
               <p>
-                Vielleicht wartest du auf den <span className="text-yellow-400">"perfekten Moment"</span>. 
+                Vielleicht wartest du auf den <span className="text-red-400">"perfekten Moment"</span>. 
                 Oder darauf, dass du endlich Zeit findest, dich in Programmierung einzuarbeiten.
               </p>
             </div>
@@ -174,6 +174,33 @@ export default function ProblemSection() {
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
                   <p><span className="text-white font-semibold">Sofort einsatzbereit:</span> Hosting, Domain und Launch inklusive</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Vorteile */}
+            <div className="space-y-6">
+              <div className="text-xl sm:text-2xl font-bold text-white">
+                Deine Vorteile:
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">80%</div>
+                  <div className="text-lg font-semibold text-white mb-2">Zeit sparen</div>
+                  <div className="text-sm text-gray-300">Bis zu 80% weniger manuelle Arbeit durch intelligente Automatisierung</div>
+                </div>
+                
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">3x</div>
+                  <div className="text-lg font-semibold text-white mb-2">Effizienz steigern</div>
+                  <div className="text-sm text-gray-300">Moderne Tools für optimierte Prozesse und weniger Fehler</div>
+                </div>
+                
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
+                  <div className="text-3xl font-bold text-green-400 mb-2">2w</div>
+                  <div className="text-lg font-semibold text-white mb-2">Schnelle Umsetzung</div>
+                  <div className="text-sm text-gray-300">Mit Cursor, Supabase und Vercel in wenigen Wochen live</div>
                 </div>
               </div>
             </div>
