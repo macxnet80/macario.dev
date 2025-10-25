@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ProjectWizard from './ProjectWizard'
-import HighlightText from './ui/shadcn-io/highlight-text'
+import { HighlightText } from './ui/shadcn-io/highlight-text'
 import { MagneticButton } from './ui/MagneticButton'
 
 export default function Hero() {
@@ -45,10 +45,6 @@ export default function Hero() {
     <section ref={heroRef} className="min-h-screen bg-background relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
 
       {/* Header */}
       <div className="relative z-10 pt-4 sm:pt-8 pb-4">
@@ -86,7 +82,7 @@ export default function Hero() {
             
             {/* Description */}
             <div className="text-white leading-relaxed text-sm">
-            Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP oder eine moderne Web-Lösung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
+            Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP, eine moderne Website oder eine Web-Anwendung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
             </div>
           </div>
         </div>
@@ -107,7 +103,7 @@ export default function Hero() {
           
           {/* Description */}
           <div className="text-white leading-relaxed max-w-md text-base text-left">
-          Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP oder eine moderne Web-Lösung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
+          Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP, eine moderne Website oder eine Web-Anwendung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
           </div>
         </div>
 
@@ -117,7 +113,7 @@ export default function Hero() {
           <div className="text-center lg:text-left mb-6 sm:mb-8">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#f6f6f6] leading-tight">
               <div className="mb-2 sm:mb-4">Deine Idee.</div>
-              <div className="mb-2 sm:mb-4">Dein digitales Produkt.</div>
+              <div className="mb-2 sm:mb-4">Deine Website.</div>
               <HighlightText 
                 text="In 2 Wochen live." 
                 className="text-green-400 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
@@ -147,7 +143,7 @@ export default function Hero() {
               }}
               className="bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105 flex items-center gap-2"
             >
-              <span>Lösungen entdecken</span>
+              <span>Meine Expertise entdecken</span>
               <span>↓</span>
             </button>
           </div>
@@ -168,7 +164,7 @@ export default function Hero() {
             particleCount={8}
             attractRadius={40}
           >
-            <span>Projekt starten</span>
+            <span>Projekt besprechen</span>
             <span>→</span>
           </MagneticButton>
         </motion.div>

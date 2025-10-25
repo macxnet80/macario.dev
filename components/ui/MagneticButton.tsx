@@ -97,7 +97,7 @@ export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButton
         {children || (
           <>
             <Magnet className={cn("w-4 h-4 transition-transform duration-300", isAttracting && "scale-110")} />
-            {isAttracting ? "Projekt starten" : "Projekt starten"}
+            {isAttracting ? "Projekt besprechen" : "Projekt besprechen"}
           </>
         )}
       </span>

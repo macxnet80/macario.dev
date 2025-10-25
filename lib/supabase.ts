@@ -213,20 +213,7 @@ export const projectsApi = {
     return data as Project[]
   },
 
-  // Alle Projekte abrufen (für Admin)
-  async getAllProjects() {
-    if (!isSupabaseConfigured()) {
-      throw new Error('Supabase not configured')
-    }
-    
-    const { data, error } = await supabase
-      .from('projects')
-      .select('*')
-      .order('order_index')
-    
-    if (error) throw error
-    return data as Project[]
-  },
+  // Admin-Funktion entfernt
 
   // Projekt erstellen
   async createProject(project: Omit<Project, 'id' | 'created_at' | 'updated_at'>) {
@@ -975,7 +962,7 @@ export const timeEntriesApi = {
       activity_type: 'development',
       is_billable: true,
       hourly_rate: null,
-      user_name: 'Admin'
+      user_name: 'User'
     }
     
     return this.createTimeEntry(entry)

@@ -160,7 +160,7 @@ const skillsTab = [
 ]
 
 export default function SkillsSection() {
-  const [tab, setTab] = useState<'tools' | 'skills'>('tools')
+  const [tab, setTab] = useState<'tools' | 'skills'>('skills')
 
   const activeData = tab === 'tools' ? tools : skillsTab
 
@@ -183,16 +183,16 @@ export default function SkillsSection() {
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
           <button
-            className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'tools' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
-            onClick={() => setTab('tools')}
-          >
-            Tools & Plattformen
-          </button>
-          <button
             className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'skills' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
             onClick={() => setTab('skills')}
           >
             Fähigkeiten
+          </button>
+          <button
+            className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'tools' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
+            onClick={() => setTab('tools')}
+          >
+            Tools & Plattformen
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

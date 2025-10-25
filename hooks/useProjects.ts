@@ -62,61 +62,7 @@ export function useProjects() {
   return { projects, loading, error, refetch: fetchProjects }
 }
 
-// Admin Hook für alle Projekte (aktive + inaktive)
-export function useAllProjects() {
-  const [projects, setProjects] = useState<Project[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    fetchAllProjects()
-    
-    // Real-time Updates für Admin (nur wenn Tabelle existiert)
-    let subscription: any = null
-    
-    const setupRealtime = async () => {
-      try {
-        await projectsApi.getAllProjects()
-        
-        subscription = supabase
-          .channel('admin-projects-changes')
-          .on('postgres_changes', {
-            event: '*',
-            schema: 'public',
-            table: 'projects'
-          }, () => {
-            fetchAllProjects()
-          })
-          .subscribe()
-      } catch (error) {
-        console.log('Admin Real-time setup übersprungen')
-      }
-    }
-    
-    setupRealtime()
-
-    return () => {
-      if (subscription) {
-        subscription.unsubscribe()
-      }
-    }
-  }, [])
-
-  const fetchAllProjects = async () => {
-    try {
-      setError(null)
-      const data = await projectsApi.getAllProjects()
-      setProjects(data)
-    } catch (err) {
-      console.error('Fehler beim Laden aller Projekte:', err)
-      setError('Projekte konnten nicht geladen werden')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  return { projects, loading, error, refetch: fetchAllProjects }
-}
+// Admin Hook wurde entfernt, da der Admin-Bereich entfernt wurde
 
 // Fallback-Daten falls Supabase nicht verfügbar ist
 function getFallbackProjects(): Project[] {

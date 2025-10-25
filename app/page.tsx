@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Hero from '@/components/Hero'
+import ProblemSection from '@/components/ProblemSection'
 import SkillsSection from '@/components/SkillsSection'
 import ProjectShowcase, { KIAutomatisierungSection } from '@/components/ProjectShowcase'
 import CTA from '@/components/CTA'
@@ -16,6 +17,8 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
+      {/* Problem Section */}
+      <ProblemSection />
 
       {/* Skills Section */}
       <SkillsSection />

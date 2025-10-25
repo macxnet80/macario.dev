@@ -1,22 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /admin/
-Disallow: /admin/*
 
-# Spezifische Anweisungen für Google
-User-agent: Googlebot
-Allow: /
-Disallow: /admin
-Disallow: /admin/
-Disallow: /admin/*
-
-# Spezifische Anweisungen für Bing
-User-agent: Bingbot
-Allow: /
-Disallow: /admin
-Disallow: /admin/
-Disallow: /admin/*
+# Admin-Bereich wurde entfernt
 
 # Sitemap
 Sitemap: https://macario.dev/sitemap.xml 

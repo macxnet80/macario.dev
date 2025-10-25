@@ -50,9 +50,10 @@ const HighlightText = React.forwardRef<HTMLSpanElement, HighlightTextProps>(({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'left center',
         display: 'inline',
+        color: '#121212',
       }}
       className={cn(
-        `relative inline-block px-2 py-1 rounded-lg bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-500 dark:to-purple-500`,
+        `relative inline-block px-2 py-1 rounded-lg bg-gradient-to-r from-green-100 to-green-200 dark:from-green-500 dark:to-green-600`,
         className,
       )}
       {...props}

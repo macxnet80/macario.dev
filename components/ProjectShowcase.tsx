@@ -207,27 +207,24 @@ export default function ProjectShowcase() {
                 </div>
 
                 {/* Project Image */}
-                <div className="relative order-1 md:order-2">
+                <div className="relative order-1 md:order-2 rounded-2xl p-4 md:p-8 aspect-video flex items-center justify-center">
                   <div className={`absolute inset-0 bg-gradient-to-r ${currentProject.color} opacity-20 rounded-2xl`} />
-                  <div className="relative bg-gray-800 rounded-2xl p-4 md:p-8 h-64 md:h-full flex items-center justify-center">
-                    {currentProject.image_url ? (
-                      <div className="relative w-full h-full rounded-xl overflow-hidden">
-                        <Image
-                          src={currentProject.image_url}
-                          alt={currentProject.title}
-                          fill
-                          className="object-cover"
-                        />
+                  {currentProject.image_url ? (
+                    <Image
+                      src={currentProject.image_url}
+                      alt={currentProject.title}
+                      fill
+                      className="object-cover rounded-xl"
+                      style={{ objectPosition: 'center center' }}
+                    />
+                  ) : (
+                    <div className="text-center">
+                      <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
+                        <ExternalLink className="w-12 h-12 md:w-16 md:h-16 text-white" />
                       </div>
-                    ) : (
-                      <div className="text-center">
-                        <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
-                          <ExternalLink className="w-12 h-12 md:w-16 md:h-16 text-white" />
-                        </div>
-                        <p className="text-[#e7e7e7] text-sm md:text-base">Projekt-Demo verfügbar</p>
-                      </div>
-                    )}
-                  </div>
+                      <p className="text-[#e7e7e7] text-sm md:text-base">Projekt-Demo verfügbar</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -267,10 +264,6 @@ export default function ProjectShowcase() {
               </button>
             </div>
             
-            {/* Mobile indicator */}
-            <div className="text-sm text-[#e7e7e7] mt-2 sm:mt-0">
-              {currentIndex + 1} von {projects.length}
-            </div>
           </div>
         </div>
       </div>
