@@ -127,7 +127,7 @@ export default function Hero() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mt-4">
             <MagneticButton
-              onClick={() => window.open('https://zeeg.me/larsmacario/30min', '_blank')}
+              onClick={() => setShowWizard(true)}
               particleCount={6}
               attractRadius={35}
               className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90"
