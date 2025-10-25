@@ -473,11 +473,7 @@ export function KIAutomatisierungSection() {
                   <h4 className="font-semibold mb-2 text-sm text-primary">Du hast 3 Ideen ausprobiert!</h4>
                   <p className="text-white text-sm mb-4">Lass uns persönlich sprechen, um die beste Lösung für dein Projekt zu finden.</p>
                   <div className="flex flex-col gap-2">
-                    <a href="mailto:hello@example.com" className="bg-[#e7e7e7] text-black rounded-lg px-4 py-2 font-medium hover:bg-[#e7e7e7]/90 transition-all">Jetzt Kontakt aufnehmen</a>
-                    <button
-                      onClick={() => { setShowContact(false); setIdeaCount(0); setInput(''); setResponse(''); }}
-                      className="bg-white/10 text-primary rounded-lg px-4 py-2 font-medium hover:bg-white/20 transition-all"
-                    >Zurück zum Start</button>
+                    <a href="mailto:hello@example.com" className="bg-[#e7e7e7] text-black rounded-lg px-4 py-2 font-medium hover:bg-[#e7e7e7]/90 transition-all">Dein Projekt jetzt besprechen</a>
                   </div>
                 </motion.div>
               ) : response && (

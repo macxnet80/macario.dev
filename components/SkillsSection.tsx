@@ -203,7 +203,7 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{ 
                 scale: 1.03,
                 y: -5,
@@ -223,7 +223,7 @@ export default function SkillsSection() {
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: (index * 0.1) + (featureIndex * 0.05) }}
+                      transition={{ duration: 0.5, delay: (index * 0.2) + (featureIndex * 0.1) }}
                       className="flex items-center gap-3"
                     >
                       <div className="w-2 h-2 rounded-full bg-[#b0b0b0] flex-shrink-0 shadow-sm" />

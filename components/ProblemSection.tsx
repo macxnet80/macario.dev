@@ -33,14 +33,18 @@ export default function ProblemSection() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0 }
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
   }
 
   const staggerChildren = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.3
       }
     }
   }
