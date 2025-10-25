@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <StructuredData />
-      <main className="min-h-screen bg-background">
+      <main className="min-h-screen bg-black">
       {/* Hero Section */}
       <Hero />
 

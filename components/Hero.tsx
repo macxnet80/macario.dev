@@ -42,9 +42,14 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={heroRef} className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
+    <section ref={heroRef} className="min-h-screen w-full relative bg-black overflow-hidden">
+      {/* Ocean Abyss Background with Top Glow */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+        }}
+      />
 
       {/* Header */}
       <div className="relative z-10 pt-4 sm:pt-8 pb-4">

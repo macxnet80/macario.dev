@@ -50,7 +50,7 @@ export default function ProblemSection() {
   }
 
   return (
-    <section id="problem-section" className="py-20 bg-gradient-to-b from-background to-background/95 relative overflow-hidden">
+    <section id="problem-section" className="py-20 bg-black relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>

@@ -27,7 +27,7 @@ export default function ProjectShowcase() {
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <section className="py-20 px-6 bg-[#121212]">
+      <section className="py-20 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -50,7 +50,7 @@ export default function ProjectShowcase() {
   // Loading State
   if (loading) {
     return (
-      <section className="py-20 px-6 bg-[#121212]">
+      <section className="py-20 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -80,7 +80,7 @@ export default function ProjectShowcase() {
   // Error State
   if (error) {
     return (
-      <section className="py-20 px-6 bg-[#121212]">
+      <section className="py-20 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -111,7 +111,7 @@ export default function ProjectShowcase() {
   // No projects available
   if (!projects || projects.length === 0) {
     return (
-      <section className="py-20 px-6 bg-[#121212]">
+      <section className="py-20 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -338,7 +338,7 @@ export function KIAutomatisierungSection() {
 
 
   return (
-    <section className="py-20 px-6 bg-[#111111]">
+    <section className="py-20 px-6 bg-black">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white mb-2">KI & Automatisierung</h2>
         <p className="text-xl text-white max-w-3xl mx-auto text-center mb-10">
