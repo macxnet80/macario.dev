@@ -121,7 +121,7 @@ export default function Hero() {
               <div className="mb-2 sm:mb-4">Deine Website.</div>
               <HighlightText 
                 text="In 2 Wochen live." 
-                className="text-green-400 text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
+                className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
               />
             </h1>
           </div>

@@ -175,10 +175,10 @@ export default function SkillsSection() {
           className="text-center mb-10"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
-            Meine Werkzeugkiste
+            Meine Fähigkeiten
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
-            Mit diesen modernen Entwicklungstools verwandle ich deine Ideen in professionelle Websites und Web-Anwendungen
+            Von modernen Websites bis hin zu komplexen Web-Anwendungen – hier ist was ich für dich umsetzen kann
           </p>
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">

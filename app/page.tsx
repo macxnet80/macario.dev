@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Hero from '@/components/Hero'
 import ProblemSection from '@/components/ProblemSection'
 import SkillsSection from '@/components/SkillsSection'
-import ProjectShowcase, { KIAutomatisierungSection } from '@/components/ProjectShowcase'
+import ProjectShowcase from '@/components/ProjectShowcase'
+import CollaborationProcessSection from '@/components/CollaborationProcessSection'
 import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
 import Footer from '@/components/Footer'
@@ -26,8 +27,8 @@ export default function Home() {
       {/* Project Showcase */}
       <ProjectShowcase />
 
-      {/* KI & Automatisierung Section */}
-      <KIAutomatisierungSection />
+      {/* Collaboration Process Section */}
+      <CollaborationProcessSection />
 
       {/* Call to Action */}
       <CTA />
