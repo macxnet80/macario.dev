@@ -61,81 +61,85 @@ export default function ProblemSection() {
           initial="hidden"
           animate={isVisible ? "visible" : "hidden"}
           variants={staggerChildren}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+          className="space-y-16"
         >
-          {/* Problem Section */}
-          <motion.div variants={fadeInUp} className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+          {/* Problem Section - Full Width */}
+          <motion.div variants={fadeInUp} className="space-y-12">
+            <div className="text-center">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-12">
                 Problem
               </h2>
             </div>
 
-            <div className="space-y-6 text-lg sm:text-xl text-gray-300 leading-relaxed">
-              <p>
-                Du hast eine Idee. Eine <span className="text-green-400 font-semibold">richtig gute Idee</span>.
-              </p>
-              
-              <p>
-                Eine Idee, die dir nachts keine Ruhe lässt, weil du <span className="text-white font-semibold">GENAU</span> weißt – das könnte funktionieren.
-              </p>
-              
-              <p>
-                Eine App, die dein Business automatisiert. Ein Tool, das anderen das Leben leichter macht. 
-                Ein MVP, das dein Sprungbrett in die Selbstständigkeit sein könnte.
-              </p>
-            </div>
-
-            {/* But... */}
-            <div className="text-2xl sm:text-3xl font-bold text-red-400">
-              Aber irgendetwas hält dich zurück...
-            </div>
-
-            {/* Pain Points */}
-            <div className="space-y-4 text-lg text-gray-300">
-              <p>
-                Vielleicht ist es die <span className="text-red-400">Angst vor dem Unbekannten</span>. 
-                Oder der Gedanke: <span className="text-white italic">"Ich bin doch kein Entwickler – wie soll ich das umsetzen?"</span>
-              </p>
-              
-              <p>
-                Vielleicht wartest du auf den <span className="text-red-400">"perfekten Moment"</span>. 
-                Oder darauf, dass du endlich Zeit findest, dich in Programmierung einzuarbeiten.
-              </p>
-            </div>
-
-            {/* Time Passing */}
-            <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 sm:p-8">
-              <p className="text-lg sm:text-xl text-red-300 font-medium">
-                Und während du wartest... vergeht Zeit. Andere bringen ihre Ideen auf den Markt. 
-                Die Konkurrenz wird stärker. Dein Traum rückt in weite Ferne.
-              </p>
-            </div>
-
-            {/* Hard Truth */}
-            <div className="space-y-4">
-              <div className="text-xl sm:text-2xl font-bold text-white">
-                Hier ist die harte Wahrheit:
+            <div className="max-w-5xl mx-auto space-y-8">
+              <div className="space-y-6 text-lg sm:text-xl text-gray-300 leading-relaxed">
+                <p>
+                  Du hast eine Idee. Eine <span className="text-green-400 font-semibold">richtig gute Idee</span>.
+                </p>
+                
+                <p>
+                  Eine Idee, die dir nachts keine Ruhe lässt, weil du <span className="text-white font-semibold">GENAU</span> weißt – das könnte funktionieren.
+                </p>
+                
+                <p>
+                  Eine App, die dein Business automatisiert. Ein Tool, das anderen das Leben leichter macht. 
+                  Ein MVP, das dein Sprungbrett in die Selbstständigkeit sein könnte.
+                </p>
               </div>
-              
-              <div className="text-lg sm:text-xl text-red-400 font-semibold">
-                Warten macht es nicht einfacher.
+
+              {/* But... */}
+              <div className="text-2xl sm:text-3xl font-bold text-red-400 mt-12 text-center">
+                Aber irgendetwas hält dich zurück...
               </div>
-              
-              <div className="space-y-3 text-lg text-gray-300">
-                <p>Der Markt bewegt sich schnell. Ideen ohne Umsetzung sind wertlos.</p>
-                <p>Die Gewinner? Sie warten nicht. Sie handeln. Sie bauen.</p>
+
+              {/* Pain Points */}
+              <div className="space-y-4 text-lg text-gray-300">
+                <p>
+                  Vielleicht ist es die <span className="text-red-400">Angst vor dem Unbekannten</span>. 
+                  Oder der Gedanke: <span className="text-white italic">"Ich bin doch kein Entwickler – wie soll ich das umsetzen?"</span>
+                </p>
+                
+                <p>
+                  Vielleicht wartest du auf den <span className="text-red-400">"perfekten Moment"</span>. 
+                  Oder darauf, dass du endlich Zeit findest, dich in Programmierung einzuarbeiten.
+                </p>
+              </div>
+
+              {/* Time Passing */}
+              <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 sm:p-8 mt-8">
+                <p className="text-lg sm:text-xl text-red-300 font-medium">
+                  Und während du wartest... vergeht Zeit. Andere bringen ihre Ideen auf den Markt. 
+                  Die Konkurrenz wird stärker. Dein Traum rückt in weite Ferne.
+                </p>
+              </div>
+
+              {/* Hard Truth */}
+              <div className="space-y-4 mt-12">
+                <div className="text-xl sm:text-2xl font-bold text-white text-center">
+                  Hier ist die harte Wahrheit:
+                </div>
+                
+                <div className="text-lg sm:text-xl text-red-400 font-semibold text-center">
+                  Warten macht es nicht einfacher.
+                </div>
+                
+                <div className="space-y-3 text-lg text-gray-300">
+                  <p>Der Markt bewegt sich schnell. Ideen ohne Umsetzung sind wertlos.</p>
+                  <p>Die Gewinner? Sie warten nicht. Sie handeln. Sie bauen.</p>
+                </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Solution Section */}
+          {/* Solution Section - Full Width */}
           <motion.div variants={fadeInUp} className="space-y-8">
-            <div className="text-center lg:text-left">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
+            <div className="text-center">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-12">
                 Lösung
               </h2>
             </div>
+
+            <div className="max-w-5xl mx-auto space-y-8">
 
             {/* Solution Promise */}
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 sm:p-8">
@@ -236,6 +240,7 @@ export default function ProblemSection() {
                   Deine Idee umsetzen →
                 </span>
               </button>
+            </div>
             </div>
           </motion.div>
         </motion.div>
