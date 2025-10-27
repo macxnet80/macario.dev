@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Termin bestätigt - macario.dev',
-  description: 'Dein Termin wurde erfolgreich gebucht. Vielen Dank für deine Buchung!',
-  robots: 'noindex, nofollow', // Prevent indexing of confirmation pages
+  title: 'Termin erfolgreich gebucht - Bestätigung',
+  description: 'Dein Termin mit Lars Macario wurde erfolgreich gebucht. Du erhältst eine Bestätigungs-E-Mail mit allen Details und dem Meeting-Link. Vielen Dank für deine Buchung!',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
 }
 
 export default function TerminBestaetigungLayout({

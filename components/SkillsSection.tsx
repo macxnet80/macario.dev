@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { 
   Smartphone, 
   Globe, 
@@ -17,7 +18,7 @@ import { useState } from 'react'
 
 const tools = [
   {
-    icon: Code2,
+    logo: '/Logos/cursor_logo.png',
     title: 'Cursor',
     description: 'KI-gestützter Code Editor für schnelle Entwicklung',
     features: [
@@ -26,10 +27,11 @@ const tools = [
       'Code Refactoring',
       'Multi-language Support',
     ],
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-blue-400 to-blue-600',
+    bgColor: 'bg-blue-500/20',
   },
   {
-    icon: Zap,
+    logo: '/Logos/supabase_logo.png',
     title: 'Supabase',
     description: 'Backend-as-a-Service mit PostgreSQL',
     features: [
@@ -38,10 +40,11 @@ const tools = [
       'Storage',
       'Edge Functions',
     ],
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-green-400 to-green-600',
+    bgColor: 'bg-green-500/20',
   },
   {
-    icon: Smartphone,
+    logo: '/Logos/n8n-color_logo.png',
     title: 'n8n',
     description: 'Open-Source Workflow Automatisierung',
     features: [
@@ -50,10 +53,11 @@ const tools = [
       'Advanced Logic',
       'Data Transformation',
     ],
-    color: 'from-pink-500 to-purple-500',
+    color: 'from-pink-400 to-purple-600',
+    bgColor: 'bg-pink-500/20',
   },
   {
-    icon: Triangle,
+    logo: '/Logos/logo-vercel.svg',
     title: 'Vercel',
     description: 'Deployment & API-Hosting Plattform',
     features: [
@@ -62,10 +66,11 @@ const tools = [
       'Git Integration',
       'Analytics',
     ],
-    color: 'from-gray-700 to-gray-900',
+    color: 'from-gray-600 to-gray-800',
+    bgColor: 'bg-gray-600/20',
   },
   {
-    icon: Brain,
+    logo: '/Logos/React-icon.png',
     title: 'React/Next.js',
     description: 'Moderne Frontend-Frameworks',
     features: [
@@ -74,10 +79,11 @@ const tools = [
       'TypeScript Support',
       'Performance Optimized',
     ],
-    color: 'from-blue-500 to-indigo-500',
+    color: 'from-blue-400 to-cyan-500',
+    bgColor: 'bg-blue-400/20',
   },
   {
-    icon: Palette,
+    logo: '/Logos/openai.svg',
     title: 'OpenAI API',
     description: 'KI-Integration für smarte Anwendungen',
     features: [
@@ -86,7 +92,8 @@ const tools = [
       'Automatisierte Analysen',
       'Individuelle KI-Lösungen',
     ],
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-green-400 to-teal-500',
+    bgColor: 'bg-green-400/20',
   },
 ]
 
@@ -192,7 +199,7 @@ export default function SkillsSection() {
             className={`px-8 py-3 rounded-2xl font-semibold shadow-lg transition-all border border-white/10 focus:outline-none ${tab === 'tools' ? 'bg-[#d1d1d1] text-black shadow-xl scale-105' : 'bg-[#121212] text-white hover:bg-[#1a1a1a] hover:scale-105'}`}
             onClick={() => setTab('tools')}
           >
-            Tools & Plattformen
+            Tech Stack
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -211,8 +218,18 @@ export default function SkillsSection() {
               }}
             >
               <div className="rounded-3xl p-8 border border-white/20 bg-[#121212] hover:bg-[#1a1a1a] transition-all duration-300 shadow-xl">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${item.color} p-4 mb-6 flex items-center justify-center shadow-lg`}>
-                  <item.icon className="w-8 h-8 text-white" />
+                <div className={`w-16 h-16 rounded-2xl ${item.bgColor || `bg-gradient-to-r ${item.color}`} p-3 mb-6 flex items-center justify-center shadow-lg`}>
+                  {item.logo ? (
+                    <Image
+                      src={item.logo}
+                      alt={`${item.title} Logo`}
+                      width={40}
+                      height={40}
+                      className="object-contain"
+                    />
+                  ) : (
+                    <item.icon className="w-8 h-8 text-white" />
+                  )}
                 </div>
                 <h3 className="text-2xl font-bold mb-3 text-[#f6f6f6] drop-shadow-sm">{item.title}</h3>
                 <p className="text-[#e7e7e7] mb-6 min-h-[48px] leading-relaxed drop-shadow-sm">{item.description}</p>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowLeft, Mail, Phone, MapPin } from 'lucide-react'
 import Link from 'next/link'
+import Breadcrumb from '@/components/Breadcrumb'
 
 export default function Impressum() {
   return (
@@ -15,6 +16,15 @@ export default function Impressum() {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
+        {/* Breadcrumb Navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Breadcrumb items={[{ label: 'Impressum' }]} />
+        </motion.div>
+
         {/* Navigation zurück */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

@@ -137,7 +137,7 @@ export default function Hero() {
               attractRadius={35}
               className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90"
             >
-              <span>Dein Projekt jetzt besprechen</span>
+              <span>Kostenloses Strategie-Gespräch buchen</span>
               <span>📅</span>
             </MagneticButton>
             

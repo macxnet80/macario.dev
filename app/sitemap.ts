@@ -1,42 +1,29 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://macario.dev'
+  const currentDate = new Date()
+  
   return [
     {
-      url: 'https://macario.dev',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 1.0,
     },
     {
-      url: 'https://macario.dev/#skills',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://macario.dev/#projects',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://macario.dev/#contact',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: 'https://macario.dev/impressum',
-      lastModified: new Date(),
+      url: `${baseUrl}/impressum`,
+      lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: 'https://macario.dev/datenschutz',
-      lastModified: new Date(),
+      url: `${baseUrl}/datenschutz`,
+      lastModified: currentDate,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    // Anchor-Links werden nicht in die Sitemap aufgenommen, da sie Teil der Hauptseite sind
+    // Suchmaschinen crawlen diese automatisch über die Hauptseite
   ]
 } 

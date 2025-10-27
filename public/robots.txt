@@ -1,7 +1,26 @@
+# Robots.txt für macario.dev
+# Lars Macario - No/Low-Code Developer
+
 User-agent: *
 Allow: /
 
-# Admin-Bereich wurde entfernt
+# Spezifische Regeln für wichtige Crawler
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
 
-# Sitemap
-Sitemap: https://macario.dev/sitemap.xml 
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Blockiere Bestätigungsseiten und private Bereiche
+Disallow: /termin-bestaetigung/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap-Referenzen
+Sitemap: https://macario.dev/sitemap.xml
+
+# Host-Angabe für bessere Indexierung
+Host: https://macario.dev 
