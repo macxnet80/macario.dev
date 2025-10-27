@@ -10,6 +10,7 @@ import { MagneticButton } from './ui/MagneticButton'
 export default function Hero() {
   const [showWizard, setShowWizard] = useState(false)
   const [showFloatingCTA, setShowFloatingCTA] = useState(false)
+  const [glowAnimation, setGlowAnimation] = useState(false)
   const heroRef = useRef<HTMLElement>(null)
   
   const scrollToSkills = () => {
@@ -40,6 +41,19 @@ export default function Hero() {
       }
     }
   }, [])
+
+  // Herzschlag Animation alle 15 Sekunden
+  useEffect(() => {
+    if (!showFloatingCTA) return
+
+    const interval = setInterval(() => {
+      setGlowAnimation(true)
+      // Animation nach 1.2 Sekunden beenden (Herzschlag-Duration)
+      setTimeout(() => setGlowAnimation(false), 1200)
+    }, 15000) // Alle 15 Sekunden
+
+    return () => clearInterval(interval)
+  }, [showFloatingCTA])
 
   return (
     <section ref={heroRef} className="min-h-screen w-full relative bg-black overflow-hidden">
@@ -164,14 +178,45 @@ export default function Hero() {
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           className="fixed bottom-6 right-6 z-40"
         >
-          <MagneticButton
-            onClick={() => setShowWizard(true)}
-            particleCount={8}
-            attractRadius={40}
-          >
-            <span>Projekt besprechen</span>
-            <span>→</span>
-          </MagneticButton>
+          <div className="relative">
+            {/* Herzschlag Glow Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-red-400/40 via-pink-500/40 to-red-600/40 opacity-0 blur-md"
+              animate={{
+                opacity: glowAnimation ? [0, 0.6, 0.2, 0.8, 0] : 0,
+                scale: glowAnimation ? [1, 1.15, 1.05, 1.2, 1] : 1,
+              }}
+              transition={{
+                duration: 1.2,
+                ease: [0.25, 0.1, 0.25, 1], // Herzschlag-ähnliche Kurve
+                times: [0, 0.3, 0.5, 0.7, 1]
+              }}
+            />
+            
+            {/* Herzschlag Ring */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-red-400/30"
+              animate={{
+                scale: glowAnimation ? [1, 1.1, 1.02, 1.15, 1] : 1,
+                opacity: glowAnimation ? [0.3, 0.7, 0.4, 0.8, 0.3] : 0.3,
+              }}
+              transition={{
+                duration: 1.2,
+                ease: [0.25, 0.1, 0.25, 1],
+                times: [0, 0.3, 0.5, 0.7, 1]
+              }}
+            />
+            
+            <MagneticButton
+              onClick={() => setShowWizard(true)}
+              particleCount={8}
+              attractRadius={40}
+              className="relative z-10"
+            >
+              <span>Projekt besprechen</span>
+              <span>→</span>
+            </MagneticButton>
+          </div>
         </motion.div>
       )}
 

@@ -28,11 +28,17 @@ export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButton
   const particlesControl = useAnimation();
 
   useEffect(() => {
-    const newParticles = Array.from({ length: particleCount }, (_, i) => ({
-      id: i,
-      x: Math.random() * 360 - 180,
-      y: Math.random() * 360 - 180,
-    }));
+    const newParticles = Array.from({ length: particleCount }, (_, i) => {
+      // Winkel nur im oberen Halbkreis (von -90° bis +90°, also nach oben und seitlich)
+      const angle = (Math.random() * 180 - 90) * (Math.PI / 180);
+      const distance = 80 + Math.random() * 100; // Zufällige Distanz zwischen 80-180px
+      
+      return {
+        id: i,
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance - Math.abs(Math.sin(angle)) * distance, // Nur nach oben
+      };
+    });
     setParticles(newParticles);
   }, [particleCount]);
 

@@ -28,7 +28,7 @@ export default function TestimonialsSection() {
                                 </div>
                                 <div className="space-y-1">
                                     <cite className="font-semibold text-[#f6f6f6] not-italic">Tamara Pfaff</cite>
-                                    <span className="text-[#e7e7e7] block text-sm">Geschäftsführer, tierisch gut betreut UG</span>
+                                    <span className="text-[#e7e7e7] block text-sm">Geschäftsführerin, tierisch gut betreut UG</span>
                                 </div>
                             </div>
                         </blockquote>
