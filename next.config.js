@@ -30,7 +30,7 @@ const nextConfig = {
 
   // Experimentelle Features für bessere Performance
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Deaktiviert wegen critters Fehler
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
 

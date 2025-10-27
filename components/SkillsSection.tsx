@@ -11,12 +11,38 @@ import {
   Palette,
   Triangle,
   Code2,
-  Workflow
+  Workflow,
+  LucideIcon
 } from 'lucide-react'
 import { useState } from 'react'
 
+// Type definitions
+type ToolItem = {
+  logo: string
+  title: string
+  description: string
+  features: string[]
+  color: string
+  bgColor: string
+}
 
-const tools = [
+type SkillItem = {
+  icon: LucideIcon
+  title: string
+  description: string
+  features: string[]
+  color: string
+  bgColor: string
+}
+
+type CombinedItem = ToolItem | SkillItem
+
+// Type guard functions
+const isToolItem = (item: CombinedItem): item is ToolItem => {
+  return 'logo' in item
+}
+
+const tools: ToolItem[] = [
   {
     logo: '/Logos/cursor_logo.png',
     title: 'Cursor',
@@ -97,7 +123,7 @@ const tools = [
   },
 ]
 
-const skillsTab = [
+const skillsTab: SkillItem[] = [
   {
     icon: Globe,
     title: 'Moderne Websites',
@@ -108,6 +134,7 @@ const skillsTab = [
       'Portfolio Sites',
     ],
     color: 'from-blue-500 to-cyan-500',
+    bgColor: 'bg-blue-500/20',
   },
   {
     icon: Smartphone,
@@ -119,6 +146,7 @@ const skillsTab = [
       'Community Portale',
     ],
     color: 'from-green-500 to-emerald-500',
+    bgColor: 'bg-green-500/20',
   },
   {
     icon: Workflow,
@@ -130,6 +158,7 @@ const skillsTab = [
       'Report Generation',
     ],
     color: 'from-indigo-500 to-purple-500',
+    bgColor: 'bg-indigo-500/20',
   },
   {
     icon: Zap,
@@ -141,6 +170,7 @@ const skillsTab = [
       'User Authentication',
     ],
     color: 'from-pink-500 to-rose-500',
+    bgColor: 'bg-pink-500/20',
   },
   {
     icon: Palette,
@@ -152,6 +182,7 @@ const skillsTab = [
       'SSL Zertifikate',
     ],
     color: 'from-gray-700 to-gray-900',
+    bgColor: 'bg-gray-700/20',
   },
   {
     icon: Code2,
@@ -163,13 +194,14 @@ const skillsTab = [
       'Spezielle Features',
     ],
     color: 'from-blue-500 to-indigo-500',
+    bgColor: 'bg-blue-500/20',
   },
 ]
 
 export default function SkillsSection() {
   const [tab, setTab] = useState<'tools' | 'skills'>('skills')
 
-  const activeData = tab === 'tools' ? tools : skillsTab
+  const activeData: CombinedItem[] = tab === 'tools' ? tools : skillsTab
 
   return (
     <section id="skills-section" className="py-20 px-6 bg-black">
@@ -219,7 +251,7 @@ export default function SkillsSection() {
             >
               <div className="rounded-3xl p-8 border border-white/20 bg-[#121212] hover:bg-[#1a1a1a] transition-all duration-300 shadow-xl">
                 <div className={`w-16 h-16 rounded-2xl ${item.bgColor || `bg-gradient-to-r ${item.color}`} p-3 mb-6 flex items-center justify-center shadow-lg`}>
-                  {item.logo ? (
+                  {isToolItem(item) ? (
                     <Image
                       src={item.logo}
                       alt={`${item.title} Logo`}
