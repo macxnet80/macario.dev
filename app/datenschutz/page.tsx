@@ -7,22 +7,32 @@ import Breadcrumb from '@/components/Breadcrumb'
 
 export default function Datenschutz() {
   return (
-    <main className="min-h-screen bg-background relative overflow-hidden">
-      {/* Background Effects - gleich wie Hero-Bereich */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-      </div>
+    <main className="min-h-screen bg-black relative overflow-hidden">
+      {/* Ocean Abyss Background with Top Glow - gleich wie Hero-Bereich */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+        }}
+      />
 
       <div className="max-w-4xl mx-auto px-6 py-20 relative z-10">
-        {/* Breadcrumb Navigation */}
+        {/* Navigation zurück zur Startseite */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Breadcrumb items={[{ label: 'Datenschutzerklärung' }]} />
+          <nav className="flex items-center space-x-2 text-sm text-gray-400 mb-6">
+            <Link 
+              href="/" 
+              className="hover:text-white transition-colors flex items-center gap-2"
+              aria-label="Zur Startseite"
+            >
+              <span>←</span>
+              <span>Zurück zur Startseite</span>
+            </Link>
+          </nav>
         </motion.div>
 
 
@@ -84,7 +94,7 @@ export default function Datenschutz() {
                 <p>25451 Quickborn</p>
                 <p>Deutschland</p>
                 <p className="mt-2">
-                  E-Mail: <a href="mailto:lars.macario@gmail.com" className="text-primary hover:underline">lars.macario@gmail.com</a>
+                  E-Mail: <a href="mailto:lars@macario.dev" className="text-primary hover:underline">lars@macario.dev</a>
                 </p>
                 <p>
                   Telefon: <a href="tel:+4917663404901" className="text-primary hover:underline">+49 176 63404901</a>
@@ -258,6 +268,29 @@ export default function Datenschutz() {
                 <strong>Stand:</strong> {new Date().toLocaleDateString('de-DE')}
               </p>
             </div>
+          </div>
+        </motion.div>
+
+        {/* Footer Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 pt-8 border-t border-white/10"
+        >
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center text-sm">
+            <Link 
+              href="/impressum" 
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Impressum
+            </Link>
+            <Link 
+              href="/datenschutz" 
+              className="text-gray-400 hover:text-white transition-colors"
+            >
+              Datenschutzerklärung
+            </Link>
           </div>
         </motion.div>
 
