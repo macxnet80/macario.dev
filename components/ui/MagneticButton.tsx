@@ -72,11 +72,12 @@ export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButton
     <button
       ref={ref}
       className={cn(
-        "min-w-40 relative touch-none",
+        "relative touch-manipulation",
         "bg-[#d1d1d1] text-black",
         "hover:bg-[#d1d1d1]/90",
         "border border-white/20",
         "transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105",
+        "active:scale-95 active:bg-[#d1d1d1]/80", // Besseres Touch-Feedback
         className,
       )}
       onMouseEnter={handleInteractionStart}
@@ -99,11 +100,11 @@ export const MagneticButton = React.forwardRef<HTMLButtonElement, MagneticButton
           )}
         />
       ))}
-      <span className="relative w-full flex items-center justify-center gap-2">
+      <span className="relative w-full flex items-center justify-center gap-2 text-center leading-tight">
         {children || (
           <>
-            <Magnet className={cn("w-4 h-4 transition-transform duration-300", isAttracting && "scale-110")} />
-            {isAttracting ? "Projekt besprechen" : "Projekt besprechen"}
+            <Magnet className={cn("w-4 h-4 transition-transform duration-300 flex-shrink-0", isAttracting && "scale-110")} />
+            <span className="flex-1">{isAttracting ? "Projekt besprechen" : "Projekt besprechen"}</span>
           </>
         )}
       </span>

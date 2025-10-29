@@ -75,11 +75,11 @@ export default function AIAssistant() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg flex items-center justify-center group"
+            className="fixed bottom-6 right-6 sm:bottom-6 sm:right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg flex items-center justify-center group touch-manipulation"
           >
-            <Brain className="w-8 h-8 text-white" />
-            <div className="absolute -top-2 -right-2 w-5 h-5 bg-primary rounded-full flex items-center justify-center animate-pulse">
-              <Sparkles className="w-3 h-3 text-white" />
+            <Brain className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-4 h-4 sm:w-5 sm:h-5 bg-primary rounded-full flex items-center justify-center animate-pulse">
+              <Sparkles className="w-2 h-2 sm:w-3 sm:h-3 text-white" />
             </div>
             
             {/* Tooltip */}

@@ -130,12 +130,12 @@ export default function Hero() {
         <div className="w-full">
           {/* Main Headline - Center */}
           <div className="text-center lg:text-left mb-6 sm:mb-8">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#f6f6f6] leading-tight">
+            <h1 className="text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-bold text-[#f6f6f6] leading-tight">
               <div className="mb-2 sm:mb-4">Deine Idee.</div>
               <div className="mb-2 sm:mb-4">Deine Website.</div>
               <HighlightText 
                 text="In 2 Wochen live." 
-                className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
+                className="text-[#000000] text-5xl sm:text-5xl md:text-6xl lg:text-8xl font-bold"
               />
             </h1>
           </div>
@@ -144,14 +144,14 @@ export default function Hero() {
           <div className="w-full h-px bg-secondary/30 mb-4"></div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center">
             <MagneticButton
               onClick={() => setShowWizard(true)}
               particleCount={6}
               attractRadius={35}
-              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90"
+              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 w-4/5 sm:w-auto text-xs sm:text-base px-3 sm:px-6 py-2 sm:py-3 min-h-[40px] sm:min-h-[auto]"
             >
-              <span>Kostenloses Strategie-Gespräch buchen</span>
+              <span className="text-center">Kostenloses Strategie-Gespräch buchen</span>
               <span>📅</span>
             </MagneticButton>
             
@@ -160,7 +160,7 @@ export default function Hero() {
                 const skillsSection = document.querySelector('#skills-section')
                 skillsSection?.scrollIntoView({ behavior: 'smooth' })
               }}
-              className="bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105 flex items-center gap-2"
+              className="bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto]"
             >
               <span>Meine Expertise entdecken</span>
               <span>↓</span>
@@ -176,7 +176,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          className="fixed bottom-6 right-6 z-40"
+          className="fixed bottom-6 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:transform-none z-40"
         >
           <div className="relative">
             {/* Herzschlag Glow Effect */}
