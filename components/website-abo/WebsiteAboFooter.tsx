@@ -40,7 +40,7 @@ export default function WebsiteAboFooter() {
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-green-400 flex-shrink-0" />
                 <a 
-                  href="mailto:lars@macario.dev" 
+                  href="mailto:abo@macario.dev" 
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   lars@macario.dev

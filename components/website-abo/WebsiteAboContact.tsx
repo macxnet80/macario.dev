@@ -164,8 +164,8 @@ export default function WebsiteAboContact() {
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">E-Mail</div>
-                  <a href="mailto:lars@macario.dev" className="text-green-600 hover:text-green-700">
-                    lars@macario.dev
+                  <a href="mailto:abo@macario.dev" className="text-green-600 hover:text-green-700">
+                    abo@macario.dev
                   </a>
                 </div>
               </div>
