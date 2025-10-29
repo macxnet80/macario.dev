@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowLeft, Shield, Eye, Lock, FileText } from 'lucide-react'
+import { Shield, Eye, Lock, FileText } from 'lucide-react'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 
@@ -25,21 +25,6 @@ export default function Datenschutz() {
           <Breadcrumb items={[{ label: 'Datenschutzerklärung' }]} />
         </motion.div>
 
-        {/* Navigation zurück */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12"
-        >
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors group"
-          >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            Zurück zur Startseite
-          </Link>
-        </motion.div>
 
         {/* Header */}
         <motion.div
@@ -276,20 +261,6 @@ export default function Datenschutz() {
           </div>
         </motion.div>
 
-        {/* Back to top / CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-lg font-medium transition-all glow"
-          >
-            Zurück zur Startseite
-          </Link>
-        </motion.div>
       </div>
 
     </main>
