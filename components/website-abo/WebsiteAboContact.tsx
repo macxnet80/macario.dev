@@ -114,7 +114,7 @@ export default function WebsiteAboContact() {
 
             <div className="flex justify-center">
               <a
-                href="mailto:lars@macario.dev"
+                href="mailto:abo@macario.dev"
                 className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold transition-colors duration-300"
               >
                 <Mail className="w-5 h-5" />
