@@ -23,6 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: `${baseUrl}/website-abo`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // Kundenonboarding ist privat und wird nicht in Sitemap aufgenommen
     // Anchor-Links werden nicht in die Sitemap aufgenommen, da sie Teil der Hauptseite sind
     // Suchmaschinen crawlen diese automatisch über die Hauptseite
   ]

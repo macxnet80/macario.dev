@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey)
+// Nur Supabase-Client erstellen wenn Umgebungsvariablen verfügbar sind
+const supabase = supabaseUrl && supabaseServiceKey 
+  ? createClient(supabaseUrl, supabaseServiceKey)
+  : null
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,37 +22,42 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Insert into Supabase
-    const { data, error } = await supabase
-      .from('website_abo_inquiries')
-      .insert([
-        {
-          name,
-          company,
-          email,
-          phone: phone || null,
-          industry,
-          selected_package: selectedPackage || null,
-          message: message || null,
-          created_at: new Date().toISOString(),
-          status: 'new'
-        }
-      ])
-      .select()
+    // Insert into Supabase falls verfügbar
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('website_abo_inquiries')
+        .insert([
+          {
+            name,
+            company,
+            email,
+            phone: phone || null,
+            industry,
+            selected_package: selectedPackage || null,
+            message: message || null,
+            created_at: new Date().toISOString(),
+            status: 'new'
+          }
+        ])
+        .select()
 
-    if (error) {
-      console.error('Supabase error:', error)
-      return NextResponse.json(
-        { error: 'Fehler beim Speichern der Anfrage' },
-        { status: 500 }
-      )
+      if (error) {
+        console.error('Supabase error:', error)
+        return NextResponse.json(
+          { error: 'Fehler beim Speichern der Anfrage' },
+          { status: 500 }
+        )
+      }
+    } else {
+      console.warn('Supabase nicht konfiguriert - Daten werden nur geloggt')
+      console.log('Website-Abo Anfrage:', { name, company, email, phone, industry, selectedPackage, message })
     }
 
     // Optional: Send notification email here
     // You could integrate with a service like Resend, SendGrid, etc.
 
     return NextResponse.json(
-      { message: 'Anfrage erfolgreich gesendet', data },
+      { message: 'Anfrage erfolgreich gesendet' },
       { status: 200 }
     )
   } catch (error) {
