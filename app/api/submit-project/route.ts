@@ -30,7 +30,12 @@ export async function POST(request: NextRequest) {
 
     // n8n Webhook senden
     try {
-      const webhookUrl = 'https://auto.macario.dev/webhook/125bf416-5a16-46dc-bda5-43a6dd202d4d'
+      const webhookUrl = process.env.N8N_WEBHOOK_PROJEKT_ANFRAGE
+      
+      if (!webhookUrl) {
+        console.error('❌ N8N_WEBHOOK_PROJEKT_ANFRAGE Umgebungsvariable nicht gesetzt')
+        throw new Error('Webhook-URL nicht konfiguriert')
+      }
       
       // Daten für n8n Webhook formatieren
       const webhookData = {

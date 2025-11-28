@@ -4,9 +4,12 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 export default function ProblemSection() {
+  const [mounted, setMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -59,7 +62,7 @@ export default function ProblemSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
+          animate={mounted && isVisible ? "visible" : "hidden"}
           variants={staggerChildren}
           className="space-y-16"
         >

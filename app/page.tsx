@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Hero from '@/components/Hero'
 import ProblemSection from '@/components/ProblemSection'
 import SkillsSection from '@/components/SkillsSection'

@@ -4,7 +4,7 @@ import { AUTH_COOKIE_NAME } from '@/lib/auth-config'
 
 export async function POST() {
   try {
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     
     // Lösche Session-Cookie
     cookieStore.delete(AUTH_COOKIE_NAME)

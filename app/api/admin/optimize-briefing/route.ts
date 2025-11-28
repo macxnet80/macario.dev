@@ -8,7 +8,7 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
-    requireAuth()
+    await requireAuth()
     
     const { briefing, projectScope, techStack, customerName, company, addressStyle } = await request.json()
     

@@ -49,7 +49,7 @@ interface OnboardingSession {
 // GET - Liste aller Sessions
 export async function GET() {
   try {
-    requireAuth()
+    await requireAuth()
     
     if (!supabase) {
       console.warn('Supabase nicht konfiguriert - verwende Fallback')
@@ -94,7 +94,7 @@ export async function GET() {
 // POST - Neue Session erstellen
 export async function POST(request: NextRequest) {
   try {
-    requireAuth()
+    await requireAuth()
     
     const data = await request.json()
     

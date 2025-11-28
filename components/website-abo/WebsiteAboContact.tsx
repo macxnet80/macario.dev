@@ -46,7 +46,12 @@ export default function WebsiteAboContact() {
 
     try {
       // Send data to webhook
-      const webhookResponse = await fetch('https://auto.macario.dev/webhook/125bf416-5a16-46dc-bda5-43a6dd202d4d', {
+      const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_PROJEKT_ANFRAGE
+      if (!webhookUrl) {
+        throw new Error('Webhook-URL nicht konfiguriert')
+      }
+
+      const webhookResponse = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

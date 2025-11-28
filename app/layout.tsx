@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   referrer: 'origin-when-cross-origin',
   category: 'Technology',
+  metadataBase: new URL('https://macario.dev'),
+  alternates: {
+    canonical: 'https://macario.dev',
+  },
   openGraph: {
     type: 'website',
     locale: 'de_DE',
@@ -80,6 +84,14 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/manifest.json',
+  other: {
+    'msapplication-TileColor': '#6366f1',
+    'msapplication-TileImage': '/favicon/mstile-150x150.png',
+    'msapplication-square70x70logo': '/favicon/mstile-70x70.png',
+    'msapplication-square150x150logo': '/favicon/mstile-150x150.png',
+    'msapplication-square310x310logo': '/favicon/mstile-310x310.png',
+    'theme-color': '#6366f1',
+  },
 }
 
 export default function RootLayout({
@@ -88,7 +100,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="de" className="dark">
+    <html lang="de" className="dark" suppressHydrationWarning>
       <head>
         {/* Optimierte Font-Loading-Strategie */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -101,20 +113,6 @@ export default function RootLayout({
         {/* DNS-Prefetch für externe Ressourcen */}
         <link rel="dns-prefetch" href="https://vercel.com" />
         <link rel="dns-prefetch" href="https://supabase.co" />
-        
-        {/* Microsoft Tile-Konfiguration */}
-        <meta name="msapplication-TileColor" content="#6366f1" />
-        <meta name="msapplication-TileImage" content="/favicon/mstile-150x150.png" />
-        <meta name="msapplication-square70x70logo" content="/favicon/mstile-70x70.png" />
-        <meta name="msapplication-square150x150logo" content="/favicon/mstile-150x150.png" />
-        <meta name="msapplication-square310x310logo" content="/favicon/mstile-310x310.png" />
-        
-        {/* Theme und Viewport */}
-        <meta name="theme-color" content="#6366f1" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://macario.dev" />
         
         {/* Preload kritische Ressourcen */}
         <link rel="preload" href="/avatar.png" as="image" type="image/png" />

@@ -5,18 +5,12 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import ProjectWizard from './ProjectWizard'
 import { HighlightText } from './ui/shadcn-io/highlight-text'
-import { MagneticButton } from './ui/MagneticButton'
 
 export default function Hero() {
   const [showWizard, setShowWizard] = useState(false)
   const [showFloatingCTA, setShowFloatingCTA] = useState(false)
   const [glowAnimation, setGlowAnimation] = useState(false)
   const heroRef = useRef<HTMLElement>(null)
-  
-  const scrollToSkills = () => {
-    const skillsSection = document.querySelector('#skills-section')
-    skillsSection?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   // Intersection Observer für Floating CTA
   useEffect(() => {
@@ -56,10 +50,10 @@ export default function Hero() {
   }, [showFloatingCTA])
 
   return (
-    <section ref={heroRef} className="min-h-screen w-full relative bg-black overflow-hidden">
+    <section ref={heroRef} className="min-h-screen w-full relative bg-black">
       {/* Ocean Abyss Background with Top Glow */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 overflow-hidden"
         style={{
           background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
         }}
@@ -145,26 +139,14 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center">
-            <MagneticButton
+            <button
               onClick={() => setShowWizard(true)}
-              particleCount={6}
-              attractRadius={35}
-              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 w-4/5 sm:w-auto text-xs sm:text-base px-3 sm:px-6 py-2 sm:py-3 min-h-[40px] sm:min-h-[auto]"
+              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto]"
             >
               <span className="text-center">Kostenloses Strategie-Gespräch buchen</span>
               <span>📅</span>
-            </MagneticButton>
-            
-            <button
-              onClick={() => {
-                const skillsSection = document.querySelector('#skills-section')
-                skillsSection?.scrollIntoView({ behavior: 'smooth' })
-              }}
-              className="bg-white/10 text-white border border-white/20 hover:bg-white/20 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto]"
-            >
-              <span>Meine Expertise entdecken</span>
-              <span>↓</span>
             </button>
+            
           </div>
         </div>
       </div>
@@ -207,15 +189,13 @@ export default function Hero() {
               }}
             />
             
-            <MagneticButton
+            <button
               onClick={() => setShowWizard(true)}
-              particleCount={8}
-              attractRadius={40}
-              className="relative z-10"
+              className="relative z-10 bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2"
             >
               <span>Projekt besprechen</span>
               <span>→</span>
-            </MagneticButton>
+            </button>
           </div>
         </motion.div>
       )}
@@ -224,6 +204,7 @@ export default function Hero() {
       {showWizard && (
         <ProjectWizard onClose={() => setShowWizard(false)} />
       )}
+
 
     </section>
   )

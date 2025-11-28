@@ -3,7 +3,7 @@ import { getSession } from '@/lib/auth-utils'
 
 export async function GET() {
   try {
-    const session = getSession()
+    const session = await getSession()
     
     if (!session) {
       return NextResponse.json(

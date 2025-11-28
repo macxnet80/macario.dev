@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const sessionToken = Buffer.from(JSON.stringify(sessionData)).toString('base64')
 
     // Setze Cookie
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     cookieStore.set(AUTH_COOKIE_NAME, sessionToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',

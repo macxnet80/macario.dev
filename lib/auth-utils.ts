@@ -7,9 +7,9 @@ export interface SessionData {
   expires: number
 }
 
-export function getSession(): SessionData | null {
+export async function getSession(): Promise<SessionData | null> {
   try {
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     const sessionCookie = cookieStore.get(AUTH_COOKIE_NAME)
 
     if (!sessionCookie?.value) {
@@ -33,13 +33,13 @@ export function getSession(): SessionData | null {
   }
 }
 
-export function isAuthenticated(): boolean {
-  const session = getSession()
+export async function isAuthenticated(): Promise<boolean> {
+  const session = await getSession()
   return session !== null
 }
 
-export function requireAuth(): SessionData {
-  const session = getSession()
+export async function requireAuth(): Promise<SessionData> {
+  const session = await getSession()
   if (!session) {
     throw new Error('Authentication required')
   }

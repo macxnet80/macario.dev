@@ -7,7 +7,7 @@ const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
 export async function GET() {
   try {
-    requireAuth()
+    await requireAuth()
     
     const diagnostics = {
       hasUrl: !!supabaseUrl,

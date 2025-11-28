@@ -213,7 +213,7 @@ export default function SkillsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Meine Fähigkeiten
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">

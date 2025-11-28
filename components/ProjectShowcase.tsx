@@ -38,8 +38,8 @@ export default function ProjectShowcase() {
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </div>
-          <div className="glass rounded-3xl p-12 text-center">
-            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
+          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-white" />
             <p className="text-[#e7e7e7]">Wird geladen...</p>
           </div>
         </div>
@@ -68,8 +68,8 @@ export default function ProjectShowcase() {
             </p>
           </motion.div>
           
-          <div className="glass rounded-3xl p-12 text-center">
-            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-primary" />
+          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-white" />
             <p className="text-[#e7e7e7]">Projekte werden geladen...</p>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function ProjectShowcase() {
             </p>
           </motion.div>
           
-          <div className="glass rounded-3xl p-12 text-center">
+          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
             <AlertCircle className="w-12 h-12 mx-auto mb-4 text-red-400" />
             <p className="text-[#e7e7e7] mb-4">{error}</p>
             <p className="text-sm text-[#e7e7e7]">Fallback-Daten werden angezeigt</p>
@@ -129,7 +129,7 @@ export default function ProjectShowcase() {
             </p>
           </motion.div>
           
-          <div className="glass rounded-3xl p-12 text-center">
+          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
             <Database className="w-12 h-12 mx-auto mb-4 text-[#e7e7e7]" />
             <p className="text-[#e7e7e7]">Keine Projekte verfügbar</p>
           </div>
@@ -214,6 +214,7 @@ export default function ProjectShowcase() {
                       src={currentProject.image_url}
                       alt={currentProject.title}
                       fill
+                      sizes="100vw"
                       className="object-cover rounded-xl"
                       style={{ objectPosition: 'center center' }}
                     />
@@ -463,7 +464,7 @@ export function KIAutomatisierungSection() {
         {tab === 'auto' && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {automations.map((a) => (
-              <div key={a.title} className="glass rounded-2xl p-6 border border-white/10">
+              <div key={a.title} className="bg-black/50 rounded-2xl p-6 border border-white/10">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-blue-400 flex items-center justify-center mb-4">
                   <a.icon className="w-7 h-7 text-white" />
                 </div>

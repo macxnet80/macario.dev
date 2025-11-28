@@ -19,7 +19,7 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
             Über mich
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
@@ -45,6 +45,7 @@ export default function AboutSection() {
                   src="/lars.macario.dev - No-Code Pitch.jpg"
                   alt="Lars Macario bei einer Präsentation"
                   fill
+                  sizes="100vw"
                   className="object-cover"
                   priority
                 />
