@@ -38,13 +38,7 @@
    - Token-basierte Sessions
    - Umfangreiche Datenerfassung
 
-5. **WebsiteAbo**
-   - Dedizierte Seite für Website-Abo
-   - Package-Auswahl
-   - Kontaktformular
-   - FAQ-Section
-
-6. **Admin Dashboard**
+5. **Admin Dashboard**
    - Login/Logout
    - Onboarding-Sessions verwalten
    - Projekt-Verwaltung
@@ -56,7 +50,6 @@
    - Angebots-Optimierung
    - Briefing-Optimierung
    - Customer Onboarding
-   - Website-Abo Anfragen
 
 ## Was wurde entfernt
 
@@ -72,6 +65,26 @@ Komplett entfernt:
 - Dependencies: `@openai/agents`, `react-voice-visualizer`, `react-audio-visualize`, `react-audio-visualizer-pro`
 
 **Grund**: Feature wurde nicht mehr benötigt, Fokus auf ProjectWizard
+
+### ❌ Website-Abo Landingpage (Dezember 2024)
+
+Komplett entfernt:
+- `app/website-abo/layout.tsx`
+- `app/website-abo/page.tsx`
+- `app/api/website-abo-inquiry/route.ts`
+- `components/website-abo/PackageWizard.tsx`
+- `components/website-abo/WebsiteAboContact.tsx`
+- `components/website-abo/WebsiteAboFAQ.tsx`
+- `components/website-abo/WebsiteAboFooter.tsx`
+- `components/website-abo/WebsiteAboHero.tsx`
+- `components/website-abo/WebsiteAboPricing.tsx`
+- `components/website-abo/WebsiteAboProblem.tsx`
+- `components/website-abo/WebsiteAboSolution.tsx`
+- `components/website-abo/WebsiteAboTestimonials.tsx`
+- Verweis aus `app/sitemap.ts` entfernt
+- Verweis "Website-Abo" aus `app/admin/create-onboarding/page.tsx` entfernt
+
+**Grund**: ABO-Landingpage wurde aus dem Projekt entfernt
 
 ## Was noch zu tun ist
 
@@ -102,8 +115,9 @@ Komplett entfernt:
 
 1. ✅ Next.js 16 Upgrade abgeschlossen
 2. ✅ Voice Agent entfernt
-3. ✅ Projekt stabilisiert
-4. 🔄 Weitere Features nach Bedarf
+3. ✅ Website-Abo Landingpage entfernt
+4. ✅ Projekt stabilisiert
+5. 🔄 Weitere Features nach Bedarf
 
 ## Technische Schulden
 

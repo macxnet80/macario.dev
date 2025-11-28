@@ -100,7 +100,6 @@ export default function CreateOnboardingPage() {
 
   const contractTypes = [
     'Einmaliges Projekt',
-    'Website-Abo',
     'Laufende Betreuung',
     'Wartungsvertrag',
     'Beratung'

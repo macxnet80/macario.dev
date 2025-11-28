@@ -14,7 +14,6 @@ app/
 │   └── create-onboarding/
 ├── kundenonboarding/     # Kunden-Onboarding
 ├── onboarding/[token]/   # Onboarding-Session
-├── website-abo/          # Website-Abo Seite
 └── termin-bestaetigung/  # Termin-Bestätigung
 
 components/
@@ -22,7 +21,6 @@ components/
 ├── ProjectWizard.tsx    # Projektanfrage-Wizard
 ├── ProjectShowcase.tsx   # Portfolio-Projekte
 ├── CustomerOnboardingWizard.tsx  # Onboarding-Wizard
-├── website-abo/          # Website-Abo Komponenten
 └── ui/                   # UI-Komponenten (shadcn/ui)
 ```
 
@@ -37,7 +35,6 @@ app/api/
 ├── optimize-briefing/    # Briefing-Optimierung
 ├── customer-onboarding/  # Onboarding-Daten
 ├── onboarding-session/  # Onboarding-Session-Verwaltung
-├── website-abo-inquiry/  # Website-Abo Anfragen
 └── admin/                # Admin-APIs
     ├── login/
     ├── logout/

@@ -9,8 +9,7 @@
 1. **Lead-Generierung**: Projektanfragen über ProjectWizard sammeln
 2. **Portfolio-Präsentation**: Projekte und Fähigkeiten präsentieren
 3. **Kunden-Onboarding**: Strukturierter Onboarding-Prozess für neue Kunden
-4. **Website-Abo**: Abo-Modell für kleine Websites anbieten
-5. **Terminbuchung**: Strategie-Gespräche buchen
+4. **Terminbuchung**: Strategie-Gespräche buchen
 
 ## Haupt-Features
 
@@ -18,7 +17,6 @@
 - **ProjectWizard**: Interaktiver Wizard zur Projektanfrage
 - **ProjectShowcase**: Portfolio-Projekte aus Supabase
 - **CustomerOnboardingWizard**: Onboarding-Prozess für neue Kunden
-- **WebsiteAbo**: Abo-Modell für kleine Websites
 - **Admin Dashboard**: Verwaltung von Projekten, Onboarding-Sessions, etc.
 
 ## Technologie-Stack
@@ -38,4 +36,10 @@
   - Alle Voice Agent Komponenten wurden gelöscht
   - API Routes für Voice Agent entfernt
   - Dependencies entfernt (@openai/agents, react-voice-visualizer, etc.)
+
+- **Website-Abo Landingpage**: Komplett entfernt (Dezember 2024)
+  - Route `app/website-abo/` gelöscht
+  - API Route `app/api/website-abo-inquiry/` gelöscht
+  - Alle Komponenten in `components/website-abo/` gelöscht
+  - Verweise aus Sitemap und Admin-Bereich entfernt
 

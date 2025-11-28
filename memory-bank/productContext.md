@@ -28,13 +28,11 @@
 4. **Projektanalyse** via OpenAI API
 5. **Terminbuchung** für Strategie-Gespräch
 6. **Kunden-Onboarding** für neue Kunden
-7. **Website-Abo** als zusätzliches Angebot
 
 ### Zielgruppen
 
 - **Potenzielle Kunden**: Unternehmen, die No/Low-Code Lösungen benötigen
 - **Bestehende Kunden**: Onboarding und Projektverwaltung
-- **Interessenten**: Website-Abo für kleine Websites
 
 ## User Experience Goals
 

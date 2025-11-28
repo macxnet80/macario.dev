@@ -55,7 +55,6 @@ Die Website läuft jetzt auf:
 Die Website fokussiert sich auf:
 - **ProjectWizard**: Haupt-Tool für Projektanfragen
 - **CustomerOnboardingWizard**: Onboarding-Prozess
-- **WebsiteAbo**: Abo-Modell
 - **Portfolio-Präsentation**: ProjectShowcase
 
 ### Nächste Schritte
