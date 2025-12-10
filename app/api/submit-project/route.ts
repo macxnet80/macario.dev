@@ -1,7 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { 
+  isValidEmail, 
+  sanitizeInput, 
+  isValidBudget, 
+  isValidProjectType, 
+  isValidTimeline, 
+  isValidPriority,
+  sanitizeForLogging 
+} from '@/lib/security-utils'
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate Limiting (10 Requests pro Minute pro IP)
+    const ip = getClientIp(request)
+    const rateLimit = checkRateLimit(`submit-project:${ip}`, 10, 60000)
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { success: false, message: 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '10',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString()
+          }
+        }
+      )
+    }
+
+    // Request Size Limit prüfen (max 100KB)
+    const contentLength = request.headers.get('content-length')
+    if (contentLength && parseInt(contentLength) > 100000) {
+      return NextResponse.json(
+        { success: false, message: 'Anfrage zu groß' },
+        { status: 413 }
+      )
+    }
+
     const data = await request.json()
     
     // Validierung der erforderlichen Felder
@@ -15,19 +52,68 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    console.log('Neue Projektanfrage:', {
-      timestamp: new Date().toISOString(),
+    // Input-Validierung
+    if (!isValidEmail(data.email)) {
+      return NextResponse.json(
+        { success: false, message: 'Ungültige E-Mail-Adresse' },
+        { status: 400 }
+      )
+    }
+
+    if (!isValidProjectType(data.projectType)) {
+      return NextResponse.json(
+        { success: false, message: 'Ungültiger Projekttyp' },
+        { status: 400 }
+      )
+    }
+
+    if (!isValidBudget(data.budget)) {
+      return NextResponse.json(
+        { success: false, message: 'Ungültiges Budget' },
+        { status: 400 }
+      )
+    }
+
+    if (!isValidTimeline(data.timeline)) {
+      return NextResponse.json(
+        { success: false, message: 'Ungültige Timeline' },
+        { status: 400 }
+      )
+    }
+
+    if (!isValidPriority(data.priority)) {
+      return NextResponse.json(
+        { success: false, message: 'Ungültige Priorität' },
+        { status: 400 }
+      )
+    }
+
+    // Sanitize Input
+    const sanitizedData = {
       projectType: data.projectType,
-      budget: data.budget,
+      budget: parseInt(String(data.budget)),
       timeline: data.timeline,
       priority: data.priority,
-      description: data.description,
-      name: data.name,
-      email: data.email,
-      company: data.company,
-      phone: data.phone,
-      source: data.source
-    })
+      description: sanitizeInput(data.description, 5000),
+      name: sanitizeInput(data.name, 200),
+      email: data.email.toLowerCase().trim(),
+      company: sanitizeInput(data.company, 200),
+      phone: sanitizeInput(data.phone, 50),
+      source: sanitizeInput(data.source, 50),
+      features: Array.isArray(data.features) ? data.features.map((f: string) => sanitizeInput(f, 200)) : [],
+      aiAnalysis: sanitizeInput(data.aiAnalysis, 2000),
+      finalPrice: data.finalPrice ? parseInt(String(data.finalPrice)) : null
+    }
+
+    // Logge ohne sensitive Daten
+    console.log('Neue Projektanfrage:', sanitizeForLogging({
+      timestamp: new Date().toISOString(),
+      projectType: sanitizedData.projectType,
+      budget: sanitizedData.budget,
+      timeline: sanitizedData.timeline,
+      priority: sanitizedData.priority,
+      source: sanitizedData.source
+    }))
 
     // n8n Webhook senden
     try {
@@ -38,22 +124,22 @@ export async function POST(request: NextRequest) {
         throw new Error('Webhook-URL nicht konfiguriert')
       }
       
-      // Daten für n8n Webhook formatieren
+      // Daten für n8n Webhook formatieren (bereits sanitized)
       const webhookData = {
         timestamp: new Date().toISOString(),
-        projectType: data.projectType,
-        budget: parseInt(data.budget),
-        timeline: data.timeline,
-        priority: data.priority,
-        description: data.description,
-        features: data.features || [],
-        name: data.name,
-        email: data.email,
-        company: data.company || '',
-        phone: data.phone || '',
-        source: data.source || 'website',
-        aiAnalysis: data.aiAnalysis || '',
-        finalPrice: data.finalPrice || null
+        projectType: sanitizedData.projectType,
+        budget: sanitizedData.budget,
+        timeline: sanitizedData.timeline,
+        priority: sanitizedData.priority,
+        description: sanitizedData.description,
+        features: sanitizedData.features,
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        company: sanitizedData.company || '',
+        phone: sanitizedData.phone || '',
+        source: sanitizedData.source || 'website',
+        aiAnalysis: sanitizedData.aiAnalysis || '',
+        finalPrice: sanitizedData.finalPrice
       }
 
       const webhookResponse = await fetch(webhookUrl, {

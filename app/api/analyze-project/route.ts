@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
+import { sanitizeForPrompt, isValidProjectType, isValidBudget, isValidTimeline, isValidPriority } from '@/lib/security-utils'
+import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7,7 +9,63 @@ const openai = new OpenAI({
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate Limiting (5 Requests pro Minute pro IP - OpenAI kostet Geld)
+    const ip = getClientIp(request)
+    const rateLimit = checkRateLimit(`analyze-project:${ip}`, 5, 60000)
+    
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { analysis: 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.' },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '5',
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset': new Date(rateLimit.resetTime).toISOString()
+          }
+        }
+      )
+    }
+
+    // Request Size Limit prüfen
+    const contentLength = request.headers.get('content-length')
+    if (contentLength && parseInt(contentLength) > 50000) {
+      return NextResponse.json(
+        { analysis: 'Anfrage zu groß. Bitte versuchen Sie es mit weniger Text.' },
+        { status: 413 }
+      )
+    }
+
     const data = await request.json()
+
+    // Validierung
+    if (data.projectType && !isValidProjectType(data.projectType)) {
+      return NextResponse.json(
+        { analysis: 'Ungültiger Projekttyp' },
+        { status: 400 }
+      )
+    }
+
+    if (data.budget && !isValidBudget(data.budget)) {
+      return NextResponse.json(
+        { analysis: 'Ungültiges Budget' },
+        { status: 400 }
+      )
+    }
+
+    if (data.timeline && !isValidTimeline(data.timeline)) {
+      return NextResponse.json(
+        { analysis: 'Ungültige Timeline' },
+        { status: 400 }
+      )
+    }
+
+    if (data.priority && !isValidPriority(data.priority)) {
+      return NextResponse.json(
+        { analysis: 'Ungültige Priorität' },
+        { status: 400 }
+      )
+    }
     
     const projectTypes = {
       website: 'Moderne Website',
@@ -38,11 +96,11 @@ Du bist Sam, der KI-Assistent von Lars Macario (No/Low-Code Entwickler).
 Analysiere das folgende Projekt kritisch und realistisch:
 
 PROJEKTDATEN:
-- Gewählter Typ: ${projectTypes[data.projectType as keyof typeof projectTypes] || data.projectType}
-- Budget: ${data.budget}€
-- Timeline: ${timelineLabels[data.timeline as keyof typeof timelineLabels] || data.timeline}
-- Priorität: ${priorities[data.priority as keyof typeof priorities] || data.priority}
-- Beschreibung: ${data.description || 'Keine Beschreibung angegeben'}
+- Gewählter Typ: ${projectTypes[data.projectType as keyof typeof projectTypes] || 'Nicht spezifiziert'}
+- Budget: ${data.budget || 'Nicht spezifiziert'}€
+- Timeline: ${timelineLabels[data.timeline as keyof typeof timelineLabels] || 'Nicht spezifiziert'}
+- Priorität: ${priorities[data.priority as keyof typeof priorities] || 'Nicht spezifiziert'}
+- Beschreibung: ${sanitizeForPrompt(data.description) || 'Keine Beschreibung angegeben'}
 
 STRUKTUR - verwende EXAKT dieses Format:
 
