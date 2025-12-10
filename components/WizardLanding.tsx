@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  ChevronRight,
-  ChevronLeft,
-  ChevronDown,
-  Globe,
-  Smartphone,
+import { 
+  ChevronRight, 
+  ChevronLeft, 
+  Globe, 
+  Smartphone, 
   Mic,
-  Bot,
+  Bot, 
   Zap,
   Calendar,
   Euro,
@@ -21,10 +20,23 @@ import {
   Mail,
   Phone,
   User,
+  UserCircle,
   Building,
   MessageSquare,
   Brain
 } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+// Tech Stack Logos
+const techLogos = [
+  { src: '/Logos/cursor_logo.png', alt: 'Cursor', name: 'Cursor' },
+  { src: '/Logos/supabase_logo.png', alt: 'Supabase', name: 'Supabase' },
+  { src: '/Logos/n8n-color_logo.png', alt: 'n8n', name: 'n8n' },
+  { src: '/Logos/logo-vercel.svg', alt: 'Vercel', name: 'Vercel' },
+  { src: '/Logos/React-icon.png', alt: 'React/Next.js', name: 'React' },
+  { src: '/Logos/openai.svg', alt: 'OpenAI', name: 'OpenAI' },
+]
 
 interface ProjectData {
   projectType: string
@@ -118,6 +130,171 @@ const sourceOptions = [
   { id: 'social-media', label: 'Social Media', icon: MessageSquare },
   { id: 'referral', label: 'Empfehlung', icon: User }
 ]
+
+// Step 0: Welcome/Start Screen
+function StartStep({ onNext }: { onNext: () => void }) {
+  return (
+    <div className="space-y-12">
+      {/* Headline Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="space-y-6 text-center"
+      >
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-[#f6f6f6] leading-tight">
+          <div className="mb-4">Deine Idee.</div>
+          <div className="mb-4">Deine Website.</div>
+          <div className="text-[#d1d1d1] text-lg sm:text-xl md:text-2xl lg:text-3xl whitespace-nowrap">
+            In wenigen Minuten konfiguriert.
+          </div>
+        </h1>
+        
+        <p className="text-xl text-[#e7e7e7] max-w-2xl mx-auto mt-8">
+          Lass mich dein Projekt zum Leben erwecken. Beantworte ein paar Fragen und erhalte eine maßgeschneiderte Lösung.
+        </p>
+      </motion.div>
+
+      {/* Über mich Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="mt-16"
+      >
+        <div className="flex flex-col gap-8 md:gap-12 items-center">
+          {/* Strong CTA über dem Bild */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="w-full text-center py-4 md:py-6"
+          >
+            <motion.button
+              onClick={onNext}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-[#d1d1d1] to-[#b0b0b0] text-black hover:from-[#d1d1d1]/90 hover:to-[#b0b0b0]/90 transition-all duration-300 rounded-full px-4 py-4 md:py-5 font-bold text-lg md:text-xl shadow-xl flex items-center justify-center gap-2 mx-auto w-full max-w-md whitespace-nowrap"
+            >
+              <Sparkles className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+              <span className="whitespace-nowrap">Kostenlos starten</span>
+              <ArrowRight className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+            </motion.button>
+            <p className="text-[#e7e7e7] text-sm mt-3">
+              Kostenlos • Keine Verpflichtungen • In 2 Min fertig
+            </p>
+          </motion.div>
+
+          {/* Tech Stack Logos zwischen CTA und Bild */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full py-4"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+              {techLogos.map((logo, index) => (
+                <motion.div
+                  key={logo.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.35 + index * 0.05 }}
+                  className="flex items-center justify-center"
+                >
+                  <div className="relative w-8 h-8 md:w-10 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      fill
+                      sizes="(max-width: 768px) 32px, 40px"
+                      className="object-contain filter brightness-0 invert opacity-80"
+                      style={{ filter: 'brightness(0) invert(1)' }}
+                    />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Image - immer oben */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="w-full max-w-2xl"
+          >
+            <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10 p-1">
+              <div className="relative h-64 md:h-80 rounded-3xl overflow-hidden">
+                <Image
+                  src="/lars.macario.dev - No-Code Pitch.jpg"
+                  alt="Lars Macario bei einer Präsentation"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 832px"
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Content - immer unter dem Bild */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="space-y-6 w-full max-w-2xl text-center"
+          >
+            <div className="flex flex-col items-center gap-3 mb-4">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                <UserCircle className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-[#f6f6f6]">Über mich</h3>
+              <p className="text-lg text-[#d1d1d1] font-semibold">Lars Macario</p>
+            </div>
+            
+            <p className="text-[#e7e7e7] text-lg leading-relaxed">
+              Als leidenschaftlicher <strong className="text-white">No-Code-Entwickler</strong> und 
+              digitaler Innovator helfe ich Unternehmen dabei, ihre Visionen schnell und 
+              kosteneffizient in die Realität umzusetzen.
+            </p>
+            
+            <p className="text-[#e7e7e7] leading-relaxed">
+              Mit über <strong className="text-white">5 Jahren Erfahrung</strong> in der 
+              digitalen Transformation nutze ich modernste Tools wie Cursor, Supabase, 
+              n8n und KI-Technologien, um komplexe Anwendungen ohne traditionelles 
+              Coding zu entwickeln.
+            </p>
+
+            <p className="text-[#e7e7e7] leading-relaxed">
+              Mein Fokus liegt darauf, <strong className="text-white">komplexe Prozesse zu vereinfachen</strong> und 
+              Unternehmen dabei zu unterstützen, ihre digitalen Ziele bis zu 80% schneller 
+              zu erreichen als mit herkömmlichen Entwicklungsmethoden.
+            </p>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* CTA Button */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
+        className="text-center mt-12"
+      >
+        <motion.button
+          onClick={onNext}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-8 py-4 font-semibold text-lg shadow-lg flex items-center justify-center gap-2 mx-auto"
+        >
+          <span>Jetzt starten</span>
+          <ArrowRight className="w-5 h-5" />
+        </motion.button>
+      </motion.div>
+    </div>
+  )
+}
 
 // Step 1: Project Type Selection
 function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
@@ -883,7 +1060,7 @@ function SuccessStep() {
   )
 }
 
-export default function ProjectWizard({ onClose }: { onClose: () => void }) {
+export default function WizardLanding() {
   const [currentStep, setCurrentStep] = useState(0)
   const [data, setData] = useState<ProjectData>({
     projectType: '',
@@ -919,6 +1096,7 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
   const prevStep = () => setCurrentStep(prev => prev - 1)
 
   const steps = [
+    StartStep,
     ProjectTypeStep,
     BudgetStep,
     TimelinePriorityStep,
@@ -928,47 +1106,46 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
   ]
 
   const CurrentStepComponent = steps[currentStep]
+  const totalSteps = steps.length - 1 // Success step nicht mitzählen
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-[#121212]/95 backdrop-blur-sm rounded-3xl border border-white/10 w-full max-w-4xl max-h-[90vh] overflow-y-auto"
-      >
-        {/* Header */}
-        <div className="p-6 border-b border-white/10 flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">Projekt-Konfigurator</h1>
-            {currentStep < steps.length - 1 && (
-              <p className="text-gray-400">Schritt {currentStep + 1} von {steps.length - 1}</p>
-            )}
-          </div>
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all"
+    <div className="min-h-screen w-full relative bg-black p-4">
+      {/* Ocean Abyss Background with Top Glow - same as homepage */}
+      <div
+        className="absolute inset-0 z-0 overflow-hidden"
+        style={{
+          background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(6, 182, 212, 0.25), transparent 70%), #000000",
+        }}
+      />
+      <div className="w-full max-w-4xl mx-auto relative z-10 py-8">
+        {/* Progress Bar - fixiert oben */}
+        {currentStep > 0 && currentStep < totalSteps && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6"
           >
-            ✕
-          </button>
-        </div>
-
-        {/* Progress Bar */}
-        {currentStep < steps.length - 1 && (
-          <div className="px-6 pt-4">
-            <div className="w-full bg-white/10 rounded-full h-2">
-              <motion.div
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-sm text-gray-400 font-medium">
+                Schritt {currentStep} von {totalSteps}
+              </span>
+              <span className="text-sm text-gray-400">
+                {Math.round((currentStep / totalSteps) * 100)}%
+              </span>
+            </div>
+            <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
+              <motion.div 
                 className="bg-gradient-to-r from-[#d1d1d1] to-[#b0b0b0] h-2 rounded-full"
                 initial={{ width: 0 }}
-                animate={{ width: `${((currentStep + 1) / (steps.length - 1)) * 100}%` }}
-                transition={{ duration: 0.3 }}
+                animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               />
             </div>
-          </div>
+          </motion.div>
         )}
 
-        {/* Content */}
-        <div className="p-6">
+        {/* Content Box - fixiert unter Progress Bar */}
+        <div className={`${currentStep === 0 ? '' : 'bg-[#121212]/95 backdrop-blur-sm rounded-3xl border border-white/10'} p-6 md:p-8`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -977,18 +1154,50 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <CurrentStepComponent
-                data={data}
-                updateData={updateData}
-                onNext={nextStep}
-                onPrev={prevStep}
-                isFirst={currentStep === 0}
-                isLast={currentStep === steps.length - 1}
-              />
+              {currentStep === 0 ? (
+                <StartStep onNext={nextStep} />
+              ) : (
+                <CurrentStepComponent
+                  data={data}
+                  updateData={updateData}
+                  onNext={nextStep}
+                  onPrev={prevStep}
+                  isFirst={currentStep === 1}
+                  isLast={currentStep === steps.length - 1}
+                />
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
-      </motion.div>
+
+        {/* Footer Links */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 pt-6 border-t border-white/10"
+        >
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center text-sm">
+            <Link 
+              href="/impressum" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#e7e7e7] hover:text-[#d1d1d1] transition-colors"
+            >
+              Impressum
+            </Link>
+            <Link 
+              href="/datenschutz" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#e7e7e7] hover:text-[#d1d1d1] transition-colors"
+            >
+              Datenschutz
+            </Link>
+          </div>
+        </motion.div>
+      </div>
     </div>
   )
-} 
+}
+

@@ -2,9 +2,17 @@
 
 ## Was funktioniert
 
-### ✅ Technische Updates (November 2024)
+### ✅ Technische Updates
 
-1. **Next.js 16 Upgrade**
+1. **CSS Design-System Überarbeitung** (Dezember 2025)
+   - ✅ Globales CSS komplett neu strukturiert
+   - ✅ Konsistentes Farbsystem mit CSS-Variablen
+   - ✅ Neue Utility-Klassen für Buttons, Cards, Glow-Effekte
+   - ✅ Tailwind Config erweitert
+   - ✅ Scrollbar-Styles optimiert (Webkit & Firefox)
+   - ✅ Accessibility-Verbesserungen implementiert
+
+2. **Next.js 16 Upgrade** (November 2024)
    - ✅ Next.js 16.0.5 installiert
    - ✅ React 19.2.0 installiert
    - ✅ Alle Breaking Changes behoben
@@ -19,26 +27,37 @@
    - Responsive Design
    - Floating CTA beim Scrollen
 
-2. **ProjectWizard**
+2. **ProjectWizard** (Modal)
    - Mehrstufiger Wizard für Projektanfragen
-   - Projekttyp-Auswahl
+   - Projekttyp-Auswahl (Website, Web-App, AI Voice Agent, Automatisierung, KI-Integration)
    - Budget, Zeitrahmen, Priorität
    - Projektbeschreibung
    - Kontaktdaten
    - OpenAI Projektanalyse
    - Terminbuchung
+   - Erste Person Singular ("ich"/"mir") statt "wir"/"uns"
 
-3. **ProjectShowcase**
+3. **WizardLanding** (Standalone Landingpage)
+   - ✅ Route `/wizard` für Marketing-Kampagnen
+   - ✅ SEO-hidden (robots: { index: false, follow: false })
+   - ✅ StartStep mit Headline "Deine Idee. Deine Website."
+   - ✅ "Über mich" Section mit Bild und Text
+   - ✅ Tech Stack Logos (Cursor, Supabase, n8n, Vercel, React, OpenAI)
+   - ✅ CTA Button "Kostenlos starten"
+   - ✅ Mobile-optimiert mit fixierter Progress Bar
+   - ✅ Gleiche Wizard-Schritte wie ProjectWizard Modal
+
+4. **ProjectShowcase**
    - Portfolio-Projekte aus Supabase
    - Realtime Updates
    - Responsive Grid-Layout
 
-4. **CustomerOnboardingWizard**
+5. **CustomerOnboardingWizard**
    - Strukturierter Onboarding-Prozess
    - Token-basierte Sessions
    - Umfangreiche Datenerfassung
 
-5. **Admin Dashboard**
+6. **Admin Dashboard**
    - Login/Logout
    - Onboarding-Sessions verwalten
    - Projekt-Verwaltung
@@ -116,8 +135,11 @@ Komplett entfernt:
 1. ✅ Next.js 16 Upgrade abgeschlossen
 2. ✅ Voice Agent entfernt
 3. ✅ Website-Abo Landingpage entfernt
-4. ✅ Projekt stabilisiert
-5. 🔄 Weitere Features nach Bedarf
+4. ✅ CSS Design-System überarbeitet und konsolidiert
+5. ✅ Wizard Landingpage für Instagram-Kampagnen erstellt
+6. ✅ ProjectWizard Anpassungen (AI Voice Agent, erste Person Singular)
+7. ✅ Projekt stabilisiert
+8. 🔄 Weitere Features nach Bedarf
 
 ## Technische Schulden
 

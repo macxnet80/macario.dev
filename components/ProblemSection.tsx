@@ -2,10 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import ProjectWizard from './ProjectWizard'
 
 export default function ProblemSection() {
   const [mounted, setMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
+  const [showWizard, setShowWizard] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -233,10 +235,7 @@ export default function ProblemSection() {
             {/* CTA Button */}
             <div className="pt-4">
               <button
-                onClick={() => {
-                  const ctaSection = document.querySelector('#cta-section')
-                  ctaSection?.scrollIntoView({ behavior: 'smooth' })
-                }}
+                onClick={() => setShowWizard(true)}
                 className="min-w-40 relative touch-none bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 border border-white/20 transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105 w-full sm:w-auto"
               >
                 <span className="relative w-full flex items-center justify-center gap-2">
@@ -248,6 +247,11 @@ export default function ProblemSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Project Wizard Modal */}
+      {showWizard && (
+        <ProjectWizard onClose={() => setShowWizard(false)} />
+      )}
     </section>
   )
 }

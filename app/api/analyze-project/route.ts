@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     const projectTypes = {
       website: 'Moderne Website',
       webapp: 'Web-Anwendung', 
-      ecommerce: 'E-Commerce',
+      'ai-voice-agent': 'AI Voice Agent',
       automation: 'Automatisierung',
       ai: 'KI-Integration'
     }

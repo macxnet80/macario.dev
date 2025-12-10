@@ -8,6 +8,9 @@
 app/
 ├── page.tsx              # Haupt-Landing Page
 ├── layout.tsx            # Root Layout
+├── wizard/               # Wizard Landingpage (SEO-hidden)
+│   ├── page.tsx
+│   └── layout.tsx
 ├── admin/                # Admin-Bereich
 │   ├── dashboard/
 │   ├── login/
@@ -18,7 +21,8 @@ app/
 
 components/
 ├── Hero.tsx              # Hero Section mit CTA
-├── ProjectWizard.tsx    # Projektanfrage-Wizard
+├── ProjectWizard.tsx     # Projektanfrage-Wizard (Modal)
+├── WizardLanding.tsx     # Wizard Landingpage (Standalone)
 ├── ProjectShowcase.tsx   # Portfolio-Projekte
 ├── CustomerOnboardingWizard.tsx  # Onboarding-Wizard
 └── ui/                   # UI-Komponenten (shadcn/ui)
@@ -54,8 +58,9 @@ app/api/
 
 ### 2. Modal-Pattern
 
-- Wizards öffnen als Modals über der Hauptseite
-- `onClose` Callback für Schließen
+- Wizards öffnen als Modals über der Hauptseite (`ProjectWizard`)
+- Standalone-Landingpage für Marketing-Kampagnen (`WizardLanding`)
+- `onClose` Callback für Modals
 - Framer Motion für Animationen
 
 ### 3. API Route Pattern
@@ -79,6 +84,26 @@ app/api/
 - Tailwind CSS für Styling
 - TypeScript für Type Safety
 
+### 6. Design-System Pattern (Dezember 2025)
+
+**CSS-Variablen-basiertes Design-System:**
+- Konsistente Farben über CSS-Variablen (`--background`, `--foreground`, `--primary`, etc.)
+- Utility-Klassen für häufige Patterns (`.btn-primary`, `.card-dark`, etc.)
+- Tailwind Config erweitert mit Custom-Farben und Animationen
+- Dark Theme als Standard (keine Light-Mode-Variablen nötig)
+
+**Farbschema:**
+- **Hintergrund**: Schwarz (`#000000`) als Basis, verschiedene Graustufen für Tiefe
+- **Text**: Fast-Weiß (`#f6f6f6`) für Haupttext, Grautöne für Hierarchie
+- **Akzente**: Grün für Primary-Aktionen, Rot für Warnungen/Fehler
+- **Buttons**: Helles Grau (`#d1d1d1`) auf dunklem Hintergrund für Kontrast
+
+**Design-Prinzipien:**
+- Hoher Kontrast für Lesbarkeit
+- Minimalistisches, modernes Design
+- Konsistente Abstände und Radien
+- Subtile Animationen für Interaktivität
+
 ## Wichtige Komponenten-Beziehungen
 
 ```
@@ -86,9 +111,16 @@ Hero
   └── ProjectWizard (Modal)
   └── (VoiceAgent entfernt)
 
-ProjectWizard
+ProjectWizard (Modal)
   └── API: /api/analyze-project
   └── API: /api/submit-project
+
+WizardLanding (Standalone)
+  └── Route: /wizard
+  └── API: /api/analyze-project
+  └── API: /api/submit-project
+  └── StartStep mit "Über mich" Section
+  └── Tech Stack Logos
 
 CustomerOnboardingWizard
   └── API: /api/customer-onboarding

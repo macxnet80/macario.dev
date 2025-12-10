@@ -25,7 +25,8 @@ export async function POST(request: NextRequest) {
       name: data.name,
       email: data.email,
       company: data.company,
-      phone: data.phone
+      phone: data.phone,
+      source: data.source
     })
 
     // n8n Webhook senden
@@ -50,9 +51,9 @@ export async function POST(request: NextRequest) {
         email: data.email,
         company: data.company || '',
         phone: data.phone || '',
+        source: data.source || 'website',
         aiAnalysis: data.aiAnalysis || '',
-        finalPrice: data.finalPrice || null,
-        source: 'website'
+        finalPrice: data.finalPrice || null
       }
 
       const webhookResponse = await fetch(webhookUrl, {

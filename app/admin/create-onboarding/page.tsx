@@ -89,7 +89,7 @@ export default function CreateOnboardingPage() {
     'Neue Website erstellen',
     'Website-Redesign',
     'Web-Anwendung entwickeln',
-    'E-Commerce Shop',
+    'AI Voice Agent',
     'Landing Page',
     'Blog/CMS System',
     'Automatisierung/Integration',

@@ -4,72 +4,95 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 96%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 7%;
-    --secondary-foreground: 0 0% 96%;
-    --accent: 0 0% 91%;
-    --accent-foreground: 0 0% 100%;
-    --border: 0 0% 90%;
-    --radius: 0.5rem;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
-    --muted: 0 0% 91%;
-    --muted-foreground: 0 0% 91%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    --input: 0 0% 90%;
-    --ring: 142 76% 36%;
-    --chart-1: 0 0% 7%;
-    --chart-2: 0 0% 43%;
-    --chart-3: 0 0% 20%;
-    --chart-4: 0 0% 60%;
-    --chart-5: 0 0% 80%;
-  }
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 96%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 96%;
+    /* ===========================================
+       MACARIO.DEV - Design System
+       Basierend auf der Startseite
+       =========================================== */
+    
+    /* Hintergrundfarben */
+    --background: 0 0% 0%;           /* #000000 - Haupthintergrund */
+    --background-secondary: 0 0% 7%; /* #121212 - Sekundärer Hintergrund */
+    --background-tertiary: 0 0% 4%;  /* #0a0a0a - Tertiärer Hintergrund */
+    --background-hover: 0 0% 10%;    /* #1a1a1a - Hover-Zustand */
+    
+    /* Textfarben */
+    --foreground: 0 0% 96%;          /* #f6f6f6 - Haupttext */
+    --foreground-secondary: 0 0% 91%; /* #e7e7e7 - Sekundärtext */
+    --foreground-muted: 0 0% 69%;    /* #b0b0b0 - Gedämpfter Text */
+    
+    /* Primary - Grün (Akzentfarbe) */
+    --primary: 142 71% 45%;          /* green-500 */
+    --primary-light: 142 69% 58%;    /* green-400 */
+    --primary-foreground: 0 0% 0%;   /* Schwarz auf Grün */
+    
+    /* Secondary - Grau */
+    --secondary: 0 0% 7%;            /* #121212 */
+    --secondary-foreground: 0 0% 96%; /* #f6f6f6 */
+    
+    /* Accent - Helle Buttons */
+    --accent: 0 0% 82%;              /* #d1d1d1 - Button-Farbe */
+    --accent-foreground: 0 0% 0%;    /* Schwarz auf hellem Button */
+    
+    /* UI-Komponenten */
+    --card: 0 0% 7%;                 /* #121212 */
+    --card-foreground: 0 0% 96%;     /* #f6f6f6 */
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 96%;
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 7%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 0 0% 91%;
-    --muted-foreground: 0 0% 91%;
-    --accent: 0 0% 91%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 69%;    /* #b0b0b0 */
+    
+    /* Feedback-Farben */
+    --destructive: 0 72% 51%;        /* red-500 */
+    --destructive-light: 0 91% 71%;  /* red-400 */
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 43%;
-    --input: 0 0% 43%;
-    --ring: 142 76% 36%;
+    --success: 142 71% 45%;          /* green-500 */
+    --success-light: 142 69% 58%;    /* green-400 */
+    
+    /* Borders & Inputs */
+    --border: 0 0% 100% / 0.1;       /* white/10 */
+    --border-hover: 0 0% 100% / 0.2; /* white/20 */
+    --input: 0 0% 100% / 0.1;
+    --ring: 142 71% 45%;             /* Primary für Focus */
+    
+    /* Spezielle Effekte */
+    --glow-cyan: 187 94% 43%;        /* cyan-500 für Hero-Glow */
+    --glow-green: 142 71% 45%;       /* green-500 für Akzent-Glow */
+    
+    /* Spacing & Radius */
+    --radius: 0.5rem;
+    
+    /* Chart-Farben */
     --chart-1: 0 0% 7%;
     --chart-2: 0 0% 43%;
     --chart-3: 0 0% 20%;
     --chart-4: 0 0% 60%;
     --chart-5: 0 0% 80%;
   }
+
+  /* Dark Mode ist Standard - die Seite ist immer dunkel
+     Keine zusätzlichen Variablen nötig */
 }
 
 @layer base {
   * {
     @apply border-border;
   }
+  
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-/* Custom scrollbar */
+/* ===========================================
+   SCROLLBAR - Konsistent mit Design
+   =========================================== */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -80,31 +103,78 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-[#e7e7e7] rounded-full;
+  @apply bg-foreground-secondary/30 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-[#e7e7e7]/80;
+  @apply bg-foreground-secondary/50;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--foreground-secondary) / 0.3) hsl(var(--background));
 }
 
-/* Glass effect - removed */
-
-/* Gradient text */
+/* ===========================================
+   TEXT UTILITIES
+   =========================================== */
 .gradient-text {
-  @apply bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-primary via-primary-light to-primary bg-clip-text text-transparent;
 }
 
-/* Glow effect */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ===========================================
+   GLOW EFFECTS - Basierend auf Hero
+   =========================================== */
 .glow {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 20px hsl(var(--glow-green) / 0.3);
 }
 
-/* Custom slider styles */
+.glow-cyan {
+  box-shadow: 0 0 40px hsl(var(--glow-cyan) / 0.25);
+}
+
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+}
+
+/* ===========================================
+   BUTTON STYLES - Konsistent mit Startseite
+   =========================================== */
+.btn-primary {
+  @apply bg-accent text-accent-foreground hover:bg-accent/90 
+         transition-all duration-300 rounded-full px-6 py-3 
+         font-semibold shadow-lg hover:scale-105;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground 
+         border border-white/10 hover:border-white/20
+         hover:bg-background-hover transition-all duration-300 
+         rounded-2xl px-6 py-3 font-semibold;
+}
+
+/* ===========================================
+   CARD STYLES - Basierend auf SkillsSection
+   =========================================== */
+.card-dark {
+  @apply rounded-3xl p-8 border border-white/20 
+         bg-secondary hover:bg-background-hover 
+         transition-all duration-300 shadow-xl;
+}
+
+.card-glass {
+  @apply bg-white/5 rounded-3xl border border-white/10 
+         backdrop-blur-sm;
+}
+
+/* ===========================================
+   SLIDER STYLES
+   =========================================== */
 .slider::-webkit-slider-thumb {
   appearance: none;
   height: 24px;
@@ -126,7 +196,9 @@ html {
   box-shadow: 0 4px 12px rgba(18, 18, 18, 0.4);
 }
 
-/* Chat bubble animations */
+/* ===========================================
+   ANIMATIONS
+   =========================================== */
 @keyframes messageSlide {
   from {
     opacity: 0;
@@ -140,9 +212,24 @@ html {
 
 .message-animation {
   animation: messageSlide 0.3s ease-out;
-} 
+}
 
-/* Custom select styling - force dark theme */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ===========================================
+   SELECT & FORM STYLING - Dark Theme
+   =========================================== */
 select {
   color-scheme: dark !important;
 }
@@ -150,7 +237,7 @@ select {
 select option {
   background-color: #121212 !important;
   background: #121212 !important;
-  color: white !important;
+  color: #f6f6f6 !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -160,22 +247,46 @@ select option:checked,
 select option:hover,
 select option:focus,
 select option:active {
-  background-color: #121212 !important;
-  background: #121212 !important;
-  color: white !important;
+  background-color: #1a1a1a !important;
+  background: #1a1a1a !important;
+  color: #f6f6f6 !important;
 }
 
 /* Browser-specific overrides */
 @supports (-webkit-appearance: none) {
   select option {
     background: #121212 !important;
-    color: white !important;
+    color: #f6f6f6 !important;
   }
 }
 
 @-moz-document url-prefix() {
   select option {
     background-color: #121212 !important;
-    color: white !important;
+    color: #f6f6f6 !important;
+  }
+}
+
+/* ===========================================
+   FOCUS STATES - Accessibility
+   =========================================== */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* ===========================================
+   RESPONSIVE UTILITIES
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
   }
 }
