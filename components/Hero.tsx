@@ -50,7 +50,7 @@ export default function Hero() {
   }, [showFloatingCTA])
 
   return (
-    <section ref={heroRef} className="min-h-screen w-full relative bg-black">
+    <section ref={heroRef} className="w-full relative bg-black flex flex-col" style={{ height: '100vh' }}>
       {/* Ocean Abyss Background with Top Glow */}
       <div
         className="absolute inset-0 z-0 overflow-hidden"
@@ -60,8 +60,8 @@ export default function Hero() {
       />
 
       {/* Header */}
-      <div className="relative z-10 pt-4 sm:pt-8 pb-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      <div className="relative z-10 pt-4 sm:pt-8 pb-4 flex-shrink-0">
+        <div className="max-w-7xl mx-auto px-6 w-full">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
             {/* Name */}
             <div className="text-xl sm:text-2xl font-bold text-[#f6f6f6]">Lars Macario</div>
@@ -77,82 +77,58 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 min-h-screen flex flex-col justify-center pb-20">
-        {/* Mobile Layout - Avatar and Description above headline */}
-        <div className="block sm:hidden mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            {/* Avatar */}
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
-              <Image
-                src="/lars_macario_no_code_dev.jpg"
-                alt="Lars - No/Low-Code Developer"
-                width={80}
-                height={80}
-                className="object-cover w-full h-full"
-                priority
-              />
-            </div>
-            
-            {/* Description */}
-            <div className="text-white leading-relaxed text-sm">
-            Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP, eine moderne Website oder eine Web-Anwendung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop Layout - Avatar and Description - Top Left */}
-        <div className="hidden sm:flex items-start gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-6 sm:mb-8 md:mb-12 lg:mb-16 absolute top-12 sm:top-16 md:top-20 lg:top-24 left-4 sm:left-5 md:left-6 lg:left-8">
-          {/* Avatar */}
-          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
-            <Image
-              src="/lars_macario_no_code_dev.jpg"
-              alt="Lars - No/Low-Code Developer"
-              width={80}
-              height={80}
-              className="object-cover w-full h-full"
-              priority
-            />
-          </div>
+      {/* Hero Content - Drei Container: Avatar, Headline, CTA */}
+      <div className="relative z-10 flex-1 flex flex-col min-h-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full flex-1 flex flex-col justify-center min-h-0">
           
-          {/* Description */}
-          <div className="text-white leading-relaxed max-w-[280px] sm:max-w-xs md:max-w-sm lg:max-w-md text-xs sm:text-sm md:text-base text-left">
-          Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP, eine moderne Website oder eine Web-Anwendung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
+          {/* Container 1: Avatar */}
+          <div style={{ marginBottom: '48px' }}>
+            <div className="flex flex-wrap items-start justify-start gap-3 w-full max-w-[80%]">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                <Image
+                  src="/lars_macario_no_code_dev.jpg"
+                  alt="Lars - No/Low-Code Developer"
+                  width={96}
+                  height={96}
+                  className="object-cover w-full h-full"
+                  priority
+                />
+              </div>
+              
+              <div className="text-white leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg text-left w-full sm:max-w-md min-w-0 flex-1">
+                Mit No/Low-Code und intelligenter KI-Integration entwickle ich für dich ein skalierbares MVP, eine moderne Website oder eine Web-Anwendung – schnell, transparent und mit spürbarem Mehrwert für dein Unternehmen.
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Main Content - Bottom of Viewport */}
-        <div className="w-full">
-          {/* Main Headline - Center */}
-          <div className="text-center lg:text-left mb-6 sm:mb-8">
-            <h1 className="font-bold text-[#f6f6f6] leading-tight" style={{
-              fontSize: 'clamp(2.5rem, 4vw + 0.5rem, 6.5rem)'
-            }}>
-              <div className="mb-2 sm:mb-3 md:mb-4">Deine Idee.</div>
-              <div className="mb-2 sm:mb-3 md:mb-4">Deine Website.</div>
-              <HighlightText 
-                text="In 2 Wochen live." 
-                className="text-[#000000] font-bold"
-                style={{
-                  fontSize: 'clamp(2.5rem, 4vw + 0.5rem, 6.5rem)'
-                }}
-              />
+          {/* Container 2: Headline */}
+          <div className="mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#f6f6f6] leading-tight sm:leading-[72px] text-left">
+              <div className="mb-0">Deine Idee.</div>
+              <div className="mb-0">Deine Website.</div>
+              <div>
+                <HighlightText 
+                  text="In 2 Wochen live." 
+                  className="text-[#000000] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold px-2 py-0"
+                />
+              </div>
             </h1>
           </div>
 
-          {/* Horizontal Line */}
-          <div className="w-full h-px bg-secondary/30 mb-4"></div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center">
-            <button
-              onClick={() => setShowWizard(true)}
-              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto] whitespace-nowrap"
-            >
-              <span>Kostenloses Strategie-Gespräch buchen</span>
-              <span>📅</span>
-            </button>
-            
+          {/* Container 3: CTA */}
+          <div>
+            <div className="w-full h-px bg-secondary/30 mb-3 sm:mb-4"></div>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full md:w-auto">
+              <button
+                onClick={() => setShowWizard(true)}
+                className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-4 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 text-xs sm:text-sm md:text-base min-h-[40px] sm:min-h-[auto]"
+              >
+                <span className="text-center">Kostenloses Strategie-Gespräch buchen</span>
+                <span>📅</span>
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
 
@@ -163,7 +139,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          className="fixed bottom-6 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:transform-none z-40"
+          className="hidden md:block fixed bottom-6 left-1/2 transform -translate-x-1/2 md:left-auto md:right-6 md:transform-none z-40"
         >
           <div className="relative">
             {/* Herzschlag Glow Effect */}

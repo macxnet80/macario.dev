@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 export default function Footer() {
   return (
     <footer className="bg-background border-t border-white/10 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div className="max-w-7xl mx-auto px-6 py-8 sm:py-12">
         <div className="grid lg:grid-cols-3 gap-6 lg:gap-8 items-center">
           {/* Mobile: Zentrierte Anordnung */}
           <div className="lg:col-span-1 order-2 lg:order-1">
