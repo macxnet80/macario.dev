@@ -19,7 +19,8 @@
 1. **Besucher** landet auf der Website
 2. **Hero Section** präsentiert Haupt-CTA: "Kostenloses Strategie-Gespräch buchen"
 3. **ProjectWizard** sammelt Projektinformationen:
-   - Projekttyp (Website, Web-App, E-Commerce, Automatisierung, KI-Integration)
+   - Projekttyp (Website, Web-App, AI Voice Agent, Automatisierung, KI-Integration)
+   - Verfügbar als Modal auf der Hauptseite und als Standalone-Landingpage unter `/wizard`
    - Budget
    - Zeitrahmen
    - Priorität

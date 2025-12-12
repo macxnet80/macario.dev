@@ -15,6 +15,7 @@ Crawl-delay: 1
 
 # Blockiere Bestätigungsseiten und private Bereiche
 Disallow: /termin-bestaetigung/
+Disallow: /wizard/
 Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/

@@ -146,9 +146,9 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center">
             <button
               onClick={() => setShowWizard(true)}
-              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto]"
+              className="bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 transition-all duration-300 rounded-full px-3 sm:px-6 py-2 sm:py-3 font-semibold shadow-lg hover:scale-105 flex items-center justify-center gap-2 w-4/5 sm:w-auto text-xs sm:text-base min-h-[40px] sm:min-h-[auto] whitespace-nowrap"
             >
-              <span className="text-center">Kostenloses Strategie-Gespräch buchen</span>
+              <span>Kostenloses Strategie-Gespräch buchen</span>
               <span>📅</span>
             </button>
             

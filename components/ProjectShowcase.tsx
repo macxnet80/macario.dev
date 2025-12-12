@@ -286,7 +286,7 @@ export function KIAutomatisierungSection() {
     'Eine Website für lokale Restaurants mit Online-Bestellung',
     'Ein Booking-System für Fitness-Studios',
     'Eine Community-Plattform für Freelancer',
-    'Ein Dashboard für E-Commerce Analytics',
+    'Ein AI Voice Agent für Kundenservice mit mehrsprachiger Unterstützung',
     'Eine Lern-Plattform mit Fortschrittstracking',
   ]
 

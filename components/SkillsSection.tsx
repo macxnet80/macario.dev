@@ -141,7 +141,7 @@ const skillsTab: SkillItem[] = [
     title: 'Web-Anwendungen',
     description: 'Vollwertige Web-Apps mit komplexer Funktionalität',
     features: [
-      'E-Commerce Plattformen',
+      'AI Voice Agent Entwicklung',
       'SaaS Anwendungen',
       'Community Portale',
     ],

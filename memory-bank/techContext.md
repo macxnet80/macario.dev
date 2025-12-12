@@ -19,6 +19,17 @@
 - **shadcn/ui**: UI Component Library
 - **lucide-react**: Icons
 
+#### CSS Design-System (Dezember 2025)
+- **Farbsystem**: CSS-Variablen basierend auf Startseite
+  - Hintergrund: `#000000` (Haupt), `#121212` (Sekundär), `#0a0a0a` (Tertiär), `#1a1a1a` (Hover)
+  - Text: `#f6f6f6` (Haupt), `#e7e7e7` (Sekundär), `#b0b0b0` (Gedämpft)
+  - Primary: Grün (`green-500`, `green-400`)
+  - Accent: `#d1d1d1` (Button-Farbe)
+- **Utility-Klassen**: `.btn-primary`, `.btn-secondary`, `.card-dark`, `.card-glass`, `.glow`, `.glow-cyan`, `.glow-primary`
+- **Animationen**: `fade-in`, `slide-up`, `bounce-in`, `pulse-glow`
+- **Scrollbar**: Custom Styles für Webkit und Firefox
+- **Accessibility**: Focus-States, Reduced-Motion-Support
+
 ### Backend & Database
 - **Supabase**: Backend-as-a-Service
   - PostgreSQL Database
@@ -46,6 +57,11 @@
 - **TypeScript**: Type Checking
 - **PostCSS**: CSS Processing
 - **Autoprefixer**: CSS Vendor Prefixes
+
+### Marketing & SEO
+- **Wizard Landingpage**: Standalone-Version des ProjectWizard unter `/wizard`
+- **SEO-hidden**: Route `/wizard` ist für Suchmaschinen verborgen (`robots: { index: false, follow: false }`)
+- **robots.txt**: `/wizard/` explizit disallow für zusätzliche Absicherung
 
 ## Development Setup
 
