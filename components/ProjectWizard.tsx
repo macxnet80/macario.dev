@@ -38,6 +38,8 @@ interface ProjectData {
   phone: string
   description: string
   source: string
+  privacyAccepted: boolean
+  marketingAccepted: boolean
 }
 
 interface StepProps {
@@ -407,7 +409,6 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [aiAnalysis, setAiAnalysis] = useState<string>('')
   const [showAnalysis, setShowAnalysis] = useState(false)
-  const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [emailError, setEmailError] = useState<string>('')
 
   const selectedType = projectTypes.find(t => t.id === data.projectType)
@@ -435,7 +436,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   }
 
   const handleSubmit = async () => {
-    if (!data.name || !data.email || !data.source || !privacyAccepted) return
+    if (!data.name || !data.email || !data.source || !data.privacyAccepted) return
     
     // E-Mail-Format validieren
     if (!isValidEmail(data.email)) {
@@ -446,31 +447,48 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
     setEmailError('') // Fehler zurücksetzen
     setIsSubmitting(true)
     
-    // Transform data for webhook with German labels
+    // Transform data - IDs für Validierung, Labels für Webhook
     const selectedType = projectTypes.find(t => t.id === data.projectType)
     const timelineOption = timelineOptions.find(t => t.id === data.timeline)
     const priorityOption = priorityOptions.find(p => p.id === data.priority)
     const sourceOption = sourceOptions.find(s => s.id === data.source)
     
+    // Daten mit IDs für API-Validierung senden
+    // Labels werden im Webhook-Payload verwendet
     const transformedData = {
       ...data,
-      projectType: selectedType?.title || data.projectType,
-      timeline: timelineOption?.label || data.timeline,
-      priority: priorityOption?.label || data.priority,
-      source: sourceOption?.label || data.source,
+      // IDs für Validierung behalten
+      projectType: data.projectType, // ID bleibt erhalten
+      timeline: data.timeline, // ID bleibt erhalten
+      priority: data.priority, // ID bleibt erhalten
+      source: data.source, // ID bleibt erhalten
+      // Labels für Webhook hinzufügen
+      projectTypeLabel: selectedType?.title || data.projectType,
+      timelineLabel: timelineOption?.label || data.timeline,
+      priorityLabel: priorityOption?.label || data.priority,
+      sourceLabel: sourceOption?.label || data.source,
       finalPrice,
-      aiAnalysis
+      aiAnalysis,
+      privacyAccepted: data.privacyAccepted,
+      marketingAccepted: data.marketingAccepted || false
     }
     
     try {
-      await fetch('/api/submit-project', {
+      const response = await fetch('/api/submit-project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(transformedData)
       })
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || 'Fehler beim Senden der Anfrage')
+      }
+      
       onNext() // Go to success step
     } catch (error) {
       console.error('Fehler beim Senden:', error)
+      setEmailError('Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.')
     } finally {
       setIsSubmitting(false)
     }
@@ -612,14 +630,14 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </div>
       </div>
 
-      {/* Privacy Policy Checkbox */}
-      <div className="max-w-2xl mx-auto">
+      {/* Privacy Policy & Marketing Checkboxes */}
+      <div className="max-w-2xl mx-auto space-y-4">
         <div className="bg-white/5 rounded-xl p-4 border border-white/10">
           <label className="flex items-start gap-3 cursor-pointer">
             <input
               type="checkbox"
-              checked={privacyAccepted}
-              onChange={(e) => setPrivacyAccepted(e.target.checked)}
+              checked={data.privacyAccepted}
+              onChange={(e) => updateData({ privacyAccepted: e.target.checked })}
               className="mt-1 w-4 h-4 text-[#d1d1d1] bg-white/10 border-white/20 rounded focus:ring-[#d1d1d1] focus:ring-2"
             />
             <div className="text-sm text-[#e7e7e7]">
@@ -633,6 +651,20 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
                 Datenschutzerklärung
               </a>
               <span className="text-white"> und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Projektanfrage zu. *</span>
+            </div>
+          </label>
+        </div>
+        
+        <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={data.marketingAccepted}
+              onChange={(e) => updateData({ marketingAccepted: e.target.checked })}
+              className="mt-1 w-4 h-4 text-[#d1d1d1] bg-white/10 border-white/20 rounded focus:ring-[#d1d1d1] focus:ring-2"
+            />
+            <div className="text-sm text-[#e7e7e7]">
+              <span className="text-white">Ich möchte gerne über neue Projekte, Angebote und Updates informiert werden. (Optional)</span>
             </div>
           </label>
         </div>
@@ -756,7 +788,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </button>
         <button
           onClick={handleSubmit}
-          disabled={!data.name || !data.email || !data.source || !privacyAccepted || isSubmitting}
+          disabled={!data.name || !data.email || !data.source || !data.privacyAccepted || isSubmitting}
           className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
@@ -814,7 +846,7 @@ function SuccessStep() {
         Deine Projektanfrage wurde erfolgreich übermittelt. Ich melde mich innerhalb von 24 Stunden bei dir mit einer detaillierten Analyse und dem nächsten Schritt.
       </p>
       
-      <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-4 max-w-xl mx-auto">
         <button
           onClick={() => setShowEmailModal(true)}
           className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
@@ -830,15 +862,6 @@ function SuccessStep() {
         >
           <Calendar className="w-5 h-5" />
           Termin buchen
-        </a>
-        <a
-          href="https://t.me/larsmacario"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 rounded-xl p-4 transition-all"
-        >
-          <MessageSquare className="w-5 h-5" />
-          Telegram
         </a>
       </div>
 
@@ -896,7 +919,9 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
     company: '',
     phone: '',
     description: '',
-    source: ''
+    source: '',
+    privacyAccepted: false,
+    marketingAccepted: false
   })
 
   const updateData = (updates: Partial<ProjectData>) => {

@@ -991,7 +991,7 @@ function SuccessStep() {
         Deine Projektanfrage wurde erfolgreich übermittelt. Ich melde mich innerhalb von 24 Stunden bei dir mit einer detaillierten Analyse und dem nächsten Schritt.
       </p>
       
-      <div className="grid md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+      <div className="grid md:grid-cols-2 gap-4 max-w-xl mx-auto">
         <button
           onClick={() => setShowEmailModal(true)}
           className="w-full flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 rounded-xl p-4 transition-all"
@@ -1007,15 +1007,6 @@ function SuccessStep() {
         >
           <Calendar className="w-5 h-5" />
           Termin buchen
-        </a>
-        <a
-          href="https://t.me/larsmacario"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 rounded-xl p-4 transition-all"
-        >
-          <MessageSquare className="w-5 h-5" />
-          Telegram
         </a>
       </div>
 

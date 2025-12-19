@@ -19,8 +19,7 @@ export default function StructuredData() {
     },
     "sameAs": [
       "https://github.com/larsmacario",
-      "https://linkedin.com/in/larsmacario",
-      "https://t.me/larsmacario"
+      "https://linkedin.com/in/larsmacario"
     ],
     "knowsAbout": [
       "No-Code Development",
