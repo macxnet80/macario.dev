@@ -83,7 +83,7 @@ export default function Hero() {
           
           {/* Container 1: Avatar */}
           <div style={{ marginBottom: '48px' }}>
-            <div className="flex flex-wrap items-start justify-start gap-3 w-full max-w-[80%]">
+            <div className="flex flex-wrap items-start justify-start gap-3 w-full max-w-[60%]">
               <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
                 <Image
                   src="/lars_macario_no_code_dev.jpg"
