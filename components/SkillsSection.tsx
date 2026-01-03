@@ -12,6 +12,10 @@ import {
   Triangle,
   Code2,
   Workflow,
+  Calendar,
+  Users,
+  Building,
+  Bot,
   LucideIcon
 } from 'lucide-react'
 import { useState } from 'react'
@@ -126,72 +130,72 @@ const tools: ToolItem[] = [
 const skillsTab: SkillItem[] = [
   {
     icon: Globe,
-    title: 'Moderne Websites',
-    description: 'Responsive Websites mit professionellem Design und Performance',
+    title: 'Trainer-Websites',
+    description: 'Professionelle Online-Präsenz mit Buchungssystem und Kontakt',
     features: [
-      'Corporate Websites',
-      'Landing Pages',
-      'Portfolio Sites',
+      'Portfolio & Über mich',
+      'Online-Buchung',
+      'Kontaktformular',
     ],
     color: 'from-blue-500 to-cyan-500',
     bgColor: 'bg-blue-500/20',
   },
   {
-    icon: Smartphone,
-    title: 'Web-Anwendungen',
-    description: 'Vollwertige Web-Apps mit komplexer Funktionalität',
+    icon: Users,
+    title: 'Kunden-Portale',
+    description: 'Trainingspläne, Fortschritt und Kommunikation an einem Ort',
     features: [
-      'AI Voice Agent Entwicklung',
-      'SaaS Anwendungen',
-      'Community Portale',
+      'Trainingsplan-Erstellung',
+      'Progress-Tracking',
+      'Kommunikation',
     ],
     color: 'from-green-500 to-emerald-500',
     bgColor: 'bg-green-500/20',
   },
   {
-    icon: Workflow,
-    title: 'Workflow Automatisierung',
-    description: 'Repetitive Aufgaben automatisieren und Zeit sparen',
+    icon: Calendar,
+    title: 'Buchungs-Systeme',
+    description: 'Online-Terminbuchung für Trainer und Studios',
     features: [
-      'Email Marketing',
-      'Data Sync',
-      'Report Generation',
+      'Kalender-Sync',
+      'Automatische Erinnerungen',
+      'Zahlungsintegration',
     ],
     color: 'from-indigo-500 to-purple-500',
     bgColor: 'bg-indigo-500/20',
   },
   {
-    icon: Zap,
-    title: 'Backend & Datenbank',
-    description: 'Skalierbare Backend-Lösungen mit modernen Datenbanken',
+    icon: Building,
+    title: 'Studio-Management',
+    description: 'Mitglieder- und Kursverwaltung für Studios',
     features: [
-      'Supabase Integration',
-      'Real-time Updates',
-      'User Authentication',
+      'Mitgliederverwaltung',
+      'Kursplanung',
+      'Zugangs-Kontrolle',
     ],
     color: 'from-pink-500 to-rose-500',
     bgColor: 'bg-pink-500/20',
   },
   {
-    icon: Palette,
-    title: 'Cloud Deployment',
-    description: 'Professionelle Hosting-Lösungen mit globaler Verfügbarkeit',
+    icon: Bot,
+    title: 'KI-Assistenten',
+    description: 'Chatbots für FAQs und Lead-Qualifizierung',
     features: [
-      'Vercel Deployment',
-      'CDN Integration',
-      'SSL Zertifikate',
+      '24/7 Erreichbarkeit',
+      'Automatische Antworten',
+      'Smart Routing',
     ],
     color: 'from-gray-700 to-gray-900',
     bgColor: 'bg-gray-700/20',
   },
   {
-    icon: Code2,
-    title: 'Custom Development',
-    description: 'Maßgeschneiderte Lösungen mit KI-unterstützter Entwicklung',
+    icon: Zap,
+    title: 'Automatisierungen',
+    description: 'Workflows die dir Zeit zurückgeben',
     features: [
-      'KI-Integration',
-      'API Entwicklung',
-      'Spezielle Features',
+      'Follow-up E-Mails',
+      'Zahlungserinnerungen',
+      'Onboarding',
     ],
     color: 'from-blue-500 to-indigo-500',
     bgColor: 'bg-blue-500/20',
@@ -217,7 +221,7 @@ export default function SkillsSection() {
             Meine Fähigkeiten
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
-            Von modernen Websites bis hin zu komplexen Web-Anwendungen – hier ist was ich für dich umsetzen kann
+            Spezialisiert auf digitale Lösungen für Personal Trainer, Fitnessstudios und Gesundheits-Coaches
           </p>
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
@@ -295,9 +299,9 @@ export default function SkillsSection() {
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.02 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Bereit für dein Web-Projekt?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Bereit, dein Fitness-Business zu digitalisieren?</h3>
           <p className="text-base md:text-lg font-medium text-[#e7e7e7] leading-relaxed">
-            Egal ob einfache Website oder komplexe Web-Anwendung – lass uns gemeinsam herausfinden, welche Lösung für dich am besten geeignet ist.
+            Egal ob Trainer-Website, Buchungs-App oder Kunden-Portal – lass uns gemeinsam herausfinden, welche Lösung für dich am besten geeignet ist.
           </p>
         </motion.div>
       </div>

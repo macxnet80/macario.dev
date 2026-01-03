@@ -6,6 +6,29 @@
 
 ### Letzte Änderungen
 
+1. **Fitness-Zielgruppen Rebranding** (Dezember 2025)
+   - Komplette Neuausrichtung der Website auf Fitness- und Gesundheitsbranche
+   - Hero Section: Neue Headline "Mehr Kunden. Weniger Admin-Chaos. Dein Fitness-Business – endlich digital."
+   - Problem Section: Kompletter Text-Rewrite mit Fitness-spezifischen Pain Points (WhatsApp-Chaos, Excel-Listen, keine Skalierung)
+   - Lösung Section: Fitness-spezifische Lösungen (Buchungs-Systeme, Kunden-Portale, KI-Assistenten)
+   - Skills Section: Neue Kategorien (Trainer-Websites, Buchungs-Systeme, Kunden-Portale, Studio-Management, KI-Assistenten, Automatisierungen)
+   - About Section: Trainer-Story integriert (10+ Jahre Erfahrung, Hamburg, eigene Pain Points)
+   - ProjectWizard: Neue Projekttypen für Fitness-Branche (6 Kategorien)
+   - CTA Section: Wording an Fitness-Zielgruppe angepasst
+   - API-Routen: Projekttypen-Validierung und Mapping aktualisiert
+   
+   **Geänderte Dateien:**
+   - `components/Hero.tsx` - Headline, Subtext, Status Badge
+   - `components/ProblemSection.tsx` - Kompletter Text-Rewrite
+   - `components/SkillsSection.tsx` - Neue Kategorien und Beschreibungen
+   - `components/AboutSection.tsx` - Trainer-Story integriert
+   - `components/ProjectWizard.tsx` - Neue Projekttypen
+   - `components/CTA.tsx` - Wording angepasst
+   - `lib/security-utils.ts` - Projekttypen-Validierung aktualisiert
+   - `app/api/analyze-project/route.ts` - Projekttypen-Mapping aktualisiert
+
+2. **Wizard Landingpage erstellt** (Dezember 2025)
+
 1. **Wizard Landingpage erstellt** (Dezember 2025)
    - Neue Route `/wizard` für Instagram-Kampagnen
    - Standalone-Version des ProjectWizard als Landingpage
@@ -34,6 +57,17 @@
    - Alle Texte von "wir"/"uns" auf "ich"/"mir" geändert (erste Person Singular)
    - Placeholder-Text in Projektbeschreibung strukturiert ohne Bullet Points
    - Marketing-Frage wird an Webhook übergeben
+   - Name-Feld aufgeteilt in `firstName` und `lastName` (zwei separate Felder)
+   - Telegram-Links aus Wizard und CTA entfernt
+   - Webhook sendet jetzt alle relevanten Daten inkl. Marketing-Frage und Datenschutz-Akzeptanz
+
+3. **Datenbank-Struktur Updates** (Dezember 2025)
+   - Leads-Tabelle erweitert um Webhook-Felder:
+     - `timeline`, `priority`, `description`, `features` (JSONB)
+     - `final_price`, `privacy_accepted`, `marketing_accepted`
+     - `first_name`, `last_name` (bereits vorhanden)
+   - **Wichtig:** Nur Label-Felder werden gespeichert (z.B. `timeline`, `priority`, `source`, `project_type`)
+   - Keine separaten ID-Felder in der Datenbank (timeline_id, priority_id, source_id, project_type_id wurden entfernt)
 
 3. **CSS Design-System Überarbeitung** (Dezember 2025)
    - Globales CSS komplett neu strukturiert basierend auf der Startseite
@@ -108,9 +142,10 @@ Die Website läuft jetzt auf:
 - **Build erfolgreich**: Alle TypeScript-Fehler behoben, alle Routen kompilieren korrekt
 
 Die Website fokussiert sich auf:
-- **ProjectWizard**: Haupt-Tool für Projektanfragen
+- **ProjectWizard**: Haupt-Tool für Projektanfragen aus der Fitness-Branche
 - **CustomerOnboardingWizard**: Onboarding-Prozess
 - **Portfolio-Präsentation**: ProjectShowcase
+- **Zielgruppe**: Personal Trainer, Fitnessstudios, Gesundheits-Coaches
 
 ### Nächste Schritte
 
@@ -135,8 +170,9 @@ Die Website fokussiert sich auf:
 - **ProjectWizard**: Bleibt Haupt-Tool für Lead-Generierung
 - **Wizard Landingpage**: Neue Standalone-Version für Marketing-Kampagnen (Instagram)
 - **Terminbuchung**: Über ProjectWizard, nicht mehr über Voice Agent
-- **Projekttyp**: "E-Commerce" durch "AI Voice Agent" ersetzt
+- **Projekttyp**: Neue Fitness-spezifische Projekttypen (Trainer-Website, Buchungs-App, Kunden-Portal, Studio-Management, KI-Assistent, Automatisierung)
 - **Sprache**: Erste Person Singular ("ich"/"mir") statt "wir"/"uns" in Wizards
+- **Zielgruppe**: Fokus auf Fitness- und Gesundheitsbranche mit authentischer Trainer-Story
 
 ## Offene Fragen
 

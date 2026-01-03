@@ -2,7 +2,7 @@
 
 ## Projekt-Übersicht
 
-**macario.dev** ist die Portfolio-Website und Business-Plattform für Lars Macario, einen No/Low-Code Entwickler. Die Website dient als Landing Page, Projekt-Showcase und Lead-Generierungs-Tool.
+**macario.dev** ist die Portfolio-Website und Business-Plattform für Lars Macario, einen No/Low-Code Entwickler spezialisiert auf die Fitness- und Gesundheitsbranche. Die Website dient als Landing Page, Projekt-Showcase und Lead-Generierungs-Tool für Personal Trainer, Fitnessstudios und Gesundheits-Coaches.
 
 ## Kern-Ziele
 

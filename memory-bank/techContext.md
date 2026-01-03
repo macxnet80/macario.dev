@@ -38,6 +38,17 @@
   - Realtime Subscriptions
 - **@supabase/supabase-js 2.50.2**: Supabase Client
 
+**Datenbank-Struktur (public.leads):**
+- Speichert Projektanfragen aus dem Webhook
+- Felder: `first_name`, `last_name`, `email`, `phone`, `company`, `project_type`, `budget`, `timeline`, `priority`, `description`, `features` (JSONB), `final_price`, `source`, `privacy_accepted`, `marketing_accepted`, `ai_analysis` (JSONB)
+- **Wichtig:** Nur Label-Felder werden gespeichert (z.B. `timeline`, `priority`, `source`, `project_type`), keine separaten ID-Felder
+
+**Webhook-Integration:**
+- **n8n Webhook**: `N8N_WEBHOOK_PROJEKT_ANFRAGE`
+- Sendet alle Projektanfrage-Daten an n8n für weitere Verarbeitung
+- Webhook-Payload enthält Labels (für Lesbarkeit) und IDs (für Verarbeitung)
+- Datenbank speichert nur die Label-Felder
+
 ### AI Integration
 - **OpenAI API 4.104.0**: Für KI-Features
   - Projektanalyse (`analyze-project`)
@@ -72,7 +83,7 @@ Wichtige Environment Variables (in `.env.local`):
 - `NEXT_PUBLIC_SUPABASE_URL`: Supabase Project URL
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase Anon Key
 - `SUPABASE_SERVICE_ROLE_KEY`: Für Admin-Operationen
-- Weitere n8n Webhooks (falls verwendet)
+- `N8N_WEBHOOK_PROJEKT_ANFRAGE`: n8n Webhook URL für Projektanfragen
 
 ### Build & Deploy
 

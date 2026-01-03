@@ -68,11 +68,12 @@ export async function POST(request: NextRequest) {
     }
     
     const projectTypes = {
-      website: 'Moderne Website',
-      webapp: 'Web-Anwendung', 
-      'ai-voice-agent': 'AI Voice Agent',
-      automation: 'Automatisierung',
-      ai: 'KI-Integration'
+      'trainer-website': 'Trainer-Website',
+      'booking-app': 'Buchungs-App',
+      'client-portal': 'Kunden-Portal',
+      'studio-management': 'Studio-Management',
+      'ai-assistant': 'KI-Assistent',
+      automation: 'Automatisierung'
     }
 
     const priorities = {
@@ -91,9 +92,9 @@ export async function POST(request: NextRequest) {
     }
 
     const prompt = `
-Du bist Sam, der KI-Assistent von Lars Macario (No/Low-Code Entwickler). 
+Du bist Sam, der KI-Assistent von Lars Macario (No/Low-Code Entwickler spezialisiert auf Fitness-Branche). 
 
-Analysiere das folgende Projekt kritisch und realistisch:
+Analysiere das folgende Fitness-Projekt kritisch und realistisch:
 
 PROJEKTDATEN:
 - Gewählter Typ: ${projectTypes[data.projectType as keyof typeof projectTypes] || 'Nicht spezifiziert'}

@@ -44,7 +44,8 @@ interface ProjectData {
   timeline: string
   features: string[]
   priority: string
-  name: string
+  firstName: string
+  lastName: string
   email: string
   company: string
   phone: string
@@ -612,7 +613,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   }
 
   const handleSubmit = async () => {
-    if (!data.name || !data.email || !data.source || !privacyAccepted) return
+    if (!data.firstName || !data.lastName || !data.email || !data.source || !privacyAccepted) return
     
     // E-Mail-Format validieren
     if (!isValidEmail(data.email)) {
@@ -636,7 +637,8 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
       priority: priorityOption?.label || data.priority,
       source: sourceOption?.label || data.source,
       finalPrice,
-      aiAnalysis
+      aiAnalysis,
+      // firstName und lastName werden bereits von data übernommen
     }
     
     try {
@@ -712,15 +714,27 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         <div>
           <h3 className="text-xl font-semibold mb-4">Kontaktdaten</h3>
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Name *</label>
-              <input
-                type="text"
-                value={data.name}
-                onChange={(e) => updateData({ name: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
-                placeholder="Dein vollständiger Name"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Vorname *</label>
+                <input
+                  type="text"
+                  value={data.firstName}
+                  onChange={(e) => updateData({ firstName: e.target.value })}
+                  className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
+                  placeholder="Dein Vorname"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Nachname *</label>
+                <input
+                  type="text"
+                  value={data.lastName}
+                  onChange={(e) => updateData({ lastName: e.target.value })}
+                  className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
+                  placeholder="Dein Nachname"
+                />
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">E-Mail *</label>
@@ -933,7 +947,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </button>
         <button
           onClick={handleSubmit}
-          disabled={!data.name || !data.email || !data.source || !privacyAccepted || isSubmitting}
+          disabled={!data.firstName || !data.lastName || !data.email || !data.source || !privacyAccepted || isSubmitting}
           className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
@@ -1059,7 +1073,8 @@ export default function WizardLanding() {
     timeline: '',
     features: [],
     priority: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     company: '',
     phone: '',

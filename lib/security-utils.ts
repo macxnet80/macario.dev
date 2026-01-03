@@ -64,7 +64,7 @@ export function isValidBudget(budget: string | number): boolean {
  * Validiert Projekttyp
  */
 export function isValidProjectType(type: string): boolean {
-  const validTypes = ['website', 'webapp', 'ai-voice-agent', 'automation', 'ai-integration']
+  const validTypes = ['trainer-website', 'booking-app', 'client-portal', 'studio-management', 'ai-assistant', 'automation']
   return validTypes.includes(type)
 }
 

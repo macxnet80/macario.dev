@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     const data = await request.json()
     
     // Validierung der erforderlichen Felder
-    const requiredFields = ['projectType', 'budget', 'timeline', 'priority', 'description', 'name', 'email']
+    const requiredFields = ['projectType', 'budget', 'timeline', 'priority', 'description', 'firstName', 'lastName', 'email']
     const missingFields = requiredFields.filter(field => !data[field])
     
     if (missingFields.length > 0) {
@@ -98,7 +98,9 @@ export async function POST(request: NextRequest) {
       priority: data.priority, // ID für Validierung
       priorityLabel: sanitizeInput(data.priorityLabel, 100), // Label für Webhook
       description: sanitizeInput(data.description, 5000),
-      name: sanitizeInput(data.name, 200),
+      firstName: sanitizeInput(data.firstName, 100),
+      lastName: sanitizeInput(data.lastName, 100),
+      name: `${sanitizeInput(data.firstName, 100)} ${sanitizeInput(data.lastName, 100)}`.trim(), // Vollständiger Name für Kompatibilität
       email: data.email.toLowerCase().trim(),
       company: sanitizeInput(data.company, 200),
       phone: sanitizeInput(data.phone, 50),
@@ -144,7 +146,9 @@ export async function POST(request: NextRequest) {
         priorityId: sanitizedData.priority, // ID zusätzlich mitsenden
         description: sanitizedData.description,
         features: sanitizedData.features,
-        name: sanitizedData.name,
+        firstName: sanitizedData.firstName,
+        lastName: sanitizedData.lastName,
+        name: sanitizedData.name, // Vollständiger Name für Kompatibilität
         email: sanitizedData.email,
         company: sanitizedData.company || '',
         phone: sanitizedData.phone || '',

@@ -79,42 +79,48 @@ export default function ProblemSection() {
             <div className="max-w-5xl mx-auto space-y-8">
               <div className="space-y-6 text-lg sm:text-xl text-gray-300 leading-relaxed">
                 <p>
-                  Du hast eine Idee. Eine <span className="text-green-400 font-semibold">richtig gute Idee</span>.
+                  Du liebst, was du tust.
                 </p>
                 
                 <p>
-                  Eine Idee, die dir nachts keine Ruhe lässt, weil du <span className="text-white font-semibold">GENAU</span> weißt – das könnte funktionieren.
+                  Jeden Tag hilfst du Menschen, stärker, fitter und gesünder zu werden. 
+                  Du siehst die Transformation. Du spürst die Energie. <span className="text-white font-semibold">Das ist dein Antrieb.</span>
                 </p>
                 
                 <p>
-                  Eine App, die dein Business automatisiert. Ein Tool, das anderen das Leben leichter macht. 
-                  Ein MVP, das dein Sprungbrett in die Selbstständigkeit sein könnte.
+                  <span className="text-red-400 font-semibold">Aber irgendwas stimmt nicht...</span>
                 </p>
-              </div>
-
-              {/* But... */}
-              <div className="text-2xl sm:text-3xl font-bold text-red-400 mt-12 text-center">
-                Aber irgendetwas hält dich zurück...
               </div>
 
               {/* Pain Points */}
-              <div className="space-y-4 text-lg text-gray-300">
+              <div className="space-y-4 text-lg text-gray-300 mt-8">
                 <p>
-                  Vielleicht ist es die <span className="text-red-400">Angst vor dem Unbekannten</span>. 
-                  Oder der Gedanke: <span className="text-white italic">"Ich bin doch kein Entwickler – wie soll ich das umsetzen?"</span>
+                  Zwischen den Trainings sitzt du am Handy:
                 </p>
                 
-                <p>
-                  Vielleicht wartest du auf den <span className="text-red-400">"perfekten Moment"</span>. 
-                  Oder darauf, dass du endlich Zeit findest, dich in Programmierung einzuarbeiten.
-                </p>
+                <div className="space-y-2 pl-4">
+                  <p>→ WhatsApp-Nachrichten um 6 Uhr morgens: <span className="text-white italic">"Können wir den Termin verschieben?"</span></p>
+                  <p>→ Excel-Listen, die niemand versteht – auch du nicht mehr</p>
+                  <p>→ Ernährungspläne als PDF, die im Chat-Verlauf verschwinden</p>
+                  <p>→ Rechnungen, die du <span className="text-red-400 font-semibold">immer noch</span> nicht geschrieben hast</p>
+                  <p>→ Instagram-DMs mit <span className="text-white italic">"Was kostet das?"</span> – und du weißt nicht, ob sie ernsthaft interessiert sind</p>
+                  <p>→ Neue Anfragen, die du <span className="text-red-400 font-semibold">nicht qualifizieren kannst</span>, bevor du Zeit investierst</p>
+                </div>
               </div>
 
-              {/* Time Passing */}
+              {/* Result */}
               <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-6 sm:p-8 mt-8">
-                <p className="text-lg sm:text-xl text-red-300 font-medium">
-                  Und während du wartest... vergeht Zeit. Andere bringen ihre Ideen auf den Markt. 
-                  Die Konkurrenz wird stärker. Dein Traum rückt in weite Ferne.
+                <p className="text-lg sm:text-xl text-red-300 font-medium mb-4">
+                  Das Ergebnis?
+                </p>
+                <p className="text-lg text-gray-300">
+                  Du bist Trainer, Sekretär, Buchhalter und Social Media Manager – <span className="text-white font-semibold">in einer Person.</span>
+                </p>
+                <p className="text-lg text-gray-300 mt-3">
+                  Und abends fragst du dich: <span className="text-white italic">"Wann trainiere ich eigentlich selbst noch?"</span>
+                </p>
+                <p className="text-lg text-red-400 font-semibold mt-4">
+                  Währenddessen nutzt deine Konkurrenz KI-Assistenten, die 24/7 Anfragen beantworten und Leads qualifizieren.
                 </p>
               </div>
 
@@ -124,13 +130,12 @@ export default function ProblemSection() {
                   Hier ist die harte Wahrheit:
                 </div>
                 
-                <div className="text-lg sm:text-xl text-red-400 font-semibold text-center">
-                  Warten macht es nicht einfacher.
-                </div>
-                
                 <div className="space-y-3 text-lg text-gray-300">
-                  <p>Der Markt bewegt sich schnell. Ideen ohne Umsetzung sind wertlos.</p>
-                  <p>Die Gewinner? Sie warten nicht. Sie handeln. Sie bauen.</p>
+                  <p>Dein Business kann nicht wachsen, wenn du alles manuell machst.</p>
+                  <p>Deine Zeit ist begrenzt. Dein Stundensatz auch.</p>
+                  <p className="text-red-400 font-semibold">Während du Termine jonglierst, nutzt deine Konkurrenz KI-Assistenten und automatisierte Systeme.</p>
+                  <p className="text-red-400 font-semibold">Sie beantworten Anfragen 24/7, qualifizieren Leads automatisch und haben Zeit für das, was wirklich zählt: ihre Kunden.</p>
+                  <p className="text-white font-semibold text-center mt-4">Du nicht. Noch nicht.</p>
                 </div>
               </div>
             </div>
@@ -149,41 +154,103 @@ export default function ProblemSection() {
             {/* Solution Promise */}
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 sm:p-8">
               <div className="text-2xl sm:text-3xl font-bold text-green-400 mb-4">
-                Und in nur 2 Wochen könnte deine Idee live sein.
+                Stell dir vor:
               </div>
               
               <div className="space-y-3 text-lg text-gray-300">
-                <p>Nicht nur ein Konzept. Nicht nur ein Traum.</p>
-                <p className="text-white font-semibold">Ein echtes Produkt. Mit echten Nutzern.</p>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">→</span>
+                  <p>Kunden buchen ihre Termine selbst – ohne Nachfragen</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">→</span>
+                  <p>Trainingspläne landen automatisch in der App – nicht in WhatsApp</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">→</span>
+                  <p>Neue Anfragen werden qualifiziert, bevor du zurückrufst</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">→</span>
+                  <p>Zahlungen laufen automatisch – du siehst nur die Benachrichtigung</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">→</span>
+                  <p className="text-white font-semibold">Du hast Zeit für das, was du liebst: Training und Menschen</p>
+                </div>
               </div>
             </div>
 
-            {/* How I Do It */}
+            {/* My Story */}
             <div className="space-y-4">
               <div className="text-xl sm:text-2xl font-bold text-white">
-                Wie ich das umsetze:
+                Das ist keine Zukunftsmusik.
+              </div>
+              
+              <div className="space-y-3 text-lg text-gray-300">
+                <p>
+                  Als Personal Trainer mit <span className="text-white font-semibold">10+ Jahren Erfahrung</span> habe ich genau diese Probleme selbst erlebt.
+                </p>
+                <p>
+                  Deshalb habe ich angefangen, meine eigenen digitalen Lösungen zu bauen.
+                </p>
+                <p>
+                  Heute entwickle ich Web-Apps, Kunden-Portale und Automatisierungen 
+                  speziell für Personal Trainer, Fitnessstudios und Gesundheits-Coaches.
+                </p>
+              </div>
+            </div>
+
+            {/* What I Can Do */}
+            <div className="space-y-4">
+              <div className="text-xl sm:text-2xl font-bold text-white">
+                Was ich für dich umsetzen kann:
               </div>
               
               <div className="space-y-3 text-lg text-gray-300">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">No/Low-Code Entwicklung:</span> Moderne Tools statt monatelange Programmierung</p>
+                  <p><span className="text-white font-semibold">KI-Assistent</span> der 24/7 Anfragen beantwortet und Leads automatisch qualifiziert – während du schläfst</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">KI-Integration:</span> Intelligente Automatisierung für bessere User Experience</p>
+                  <p><span className="text-white font-semibold">Buchungs-System</span> mit KI-gestützten Erinnerungen und automatischer Terminoptimierung</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Agile Umsetzung:</span> Transparente Kommunikation und schnelle Iterationen</p>
+                  <p><span className="text-white font-semibold">Kunden-Portal</span> mit KI-generierten Trainingsplänen und personalisiertem Progress-Tracking</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Sofort einsatzbereit:</span> Hosting, Domain und Launch inklusive</p>
+                  <p><span className="text-white font-semibold">Automatische Workflows</span> mit KI für intelligente Follow-ups, Rechnungen und Upselling</p>
                 </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
+                  <p><span className="text-white font-semibold">Professionelle Website</span> mit integriertem KI-Chatbot für sofortige Lead-Qualifizierung</p>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-purple-500/20 mt-6">
+                <p className="text-lg text-white font-semibold mb-2">
+                  KI ist kein Buzzword mehr – es ist dein Wettbewerbsvorteil.
+                </p>
+                <p className="text-gray-300">
+                  Während andere noch manuell WhatsApp-Nachrichten beantworten, arbeitet dein KI-Assistent rund um die Uhr. 
+                  Das ist der Unterschied zwischen "Ich schaue mal, ob ich Zeit habe" und "Ja, ich habe Zeit – hier sind die verfügbaren Termine."
+                </p>
+              </div>
+              
+              <div className="mt-4 text-lg text-gray-300">
+                <p>
+                  <span className="text-white font-semibold">Zeitrahmen:</span> In nur 2-4 Wochen live.
+                </p>
+                <p>
+                  <span className="text-white font-semibold">Ohne:</span> Programmierkenntnisse, Tech-Stress oder ewige Meetings.
+                </p>
               </div>
             </div>
 
@@ -196,20 +263,20 @@ export default function ProblemSection() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
                   <div className="text-3xl font-bold text-green-400 mb-2">80%</div>
-                  <div className="text-lg font-semibold text-white mb-2">Zeit sparen</div>
-                  <div className="text-sm text-gray-300">Bis zu 80% weniger manuelle Arbeit durch intelligente Automatisierung</div>
+                  <div className="text-lg font-semibold text-white mb-2">Weniger Admin</div>
+                  <div className="text-sm text-gray-300">Automatisierung übernimmt Routine-Aufgaben</div>
                 </div>
                 
                 <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2">3x</div>
-                  <div className="text-lg font-semibold text-white mb-2">Effizienz steigern</div>
-                  <div className="text-sm text-gray-300">Moderne Tools für optimierte Prozesse und weniger Fehler</div>
+                  <div className="text-3xl font-bold text-green-400 mb-2">2-4w</div>
+                  <div className="text-lg font-semibold text-white mb-2">Go-Live</div>
+                  <div className="text-sm text-gray-300">Deine App oder Website ist schnell einsatzbereit</div>
                 </div>
                 
                 <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2">2w</div>
-                  <div className="text-lg font-semibold text-white mb-2">Schnelle Umsetzung</div>
-                  <div className="text-sm text-gray-300">Mit Cursor, Supabase und Vercel in wenigen Wochen live</div>
+                  <div className="text-3xl font-bold text-green-400 mb-2">24/7</div>
+                  <div className="text-lg font-semibold text-white mb-2">Erreichbar</div>
+                  <div className="text-sm text-gray-300">Dein Buchungssystem arbeitet, auch wenn du schläfst</div>
                 </div>
               </div>
             </div>
@@ -217,18 +284,16 @@ export default function ProblemSection() {
             {/* Call to Action */}
             <div className="space-y-6">
               <div className="text-2xl sm:text-3xl font-bold text-white">
-                Das ist dein Moment.
+                Bereit, dein Fitness-Business zu digitalisieren?
               </div>
               
               <div className="text-lg sm:text-xl text-gray-300 space-y-4">
                 <p>
-                  Deine Chance, aufzuhören zu überdenken, anzufangen zu bauen und 
-                  die Kontrolle über deine Zukunft zu übernehmen.
+                  Lass uns gemeinsam herausfinden, welche Lösung am besten zu dir passt.
                 </p>
-                
-                <div className="text-xl font-semibold text-red-400">
-                  Denn wenn du nicht jetzt handelst... wer dann?
-                </div>
+                <p className="text-white font-semibold">
+                  Von der ersten Idee bis zum Go-Live – ich begleite dich durch den gesamten Prozess.
+                </p>
               </div>
             </div>
 
@@ -239,7 +304,7 @@ export default function ProblemSection() {
                 className="min-w-40 relative touch-none bg-[#d1d1d1] text-black hover:bg-[#d1d1d1]/90 border border-white/20 transition-all duration-300 rounded-full px-6 py-3 font-semibold shadow-lg hover:scale-105 w-full sm:w-auto"
               >
                 <span className="relative w-full flex items-center justify-center gap-2">
-                  Deine Idee umsetzen →
+                  Kostenloses Strategie-Gespräch buchen →
                 </span>
               </button>
             </div>

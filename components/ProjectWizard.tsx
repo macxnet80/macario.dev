@@ -21,6 +21,7 @@ import {
   Mail,
   Phone,
   User,
+  Users,
   Building,
   MessageSquare,
   Brain
@@ -32,7 +33,8 @@ interface ProjectData {
   timeline: string
   features: string[]
   priority: string
-  name: string
+  firstName: string
+  lastName: string
   email: string
   company: string
   phone: string
@@ -53,49 +55,58 @@ interface StepProps {
 
 const projectTypes = [
   {
-    id: 'website',
-    title: 'Moderne Website',
-    description: 'Corporate Website, Portfolio oder Landing Page',
+    id: 'trainer-website',
+    title: 'Trainer-Website',
+    description: 'Portfolio + Buchungssystem + Kontakt',
     icon: Globe,
     color: 'from-blue-500 to-cyan-500',
     basePrice: 750,
-    features: ['Responsive Design', 'SEO-Optimierung', 'CMS Integration', 'Performance-Optimierung']
+    features: ['Portfolio & Über mich', 'Online-Buchung', 'Kontaktformular', 'SEO-Optimierung']
   },
   {
-    id: 'webapp',
-    title: 'Web-Anwendung',
-    description: 'SaaS-Platform oder komplexe Web-App',
-    icon: Smartphone,
+    id: 'booking-app',
+    title: 'Buchungs-App',
+    description: 'Terminverwaltung + Erinnerungen',
+    icon: Calendar,
     color: 'from-purple-500 to-pink-500',
-    basePrice: 3500,
-    features: ['User Authentication', 'Dashboard', 'Database Integration', 'API Development']
+    basePrice: 1500,
+    features: ['Kalender-Integration', 'Automatische Erinnerungen', 'Zahlungsintegration', 'Kundenverwaltung']
   },
   {
-    id: 'ai-voice-agent',
-    title: 'AI Voice Agent',
-    description: 'Intelligenter Voice Agent mit Sprachsteuerung',
-    icon: Mic,
+    id: 'client-portal',
+    title: 'Kunden-Portal',
+    description: 'Trainingspläne + Progress + Check-Ins',
+    icon: Users,
     color: 'from-green-500 to-emerald-500',
     basePrice: 2500,
-    features: ['Spracherkennung', 'NLP Integration', 'Voice Interface', 'Multi-Language Support']
+    features: ['Trainingsplan-Erstellung', 'Progress-Tracking', 'Ernährungspläne', 'Check-Ins']
+  },
+  {
+    id: 'studio-management',
+    title: 'Studio-Management',
+    description: 'Mitglieder + Kurse + Zugang',
+    icon: Building,
+    color: 'from-orange-500 to-red-500',
+    basePrice: 3500,
+    features: ['Mitgliederverwaltung', 'Kursplanung', 'Zugangs-System', 'Reporting']
+  },
+  {
+    id: 'ai-assistant',
+    title: 'KI-Assistent',
+    description: 'Chatbot + FAQ + Lead-Qualifizierung',
+    icon: Bot,
+    color: 'from-indigo-500 to-purple-500',
+    basePrice: 2000,
+    features: ['24/7 Verfügbar', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Terminvorschläge']
   },
   {
     id: 'automation',
     title: 'Automatisierung',
-    description: 'Workflow-Automatisierung mit KI',
+    description: 'Workflows + Follow-ups + Rechnungen',
     icon: Zap,
-    color: 'from-orange-500 to-red-500',
+    color: 'from-yellow-500 to-orange-500',
     basePrice: 750,
-    features: ['Workflow Design', 'API Integrationen', 'Datenverarbeitung', 'Monitoring']
-  },
-  {
-    id: 'ai-integration',
-    title: 'KI-Integration',
-    description: 'Chatbots oder KI-gestützte Features',
-    icon: Bot,
-    color: 'from-indigo-500 to-purple-500',
-    basePrice: 1500,
-    features: ['OpenAI Integration', 'Custom Training', 'Chat Interface', 'Smart Analytics']
+    features: ['E-Mail Automation', 'Zahlungserinnerungen', 'Follow-ups', 'Reporting']
   }
 ]
 
@@ -349,13 +360,13 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
               onChange={(e) => updateData({ description: e.target.value })}
               rows={6}
               className="w-full bg-white/10 border border-white/10 rounded-xl p-4 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50 resize-none text-base"
-              placeholder="Beschreibe dein Projekt so detailliert wie möglich:
+              placeholder="Beschreibe dein Fitness-Projekt so detailliert wie möglich:
 
 Was ist das Ziel deines Projekts?
-Wer ist deine Zielgruppe?
+Wie viele Kunden/Mitglieder betreust du aktuell?
 Welche Funktionen sind dir wichtig?
-Hast du schon konkrete Vorstellungen?
-Gibt es Referenzen oder Inspirationen?"
+Welche Probleme soll die Lösung lösen?
+Hast du schon konkrete Vorstellungen oder Referenzen?"
             />
             <div className="text-right text-sm text-[#e7e7e7] mt-2">
               {data.description.length} Zeichen
@@ -369,9 +380,9 @@ Gibt es Referenzen oder Inspirationen?"
               Beispiele für gute Beschreibungen:
             </h4>
             <div className="space-y-2 text-sm text-[#e7e7e7]">
-              <p>• "Ich möchte eine Buchungsplattform für Yogastudios mit Kalenderintegration und Zahlungsabwicklung"</p>
-              <p>• "Ein AI Voice Agent für Kundenservice mit mehrsprachiger Unterstützung und natürlicher Sprachverarbeitung"</p>
-              <p>• "Eine Community-Plattform für Fotografen zum Teilen von Portfolios und Networking"</p>
+              <p>• "Ich möchte eine Buchungs-App für mein Personal Training Business mit automatischen Erinnerungen und Zahlungsintegration"</p>
+              <p>• "Ein Kunden-Portal für meine Trainingspläne mit Progress-Tracking und Check-In Funktionen"</p>
+              <p>• "Ein Studio-Management-System für mein Fitnessstudio mit Mitgliederverwaltung und Kursplanung"</p>
             </div>
           </div>
         </div>
@@ -436,7 +447,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
   }
 
   const handleSubmit = async () => {
-    if (!data.name || !data.email || !data.source || !data.privacyAccepted) return
+    if (!data.firstName || !data.lastName || !data.email || !data.source || !data.privacyAccepted) return
     
     // E-Mail-Format validieren
     if (!isValidEmail(data.email)) {
@@ -553,15 +564,27 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         <div>
           <h3 className="text-xl font-semibold mb-4">Kontaktdaten</h3>
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Name *</label>
-              <input
-                type="text"
-                value={data.name}
-                onChange={(e) => updateData({ name: e.target.value })}
-                className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
-                placeholder="Dein vollständiger Name"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Vorname *</label>
+                <input
+                  type="text"
+                  value={data.firstName}
+                  onChange={(e) => updateData({ firstName: e.target.value })}
+                  className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
+                  placeholder="Dein Vorname"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Nachname *</label>
+                <input
+                  type="text"
+                  value={data.lastName}
+                  onChange={(e) => updateData({ lastName: e.target.value })}
+                  className="w-full bg-white/10 border border-white/10 rounded-xl p-3 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50"
+                  placeholder="Dein Nachname"
+                />
+              </div>
             </div>
             <div>
               <label className="block text-sm font-medium mb-2">E-Mail *</label>
@@ -788,7 +811,7 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
         </button>
         <button
           onClick={handleSubmit}
-          disabled={!data.name || !data.email || !data.source || !data.privacyAccepted || isSubmitting}
+          disabled={!data.firstName || !data.lastName || !data.email || !data.source || !data.privacyAccepted || isSubmitting}
           className="flex items-center justify-center gap-2 px-6 py-3 bg-[#d1d1d1] text-black rounded-xl hover:bg-[#d1d1d1]/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
@@ -914,7 +937,8 @@ export default function ProjectWizard({ onClose }: { onClose: () => void }) {
     timeline: '',
     features: [],
     priority: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     company: '',
     phone: '',

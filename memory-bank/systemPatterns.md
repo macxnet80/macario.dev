@@ -77,6 +77,19 @@ app/api/
 - Row Level Security (RLS) für Sicherheit
 - Realtime Subscriptions für Live-Updates
 
+**Leads Tabelle (public.leads):**
+Die Tabelle speichert Projektanfragen aus dem Webhook. Struktur:
+- Basis-Felder: `id`, `freelancer_id`, `name`, `email`, `phone`, `company`
+- Projekt-Daten: `project_type`, `budget`, `estimated_price`, `final_price`
+- Projekt-Details: `timeline`, `priority`, `description`, `features` (JSONB)
+- Kontakt-Info: `first_name`, `last_name`, `source`
+- Einwilligungen: `privacy_accepted`, `marketing_accepted` (BOOLEAN)
+- Analyse: `ai_analysis` (JSONB)
+- Metadaten: `source_data` (JSONB), `status`, `value`, `score`, `notes`
+- Timestamps: `created_at`, `updated_at`
+
+**Wichtig:** Die Tabelle verwendet nur Label-Felder (z.B. `timeline`, `priority`, `source`, `project_type`), keine separaten ID-Felder. Die IDs werden nicht in der Datenbank gespeichert, nur die lesbaren Labels.
+
 ### 5. Component Composition
 
 - Kleine, wiederverwendbare Komponenten
