@@ -23,9 +23,9 @@ export default function AboutSection() {
             Über mich
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
-            Personal Trainer. Entwickler. Branchenkenner.
+            Product Owner. No-Code Entwickler. Pragmatiker.
             <br />
-            Digitale Lösungen für die Fitness-Branche aus eigener Erfahrung
+            Digitale Lösungen für KMU – schnell, bezahlbar und ohne Tech-Stress
           </p>
         </motion.div>
 
@@ -74,44 +74,43 @@ export default function AboutSection() {
               </div>
               
               <p className="text-[#e7e7e7] text-lg leading-relaxed">
-                <strong className="text-white">Lars Macario</strong> – Personal Trainer. Entwickler. Branchenkenner.
+                <strong className="text-white">Lars Macario</strong> – Product Owner. No-Code Entwickler. Pragmatiker.
               </p>
               
               <p className="text-[#e7e7e7] leading-relaxed">
-                Mit über <strong className="text-white">10 Jahren Erfahrung</strong> im Personal Training weiß ich genau, 
-                wie es sich anfühlt, wenn der Admin-Aufwand das eigentliche Training überschattet.
+                Ich verstehe die Herausforderungen kleiner und mittelständischer Unternehmen: 
+                <strong className="text-white"> Ihr braucht schnelle, bezahlbare Lösungen</strong> – keine monatelangen IT-Projekte.
               </p>
 
               <p className="text-[#e7e7e7] leading-relaxed">
-                Ich habe selbst erlebt:
+                Deshalb entwickle ich digitale Lösungen mit modernen No-Code Tools und KI:
               </p>
               
               <div className="space-y-2 pl-4">
-                <p className="text-[#e7e7e7]">→ Terminabsagen per WhatsApp um 6 Uhr morgens</p>
-                <p className="text-[#e7e7e7]">→ Trainingspläne, die im Chat-Verlauf verschwinden</p>
-                <p className="text-[#e7e7e7]">→ Excel-Listen, die irgendwann nicht mehr funktionieren</p>
-                <p className="text-[#e7e7e7]">→ Den Wunsch, zu skalieren – aber keine Zeit dafür</p>
+                <p className="text-[#e7e7e7]">→ Web-Apps in 2 Wochen statt 6 Monaten</p>
+                <p className="text-[#e7e7e7]">→ Automatisierungen, die Zeit zurückgeben</p>
+                <p className="text-[#e7e7e7]">→ KI-Assistenten für 24/7 Kundenbetreuung</p>
+                <p className="text-[#e7e7e7]">→ Interne Tools ohne lange IT-Projekte</p>
               </div>
 
               <p className="text-[#e7e7e7] leading-relaxed mt-4">
-                <strong className="text-white">Deshalb habe ich angefangen, eigene Lösungen zu bauen.</strong>
+                <strong className="text-white">Mein Ansatz:</strong> Pragmatisch, schnell und ohne Tech-Kopfschmerzen.
               </p>
 
               <p className="text-[#e7e7e7] leading-relaxed">
-                Heute kombiniere ich meine Erfahrung als Trainer mit modernen 
-                No-Code Tools und KI, um digitale Lösungen zu entwickeln, 
-                die wirklich zur Fitness-Branche passen.
+                Ich nutze moderne Tools wie Cursor, Supabase, n8n und KI-Technologien, 
+                um komplexe Anwendungen ohne traditionelles Coding zu entwickeln – 
+                <strong className="text-white"> bis zu 80% schneller als herkömmliche Methoden.</strong>
               </p>
 
               <p className="text-[#e7e7e7] leading-relaxed">
-                Aktuell arbeite ich an meinem eigenen Kunden-Portal mit 
-                integriertem Onboarding- und Anamneseprozess – 
-                und genau solche Lösungen kann ich auch für dich umsetzen.
+                Egal ob Unternehmens-Website, Kunden-Portal oder Automatisierung – 
+                ich helfe dir dabei, deine digitalen Ziele schnell und unkompliziert zu erreichen.
               </p>
 
               <p className="text-[#e7e7e7] leading-relaxed mt-4">
                 <strong className="text-white">Standort:</strong> Hamburg<br />
-                <strong className="text-white">Erfahrung:</strong> 10+ Jahre Personal Training, 5+ Jahre digitale Lösungen
+                <strong className="text-white">Erfahrung:</strong> 5+ Jahre digitale Lösungen für KMU
               </p>
             </div>
 

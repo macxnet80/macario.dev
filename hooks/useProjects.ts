@@ -50,7 +50,20 @@ export function useProjects() {
       const data = await projectsApi.getActiveProjects()
       setProjects(data)
     } catch (err) {
-      console.error('Fehler beim Laden der Projekte:', err)
+      // Bessere Fehlerbehandlung mit detailliertem Logging
+      const errorMessage = err instanceof Error ? err.message : 'Unbekannter Fehler'
+      const errorDetails = err instanceof Error ? {
+        message: err.message,
+        name: err.name,
+        stack: err.stack
+      } : err
+      
+      console.error('Fehler beim Laden der Projekte:', {
+        error: errorMessage,
+        details: errorDetails,
+        timestamp: new Date().toISOString()
+      })
+      
       setError('Projekte konnten nicht geladen werden')
       // Fallback auf lokale Daten wenn Supabase nicht verfügbar
       setProjects(getFallbackProjects())
@@ -69,10 +82,10 @@ function getFallbackProjects(): Project[] {
   return [
     {
       id: 1,
-      title: 'Fitness-Tracker App',
-      description: 'Eine intuitive Mobile App für Personal Trainer und ihre Kunden. Trainingspläne, Fortschrittsverfolgung und Ernährungstipps - alles in einer App.',
-      tools: ['Glide', 'Airtable', 'Stripe'],
-      features: ['Personalisierte Trainingspläne', 'Progress Tracking', 'In-App Zahlungen'],
+      title: 'Unternehmens-Website',
+      description: 'Moderne Corporate Website für ein KMU mit Portfolio, Leistungen und Kontaktformular. Responsive Design, SEO-optimiert und in 2 Wochen live.',
+      tools: ['Next.js', 'Supabase', 'Tailwind CSS'],
+      features: ['Moderne Designs', 'SEO-Optimierung', 'Mobile-First', 'CMS Integration'],
       color: 'from-blue-500 to-cyan-500',
       image_url: null,
       order_index: 0,
@@ -83,9 +96,9 @@ function getFallbackProjects(): Project[] {
     {
       id: 2,
       title: 'KI-Kundenservice Bot',
-      description: 'Ein intelligenter Chatbot, der Kundenanfragen automatisch beantwortet und bei Bedarf an menschliche Mitarbeiter weiterleitet.',
-      tools: ['OpenAI', 'Make.com', 'Slack'],
-      features: ['24/7 Verfügbarkeit', 'Mehrsprachig', 'Nahtlose Übergabe'],
+      description: 'Ein intelligenter Chatbot für KMU, der Kundenanfragen automatisch beantwortet und bei Bedarf an menschliche Mitarbeiter weiterleitet.',
+      tools: ['OpenAI', 'n8n', 'Supabase'],
+      features: ['24/7 Verfügbarkeit', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Smart Routing'],
       color: 'from-purple-500 to-pink-500',
       image_url: null,
       order_index: 1,
@@ -95,10 +108,10 @@ function getFallbackProjects(): Project[] {
     },
     {
       id: 3,
-      title: 'Vertriebs-Dashboard',
-      description: 'Ein Echtzeit-Dashboard für Vertriebsteams mit automatisierten Reports und KPI-Tracking.',
-      tools: ['Softr', 'Airtable', 'Zapier'],
-      features: ['Live-Daten', 'Automatische Reports', 'Team-Performance'],
+      title: 'Kunden-Portal',
+      description: 'Ein Self-Service Portal für Kunden mit Dashboard, Dokumentenzugriff und Kommunikationsfunktionen.',
+      tools: ['Next.js', 'Supabase', 'React'],
+      features: ['Benutzer-Dashboard', 'Dokumenten-Management', 'Self-Service', 'Kommunikation'],
       color: 'from-green-500 to-emerald-500',
       image_url: null,
       order_index: 2,
@@ -108,10 +121,10 @@ function getFallbackProjects(): Project[] {
     },
     {
       id: 4,
-      title: 'Automatisierte Buchhaltung',
-      description: 'Ein Workflow-System, das Rechnungen automatisch verarbeitet, kategorisiert und in die Buchhaltung überträgt.',
-      tools: ['Make.com', 'Google Sheets', 'Stripe'],
-      features: ['OCR-Erkennung', 'Auto-Kategorisierung', 'Echtzeit-Sync'],
+      title: 'Automatisierte Workflows',
+      description: 'Ein Workflow-System für KMU, das Rechnungen automatisch verarbeitet, E-Mails versendet und CRM-Daten synchronisiert.',
+      tools: ['n8n', 'Supabase', 'Make.com'],
+      features: ['E-Mail Automation', 'Rechnungsstellung', 'CRM-Integration', 'Workflow-Design'],
       color: 'from-orange-500 to-red-500',
       image_url: null,
       order_index: 3,

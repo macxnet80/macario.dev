@@ -55,40 +55,40 @@ interface StepProps {
 
 const projectTypes = [
   {
-    id: 'trainer-website',
-    title: 'Trainer-Website',
-    description: 'Portfolio + Buchungssystem + Kontakt',
+    id: 'business-website',
+    title: 'Unternehmens-Website',
+    description: 'Portfolio + Landing Pages + Firmenpräsenz',
     icon: Globe,
     color: 'from-blue-500 to-cyan-500',
     basePrice: 750,
-    features: ['Portfolio & Über mich', 'Online-Buchung', 'Kontaktformular', 'SEO-Optimierung']
+    features: ['Moderne Designs', 'SEO-Optimierung', 'Mobile-First', 'CMS Integration']
   },
   {
-    id: 'booking-app',
-    title: 'Buchungs-App',
-    description: 'Terminverwaltung + Erinnerungen',
+    id: 'booking-system',
+    title: 'Buchungs-/Terminsystem',
+    description: 'Terminverwaltung + Erinnerungen + Zahlung',
     icon: Calendar,
     color: 'from-purple-500 to-pink-500',
     basePrice: 1500,
-    features: ['Kalender-Integration', 'Automatische Erinnerungen', 'Zahlungsintegration', 'Kundenverwaltung']
+    features: ['Kalender-Integration', 'Automatische Erinnerungen', 'Zahlungsabwicklung', 'Kundenverwaltung']
   },
   {
-    id: 'client-portal',
+    id: 'customer-portal',
     title: 'Kunden-Portal',
-    description: 'Trainingspläne + Progress + Check-Ins',
+    description: 'Dashboard + Self-Service + Dokumente',
     icon: Users,
     color: 'from-green-500 to-emerald-500',
     basePrice: 2500,
-    features: ['Trainingsplan-Erstellung', 'Progress-Tracking', 'Ernährungspläne', 'Check-Ins']
+    features: ['Benutzer-Dashboard', 'Dokumenten-Management', 'Self-Service', 'Kommunikation']
   },
   {
-    id: 'studio-management',
-    title: 'Studio-Management',
-    description: 'Mitglieder + Kurse + Zugang',
+    id: 'internal-tool',
+    title: 'Internes Tool',
+    description: 'Workflows + Datenbanken + Reporting',
     icon: Building,
     color: 'from-orange-500 to-red-500',
     basePrice: 3500,
-    features: ['Mitgliederverwaltung', 'Kursplanung', 'Zugangs-System', 'Reporting']
+    features: ['Prozess-Automatisierung', 'Datenbank-Lösungen', 'Reporting & Analytics', 'Workflow-Management']
   },
   {
     id: 'ai-assistant',
@@ -97,16 +97,16 @@ const projectTypes = [
     icon: Bot,
     color: 'from-indigo-500 to-purple-500',
     basePrice: 2000,
-    features: ['24/7 Verfügbar', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Terminvorschläge']
+    features: ['24/7 Verfügbar', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Smart Routing']
   },
   {
     id: 'automation',
     title: 'Automatisierung',
-    description: 'Workflows + Follow-ups + Rechnungen',
+    description: 'Workflows + E-Mail + CRM-Integration',
     icon: Zap,
     color: 'from-yellow-500 to-orange-500',
     basePrice: 750,
-    features: ['E-Mail Automation', 'Zahlungserinnerungen', 'Follow-ups', 'Reporting']
+    features: ['E-Mail Automation', 'Rechnungsstellung', 'CRM-Integration', 'Workflow-Design']
   }
 ]
 
@@ -360,10 +360,10 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
               onChange={(e) => updateData({ description: e.target.value })}
               rows={6}
               className="w-full bg-white/10 border border-white/10 rounded-xl p-4 outline-none focus:ring-2 focus:ring-[#d1d1d1]/50 resize-none text-base"
-              placeholder="Beschreibe dein Fitness-Projekt so detailliert wie möglich:
+              placeholder="Beschreibe dein Projekt so detailliert wie möglich:
 
 Was ist das Ziel deines Projekts?
-Wie viele Kunden/Mitglieder betreust du aktuell?
+Wer ist deine Zielgruppe?
 Welche Funktionen sind dir wichtig?
 Welche Probleme soll die Lösung lösen?
 Hast du schon konkrete Vorstellungen oder Referenzen?"
@@ -380,9 +380,9 @@ Hast du schon konkrete Vorstellungen oder Referenzen?"
               Beispiele für gute Beschreibungen:
             </h4>
             <div className="space-y-2 text-sm text-[#e7e7e7]">
-              <p>• "Ich möchte eine Buchungs-App für mein Personal Training Business mit automatischen Erinnerungen und Zahlungsintegration"</p>
-              <p>• "Ein Kunden-Portal für meine Trainingspläne mit Progress-Tracking und Check-In Funktionen"</p>
-              <p>• "Ein Studio-Management-System für mein Fitnessstudio mit Mitgliederverwaltung und Kursplanung"</p>
+              <p>• "Ich möchte eine moderne Unternehmens-Website mit Portfolio, Leistungen und Kontaktformular"</p>
+              <p>• "Ein Buchungssystem für meinen Dienstleistungsbetrieb mit Kalenderintegration und automatischen Erinnerungen"</p>
+              <p>• "Ein Kunden-Portal mit Dashboard, Dokumentenzugriff und Self-Service Funktionen"</p>
             </div>
           </div>
         </div>

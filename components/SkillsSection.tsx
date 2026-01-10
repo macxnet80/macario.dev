@@ -130,12 +130,12 @@ const tools: ToolItem[] = [
 const skillsTab: SkillItem[] = [
   {
     icon: Globe,
-    title: 'Trainer-Websites',
-    description: 'Professionelle Online-Präsenz mit Buchungssystem und Kontakt',
+    title: 'Unternehmens-Websites',
+    description: 'Portfolio, Landing Pages und professionelle Firmenpräsenz',
     features: [
-      'Portfolio & Über mich',
-      'Online-Buchung',
-      'Kontaktformular',
+      'Moderne Designs',
+      'SEO-Optimierung',
+      'Mobile-First',
     ],
     color: 'from-blue-500 to-cyan-500',
     bgColor: 'bg-blue-500/20',
@@ -143,35 +143,35 @@ const skillsTab: SkillItem[] = [
   {
     icon: Users,
     title: 'Kunden-Portale',
-    description: 'Trainingspläne, Fortschritt und Kommunikation an einem Ort',
+    description: 'Dashboard, Self-Service und Dokumentenzugriff für Kunden',
     features: [
-      'Trainingsplan-Erstellung',
-      'Progress-Tracking',
-      'Kommunikation',
+      'Benutzer-Dashboard',
+      'Dokumenten-Management',
+      'Self-Service',
     ],
     color: 'from-green-500 to-emerald-500',
     bgColor: 'bg-green-500/20',
   },
   {
     icon: Calendar,
-    title: 'Buchungs-Systeme',
-    description: 'Online-Terminbuchung für Trainer und Studios',
+    title: 'Buchungs- & Terminsysteme',
+    description: 'Online-Terminbuchung für Dienstleister aller Art',
     features: [
-      'Kalender-Sync',
+      'Kalender-Integration',
       'Automatische Erinnerungen',
-      'Zahlungsintegration',
+      'Zahlungsabwicklung',
     ],
     color: 'from-indigo-500 to-purple-500',
     bgColor: 'bg-indigo-500/20',
   },
   {
     icon: Building,
-    title: 'Studio-Management',
-    description: 'Mitglieder- und Kursverwaltung für Studios',
+    title: 'Interne Tools',
+    description: 'Workflows, Datenbanken und Reporting für deine Prozesse',
     features: [
-      'Mitgliederverwaltung',
-      'Kursplanung',
-      'Zugangs-Kontrolle',
+      'Prozess-Automatisierung',
+      'Datenbank-Lösungen',
+      'Reporting & Analytics',
     ],
     color: 'from-pink-500 to-rose-500',
     bgColor: 'bg-pink-500/20',
@@ -179,11 +179,11 @@ const skillsTab: SkillItem[] = [
   {
     icon: Bot,
     title: 'KI-Assistenten',
-    description: 'Chatbots für FAQs und Lead-Qualifizierung',
+    description: 'Chatbots, FAQ und Lead-Qualifizierung rund um die Uhr',
     features: [
       '24/7 Erreichbarkeit',
-      'Automatische Antworten',
-      'Smart Routing',
+      'FAQ-Beantwortung',
+      'Lead-Qualifizierung',
     ],
     color: 'from-gray-700 to-gray-900',
     bgColor: 'bg-gray-700/20',
@@ -193,9 +193,9 @@ const skillsTab: SkillItem[] = [
     title: 'Automatisierungen',
     description: 'Workflows die dir Zeit zurückgeben',
     features: [
-      'Follow-up E-Mails',
-      'Zahlungserinnerungen',
-      'Onboarding',
+      'E-Mail Automation',
+      'Rechnungsstellung',
+      'CRM-Integration',
     ],
     color: 'from-blue-500 to-indigo-500',
     bgColor: 'bg-blue-500/20',
@@ -221,7 +221,7 @@ export default function SkillsSection() {
             Meine Fähigkeiten
           </h2>
           <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
-            Spezialisiert auf digitale Lösungen für Personal Trainer, Fitnessstudios und Gesundheits-Coaches
+            Digitale Lösungen für kleine und mittelständische Unternehmen – schnell, pragmatisch und bezahlbar
           </p>
         </motion.div>
         <div className="flex justify-center gap-4 mb-12">
@@ -299,9 +299,9 @@ export default function SkillsSection() {
           transition={{ duration: 0.6 }}
           whileHover={{ scale: 1.02 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Bereit, dein Fitness-Business zu digitalisieren?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Bereit, dein Unternehmen zu digitalisieren?</h3>
           <p className="text-base md:text-lg font-medium text-[#e7e7e7] leading-relaxed">
-            Egal ob Trainer-Website, Buchungs-App oder Kunden-Portal – lass uns gemeinsam herausfinden, welche Lösung für dich am besten geeignet ist.
+            Egal ob Unternehmens-Website, Kunden-Portal oder Automatisierung – lass uns gemeinsam herausfinden, welche Lösung für dich am besten geeignet ist.
           </p>
         </motion.div>
       </div>

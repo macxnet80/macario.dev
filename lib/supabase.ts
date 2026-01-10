@@ -209,7 +209,23 @@ export const projectsApi = {
       .eq('is_active', true)
       .order('order_index')
     
-    if (error) throw error
+    if (error) {
+      // Bessere Fehlerbehandlung für Supabase-Fehler
+      const errorMessage = error.message || 'Unbekannter Supabase-Fehler'
+      const errorCode = error.code || 'UNKNOWN'
+      const errorDetails = error.details || null
+      const errorHint = error.hint || null
+      
+      const enhancedError = new Error(`Supabase Fehler: ${errorMessage} (Code: ${errorCode})`)
+      ;(enhancedError as any).supabaseError = {
+        message: errorMessage,
+        code: errorCode,
+        details: errorDetails,
+        hint: errorHint
+      }
+      throw enhancedError
+    }
+    
     return data as Project[]
   },
 

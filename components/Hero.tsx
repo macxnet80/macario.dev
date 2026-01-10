@@ -70,7 +70,7 @@ export default function Hero() {
             <div className="flex items-center gap-2">
               <span className="bg-green-400/10 text-green-400 border border-green-400/20 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                Verfügbar für Fitness-Projekte
+                Verfügbar für neue Projekte
               </span>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function Hero() {
               </div>
               
               <div className="text-white leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg text-left w-full sm:max-w-md min-w-0 flex-1">
-                Als Product Owner und No-Code Entwickler spezialisiere ich mich auf die Fitness- und Gesundheitsbranche. Web-Apps, Automatisierungen und KI-Lösungen – schnell, unkompliziert und ohne Tech-Kopfschmerzen.
+                Als Product Owner und No-Code Entwickler helfe ich KMU dabei, ihre Ideen schnell und unkompliziert umzusetzen. Web-Apps, Automatisierungen und KI-Lösungen – ohne Tech-Kopfschmerzen.
               </div>
             </div>
           </div>

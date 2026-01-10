@@ -79,32 +79,32 @@ export default function ProblemSection() {
             <div className="max-w-5xl mx-auto space-y-8">
               <div className="space-y-6 text-lg sm:text-xl text-gray-300 leading-relaxed">
                 <p>
-                  Du liebst, was du tust.
+                  Du führst ein Unternehmen. Du kennst dein Geschäft. Du weißt, was funktioniert.
                 </p>
                 
                 <p>
-                  Jeden Tag hilfst du Menschen, stärker, fitter und gesünder zu werden. 
-                  Du siehst die Transformation. Du spürst die Energie. <span className="text-white font-semibold">Das ist dein Antrieb.</span>
+                  Aber deine Website ist veraltet. Deine Prozesse laufen noch manuell. 
+                  Und während du im Tagesgeschäft versinkst, <span className="text-white font-semibold">nutzt deine Konkurrenz moderne Tools und KI.</span>
                 </p>
                 
                 <p>
-                  <span className="text-red-400 font-semibold">Aber irgendwas stimmt nicht...</span>
+                  <span className="text-red-400 font-semibold">Das Problem?</span>
                 </p>
               </div>
 
               {/* Pain Points */}
               <div className="space-y-4 text-lg text-gray-300 mt-8">
                 <p>
-                  Zwischen den Trainings sitzt du am Handy:
+                  Jeden Tag siehst du:
                 </p>
                 
                 <div className="space-y-2 pl-4">
-                  <p>→ WhatsApp-Nachrichten um 6 Uhr morgens: <span className="text-white italic">"Können wir den Termin verschieben?"</span></p>
-                  <p>→ Excel-Listen, die niemand versteht – auch du nicht mehr</p>
-                  <p>→ Ernährungspläne als PDF, die im Chat-Verlauf verschwinden</p>
-                  <p>→ Rechnungen, die du <span className="text-red-400 font-semibold">immer noch</span> nicht geschrieben hast</p>
-                  <p>→ Instagram-DMs mit <span className="text-white italic">"Was kostet das?"</span> – und du weißt nicht, ob sie ernsthaft interessiert sind</p>
-                  <p>→ Neue Anfragen, die du <span className="text-red-400 font-semibold">nicht qualifizieren kannst</span>, bevor du Zeit investierst</p>
+                  <p>→ Eine Website, die <span className="text-white italic">keine Kunden bringt</span> – veraltet, langsam, nicht gefunden</p>
+                  <p>→ Excel-Listen und E-Mails für alles – Termine, Kunden, Rechnungen</p>
+                  <p>→ Manuelle Prozesse, die Stunden kosten, die du nicht hast</p>
+                  <p>→ IT-Projekte, die <span className="text-red-400 font-semibold">Monate dauern</span> und das Budget sprengen</p>
+                  <p>→ Keine Zeit für Digitalisierung – <span className="text-white italic">"Das machen wir später"</span></p>
+                  <p>→ Kundenanfragen, die du <span className="text-red-400 font-semibold">nicht automatisch qualifizieren kannst</span></p>
                 </div>
               </div>
 
@@ -114,13 +114,13 @@ export default function ProblemSection() {
                   Das Ergebnis?
                 </p>
                 <p className="text-lg text-gray-300">
-                  Du bist Trainer, Sekretär, Buchhalter und Social Media Manager – <span className="text-white font-semibold">in einer Person.</span>
+                  Du bist Unternehmer, IT-Manager, Marketing-Experte und Buchhalter – <span className="text-white font-semibold">in einer Person.</span>
                 </p>
                 <p className="text-lg text-gray-300 mt-3">
-                  Und abends fragst du dich: <span className="text-white italic">"Wann trainiere ich eigentlich selbst noch?"</span>
+                  Und abends fragst du dich: <span className="text-white italic">"Wann arbeite ich eigentlich an meinem Business?"</span>
                 </p>
                 <p className="text-lg text-red-400 font-semibold mt-4">
-                  Währenddessen nutzt deine Konkurrenz KI-Assistenten, die 24/7 Anfragen beantworten und Leads qualifizieren.
+                  Währenddessen nutzt deine Konkurrenz moderne Web-Apps, KI-Assistenten und Automatisierungen – und ist dir einen Schritt voraus.
                 </p>
               </div>
 
@@ -131,10 +131,10 @@ export default function ProblemSection() {
                 </div>
                 
                 <div className="space-y-3 text-lg text-gray-300">
-                  <p>Dein Business kann nicht wachsen, wenn du alles manuell machst.</p>
-                  <p>Deine Zeit ist begrenzt. Dein Stundensatz auch.</p>
-                  <p className="text-red-400 font-semibold">Während du Termine jonglierst, nutzt deine Konkurrenz KI-Assistenten und automatisierte Systeme.</p>
-                  <p className="text-red-400 font-semibold">Sie beantworten Anfragen 24/7, qualifizieren Leads automatisch und haben Zeit für das, was wirklich zählt: ihre Kunden.</p>
+                  <p>Dein Unternehmen kann nicht wachsen, wenn alles manuell läuft.</p>
+                  <p>Deine Zeit ist begrenzt. Dein Budget auch.</p>
+                  <p className="text-red-400 font-semibold">Während du Prozesse verwaltest, nutzt deine Konkurrenz moderne Tools und KI.</p>
+                  <p className="text-red-400 font-semibold">Sie haben automatisierte Workflows, moderne Websites und KI-Assistenten, die 24/7 arbeiten.</p>
                   <p className="text-white font-semibold text-center mt-4">Du nicht. Noch nicht.</p>
                 </div>
               </div>
@@ -160,23 +160,23 @@ export default function ProblemSection() {
               <div className="space-y-3 text-lg text-gray-300">
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">→</span>
-                  <p>Kunden buchen ihre Termine selbst – ohne Nachfragen</p>
+                  <p>Eine moderne Website, die <span className="text-white font-semibold">Kunden bringt</span> – in 2 Wochen statt 6 Monaten</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">→</span>
-                  <p>Trainingspläne landen automatisch in der App – nicht in WhatsApp</p>
+                  <p>Automatisierte Prozesse, die dir <span className="text-white font-semibold">Stunden zurückgeben</span> – Rechnungen, Follow-ups, Termine</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">→</span>
-                  <p>Neue Anfragen werden qualifiziert, bevor du zurückrufst</p>
+                  <p>KI-Assistenten, die <span className="text-white font-semibold">24/7 Anfragen beantworten</span> und Leads qualifizieren</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">→</span>
-                  <p>Zahlungen laufen automatisch – du siehst nur die Benachrichtigung</p>
+                  <p>Interne Tools, die <span className="text-white font-semibold">deine Prozesse optimieren</span> – ohne monatelange IT-Projekte</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">→</span>
-                  <p className="text-white font-semibold">Du hast Zeit für das, was du liebst: Training und Menschen</p>
+                  <p className="text-white font-semibold">Du hast Zeit für das, was wirklich zählt: dein Business</p>
                 </div>
               </div>
             </div>
@@ -189,14 +189,14 @@ export default function ProblemSection() {
               
               <div className="space-y-3 text-lg text-gray-300">
                 <p>
-                  Als Personal Trainer mit <span className="text-white font-semibold">10+ Jahren Erfahrung</span> habe ich genau diese Probleme selbst erlebt.
+                  Als Product Owner und No-Code Entwickler verstehe ich die Herausforderungen kleiner und mittelständischer Unternehmen.
                 </p>
                 <p>
-                  Deshalb habe ich angefangen, meine eigenen digitalen Lösungen zu bauen.
+                  Ich weiß: Ihr braucht <span className="text-white font-semibold">schnelle, bezahlbare Lösungen</span> – keine monatelangen IT-Projekte.
                 </p>
                 <p>
-                  Heute entwickle ich Web-Apps, Kunden-Portale und Automatisierungen 
-                  speziell für Personal Trainer, Fitnessstudios und Gesundheits-Coaches.
+                  Deshalb entwickle ich Web-Apps, Automatisierungen und KI-Lösungen speziell für KMU – 
+                  <span className="text-white font-semibold"> pragmatisch, schnell und ohne Tech-Kopfschmerzen.</span>
                 </p>
               </div>
             </div>
@@ -210,27 +210,32 @@ export default function ProblemSection() {
               <div className="space-y-3 text-lg text-gray-300">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">KI-Assistent</span> der 24/7 Anfragen beantwortet und Leads automatisch qualifiziert – während du schläfst</p>
+                  <p><span className="text-white font-semibold">Moderne Unternehmens-Website</span> – Portfolio, Landing Pages, Firmenpräsenz in 2 Wochen live</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Buchungs-System</span> mit KI-gestützten Erinnerungen und automatischer Terminoptimierung</p>
+                  <p><span className="text-white font-semibold">Kunden-Portal</span> – Dashboard, Self-Service, Dokumentenzugriff für deine Kunden</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Kunden-Portal</span> mit KI-generierten Trainingsplänen und personalisiertem Progress-Tracking</p>
+                  <p><span className="text-white font-semibold">Buchungs- & Terminsysteme</span> – für Dienstleister aller Art mit automatischen Erinnerungen</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Automatische Workflows</span> mit KI für intelligente Follow-ups, Rechnungen und Upselling</p>
+                  <p><span className="text-white font-semibold">Interne Tools</span> – Workflows, Datenbanken, Reporting für deine Prozesse</p>
                 </div>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
-                  <p><span className="text-white font-semibold">Professionelle Website</span> mit integriertem KI-Chatbot für sofortige Lead-Qualifizierung</p>
+                  <p><span className="text-white font-semibold">KI-Assistenten</span> – Chatbots, FAQ, Lead-Qualifizierung rund um die Uhr</p>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-400 mt-3 flex-shrink-0"></div>
+                  <p><span className="text-white font-semibold">Automatisierungen</span> – E-Mail, Rechnungen, CRM-Integration ohne manuelle Arbeit</p>
                 </div>
               </div>
               
@@ -239,17 +244,17 @@ export default function ProblemSection() {
                   KI ist kein Buzzword mehr – es ist dein Wettbewerbsvorteil.
                 </p>
                 <p className="text-gray-300">
-                  Während andere noch manuell WhatsApp-Nachrichten beantworten, arbeitet dein KI-Assistent rund um die Uhr. 
-                  Das ist der Unterschied zwischen "Ich schaue mal, ob ich Zeit habe" und "Ja, ich habe Zeit – hier sind die verfügbaren Termine."
+                  Während andere noch manuell E-Mails beantworten und Prozesse verwalten, arbeitet dein KI-Assistent rund um die Uhr. 
+                  Das ist der Unterschied zwischen "Ich schaue mal, ob ich Zeit habe" und "Ja, hier ist die Lösung."
                 </p>
               </div>
               
               <div className="mt-4 text-lg text-gray-300">
                 <p>
-                  <span className="text-white font-semibold">Zeitrahmen:</span> In nur 2-4 Wochen live.
+                  <span className="text-white font-semibold">Zeitrahmen:</span> In nur 2 Wochen live.
                 </p>
                 <p>
-                  <span className="text-white font-semibold">Ohne:</span> Programmierkenntnisse, Tech-Stress oder ewige Meetings.
+                  <span className="text-white font-semibold">Ohne:</span> Lange IT-Projekte, versteckte Kosten oder Tech-Stress.
                 </p>
               </div>
             </div>
@@ -284,7 +289,7 @@ export default function ProblemSection() {
             {/* Call to Action */}
             <div className="space-y-6">
               <div className="text-2xl sm:text-3xl font-bold text-white">
-                Bereit, dein Fitness-Business zu digitalisieren?
+                Bereit, dein Unternehmen zu digitalisieren?
               </div>
               
               <div className="text-lg sm:text-xl text-gray-300 space-y-4">

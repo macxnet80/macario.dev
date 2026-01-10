@@ -6,23 +6,25 @@
 
 ### Letzte Änderungen
 
-1. **Fitness-Zielgruppen Rebranding** (Dezember 2025)
-   - Komplette Neuausrichtung der Website auf Fitness- und Gesundheitsbranche
-   - Hero Section: Neue Headline "Mehr Kunden. Weniger Admin-Chaos. Dein Fitness-Business – endlich digital."
-   - Problem Section: Kompletter Text-Rewrite mit Fitness-spezifischen Pain Points (WhatsApp-Chaos, Excel-Listen, keine Skalierung)
-   - Lösung Section: Fitness-spezifische Lösungen (Buchungs-Systeme, Kunden-Portale, KI-Assistenten)
-   - Skills Section: Neue Kategorien (Trainer-Websites, Buchungs-Systeme, Kunden-Portale, Studio-Management, KI-Assistenten, Automatisierungen)
-   - About Section: Trainer-Story integriert (10+ Jahre Erfahrung, Hamburg, eigene Pain Points)
-   - ProjectWizard: Neue Projekttypen für Fitness-Branche (6 Kategorien)
-   - CTA Section: Wording an Fitness-Zielgruppe angepasst
+1. **KMU-Zielgruppen Rebranding** (Januar 2025)
+   - Komplette Neuausrichtung der Website auf Kleine und Mittelständische Unternehmen (KMU)
+   - Hero Section: Status Badge und Intro-Text auf KMU angepasst
+   - Problem Section: Kompletter Text-Rewrite mit KMU Pain Points (veraltete Website, manuelle Prozesse, lange IT-Projekte)
+   - Lösung Section: KMU-fokussierte Lösungen (Unternehmens-Websites, Kunden-Portale, Automatisierungen)
+   - Skills Section: Neue Kategorien (Unternehmens-Websites, Kunden-Portale, Buchungs-/Terminsysteme, Interne Tools, KI-Assistenten, Automatisierungen)
+   - About Section: Business-Story statt Trainer-Story (Product Owner, No-Code Entwickler, Pragmatiker)
+   - ProjectWizard: Neue Projekttypen für KMU (business-website, booking-system, customer-portal, internal-tool, ai-assistant, automation)
+   - WizardLanding: Projekttypen und Beschreibungen angepasst
+   - CTA Section: Wording auf KMU angepasst
    - API-Routen: Projekttypen-Validierung und Mapping aktualisiert
    
    **Geänderte Dateien:**
-   - `components/Hero.tsx` - Headline, Subtext, Status Badge
+   - `components/Hero.tsx` - Status Badge, Intro-Text
    - `components/ProblemSection.tsx` - Kompletter Text-Rewrite
    - `components/SkillsSection.tsx` - Neue Kategorien und Beschreibungen
-   - `components/AboutSection.tsx` - Trainer-Story integriert
+   - `components/AboutSection.tsx` - Business-Story statt Trainer-Story
    - `components/ProjectWizard.tsx` - Neue Projekttypen
+   - `components/WizardLanding.tsx` - Projekttypen und Beschreibungen
    - `components/CTA.tsx` - Wording angepasst
    - `lib/security-utils.ts` - Projekttypen-Validierung aktualisiert
    - `app/api/analyze-project/route.ts` - Projekttypen-Mapping aktualisiert
@@ -142,10 +144,10 @@ Die Website läuft jetzt auf:
 - **Build erfolgreich**: Alle TypeScript-Fehler behoben, alle Routen kompilieren korrekt
 
 Die Website fokussiert sich auf:
-- **ProjectWizard**: Haupt-Tool für Projektanfragen aus der Fitness-Branche
+- **ProjectWizard**: Haupt-Tool für Projektanfragen von KMU
 - **CustomerOnboardingWizard**: Onboarding-Prozess
 - **Portfolio-Präsentation**: ProjectShowcase
-- **Zielgruppe**: Personal Trainer, Fitnessstudios, Gesundheits-Coaches
+- **Zielgruppe**: Kleine und Mittelständische Unternehmen (KMU)
 
 ### Nächste Schritte
 
@@ -168,11 +170,11 @@ Die Website fokussiert sich auf:
 - **CSS Design-System**: Konsolidiertes Farbsystem basierend auf Startseite, CSS-Variablen für Konsistenz
 - **Voice Agent**: Entschieden, komplett zu entfernen
 - **ProjectWizard**: Bleibt Haupt-Tool für Lead-Generierung
-- **Wizard Landingpage**: Neue Standalone-Version für Marketing-Kampagnen (Instagram)
-- **Terminbuchung**: Über ProjectWizard, nicht mehr über Voice Agent
-- **Projekttyp**: Neue Fitness-spezifische Projekttypen (Trainer-Website, Buchungs-App, Kunden-Portal, Studio-Management, KI-Assistent, Automatisierung)
+- **Wizard Landingpage**: Standalone-Version für Marketing-Kampagnen
+- **Terminbuchung**: Über ProjectWizard
+- **Projekttyp**: Neue KMU-fokussierte Projekttypen (Unternehmens-Website, Buchungs-/Terminsystem, Kunden-Portal, Internes Tool, KI-Assistent, Automatisierung)
 - **Sprache**: Erste Person Singular ("ich"/"mir") statt "wir"/"uns" in Wizards
-- **Zielgruppe**: Fokus auf Fitness- und Gesundheitsbranche mit authentischer Trainer-Story
+- **Zielgruppe**: Fokus auf Kleine und Mittelständische Unternehmen (KMU) mit Business-Fokus
 
 ## Offene Fragen
 

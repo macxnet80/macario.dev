@@ -64,49 +64,58 @@ interface StepProps {
 
 const projectTypes = [
   {
-    id: 'website',
-    title: 'Moderne Website',
-    description: 'Corporate Website, Portfolio oder Landing Page',
+    id: 'business-website',
+    title: 'Unternehmens-Website',
+    description: 'Portfolio, Landing Pages oder Firmenpräsenz',
     icon: Globe,
     color: 'from-blue-500 to-cyan-500',
     basePrice: 750,
-    features: ['Responsive Design', 'SEO-Optimierung', 'CMS Integration', 'Performance-Optimierung']
+    features: ['Moderne Designs', 'SEO-Optimierung', 'Mobile-First', 'CMS Integration']
   },
   {
-    id: 'webapp',
-    title: 'Web-Anwendung',
-    description: 'SaaS-Platform oder komplexe Web-App',
-    icon: Smartphone,
+    id: 'booking-system',
+    title: 'Buchungs-/Terminsystem',
+    description: 'Terminverwaltung mit Erinnerungen und Zahlung',
+    icon: Calendar,
     color: 'from-purple-500 to-pink-500',
-    basePrice: 3500,
-    features: ['User Authentication', 'Dashboard', 'Database Integration', 'API Development']
+    basePrice: 1500,
+    features: ['Kalender-Integration', 'Automatische Erinnerungen', 'Zahlungsabwicklung', 'Kundenverwaltung']
   },
   {
-    id: 'ai-voice-agent',
-    title: 'AI Voice Agent',
-    description: 'Intelligenter Voice Agent mit Sprachsteuerung',
-    icon: Mic,
+    id: 'customer-portal',
+    title: 'Kunden-Portal',
+    description: 'Dashboard, Self-Service und Dokumentenzugriff',
+    icon: Users,
     color: 'from-green-500 to-emerald-500',
     basePrice: 2500,
-    features: ['Spracherkennung', 'NLP Integration', 'Voice Interface', 'Multi-Language Support']
+    features: ['Benutzer-Dashboard', 'Dokumenten-Management', 'Self-Service', 'Kommunikation']
+  },
+  {
+    id: 'internal-tool',
+    title: 'Internes Tool',
+    description: 'Workflows, Datenbanken und Reporting',
+    icon: Building,
+    color: 'from-orange-500 to-red-500',
+    basePrice: 3500,
+    features: ['Prozess-Automatisierung', 'Datenbank-Lösungen', 'Reporting & Analytics', 'Workflow-Management']
+  },
+  {
+    id: 'ai-assistant',
+    title: 'KI-Assistent',
+    description: 'Chatbots, FAQ und Lead-Qualifizierung',
+    icon: Bot,
+    color: 'from-indigo-500 to-purple-500',
+    basePrice: 2000,
+    features: ['24/7 Verfügbar', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Smart Routing']
   },
   {
     id: 'automation',
     title: 'Automatisierung',
-    description: 'Workflow-Automatisierung mit KI',
+    description: 'Workflows, E-Mail und CRM-Integration',
     icon: Zap,
-    color: 'from-orange-500 to-red-500',
+    color: 'from-yellow-500 to-orange-500',
     basePrice: 750,
-    features: ['Workflow Design', 'API Integrationen', 'Datenverarbeitung', 'Monitoring']
-  },
-  {
-    id: 'ai-integration',
-    title: 'KI-Integration',
-    description: 'Chatbots oder KI-gestützte Features',
-    icon: Bot,
-    color: 'from-indigo-500 to-purple-500',
-    basePrice: 1500,
-    features: ['OpenAI Integration', 'Custom Training', 'Chat Interface', 'Smart Analytics']
+    features: ['E-Mail Automation', 'Rechnungsstellung', 'CRM-Integration', 'Workflow-Design']
   }
 ]
 
@@ -255,22 +264,19 @@ function StartStep({ onNext }: { onNext: () => void }) {
             </div>
             
             <p className="text-[#e7e7e7] text-lg leading-relaxed">
-              Als leidenschaftlicher <strong className="text-white">No-Code-Entwickler</strong> und 
-              digitaler Innovator helfe ich Unternehmen dabei, ihre Visionen schnell und 
-              kosteneffizient in die Realität umzusetzen.
+              Als <strong className="text-white">Product Owner und No-Code Entwickler</strong> helfe ich KMU dabei, 
+              ihre Ideen schnell und unkompliziert umzusetzen – ohne Tech-Kopfschmerzen.
             </p>
             
             <p className="text-[#e7e7e7] leading-relaxed">
-              Mit über <strong className="text-white">5 Jahren Erfahrung</strong> in der 
-              digitalen Transformation nutze ich modernste Tools wie Cursor, Supabase, 
-              n8n und KI-Technologien, um komplexe Anwendungen ohne traditionelles 
-              Coding zu entwickeln.
+              Mit modernen Tools wie Cursor, Supabase, n8n und KI-Technologien entwickle ich 
+              komplexe Anwendungen ohne traditionelles Coding – 
+              <strong className="text-white"> bis zu 80% schneller als herkömmliche Methoden.</strong>
             </p>
 
             <p className="text-[#e7e7e7] leading-relaxed">
               Mein Fokus liegt darauf, <strong className="text-white">komplexe Prozesse zu vereinfachen</strong> und 
-              Unternehmen dabei zu unterstützen, ihre digitalen Ziele bis zu 80% schneller 
-              zu erreichen als mit herkömmlichen Entwicklungsmethoden.
+              Unternehmen dabei zu unterstützen, ihre digitalen Ziele pragmatisch und bezahlbar zu erreichen.
             </p>
           </motion.div>
         </div>
@@ -530,8 +536,8 @@ function ProjectDescriptionStep({ data, updateData, onNext, onPrev }: StepProps)
 Was ist das Ziel deines Projekts?
 Wer ist deine Zielgruppe?
 Welche Funktionen sind dir wichtig?
-Hast du schon konkrete Vorstellungen?
-Gibt es Referenzen oder Inspirationen?"
+Welche Probleme soll die Lösung lösen?
+Hast du schon konkrete Vorstellungen oder Referenzen?"
             />
             <div className="text-right text-sm text-[#e7e7e7] mt-2">
               {data.description.length} Zeichen
@@ -545,9 +551,9 @@ Gibt es Referenzen oder Inspirationen?"
               Beispiele für gute Beschreibungen:
             </h4>
             <div className="space-y-2 text-sm text-[#e7e7e7]">
-              <p>• "Ich möchte eine Buchungsplattform für Yogastudios mit Kalenderintegration und Zahlungsabwicklung"</p>
-              <p>• "Ein AI Voice Agent für Kundenservice mit mehrsprachiger Unterstützung und natürlicher Sprachverarbeitung"</p>
-              <p>• "Eine Community-Plattform für Fotografen zum Teilen von Portfolios und Networking"</p>
+              <p>• "Ich möchte eine moderne Unternehmens-Website mit Portfolio, Leistungen und Kontaktformular"</p>
+              <p>• "Ein Buchungssystem für meinen Dienstleistungsbetrieb mit Kalenderintegration und automatischen Erinnerungen"</p>
+              <p>• "Ein Kunden-Portal mit Dashboard, Dokumentenzugriff und Self-Service Funktionen"</p>
             </div>
           </div>
         </div>

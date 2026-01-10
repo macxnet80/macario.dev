@@ -95,7 +95,7 @@ Viele Grüße`
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-4xl md:text-5xl font-bold mb-6"
             >
-              Dein Fitness-Business digitalisieren
+              Dein Unternehmen digitalisieren
             </motion.h2>
             
             <motion.p
@@ -105,7 +105,7 @@ Viele Grüße`
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-xl text-[#e7e7e7] mb-12 max-w-3xl mx-auto"
             >
-              Bereit, dein Fitness-Business auf das nächste Level zu bringen? 
+              Bereit, dein Unternehmen auf das nächste Level zu bringen? 
               Wähle den Weg, der am besten zu dir passt.
             </motion.p>
 
