@@ -1,58 +1,37 @@
 'use client'
 
-import Hero from '@/components/Hero'
-import ProblemSection from '@/components/ProblemSection'
-import SkillsSection from '@/components/SkillsSection'
-import AboutSection from '@/components/AboutSection'
-import ProjectShowcase from '@/components/ProjectShowcase'
-import CollaborationProcessSection from '@/components/CollaborationProcessSection'
-import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
-import Footer from '@/components/Footer'
+import Nav from '@/components/landing/Nav'
+import Hero from '@/components/landing/Hero'
+import StackStrip from '@/components/landing/StackStrip'
+import ProblemSolution from '@/components/landing/ProblemSolution'
+import Services from '@/components/landing/Services'
+import Process from '@/components/landing/Process'
+import Stack from '@/components/landing/Stack'
+import ProjectShowcase from '@/components/ProjectShowcase'
+import About from '@/components/landing/About'
+import FinalCTA from '@/components/landing/FinalCTA'
+import Footer from '@/components/landing/Footer'
 
 export default function Home() {
   return (
     <>
       <StructuredData />
-      <main className="min-h-screen bg-black">
-        {/* Hero Section */}
-        <section id="hero" aria-label="Willkommen bei Lars Macario - No/Low-Code Developer">
+      <div className="min-h-screen overflow-x-hidden bg-[var(--bg)] text-[var(--fg)]">
+        <Nav />
+        <main>
           <Hero />
-        </section>
-
-        {/* Problem Section */}
-        <section id="problem" aria-label="Probleme mit traditioneller Web-Entwicklung">
-          <ProblemSection />
-        </section>
-
-        {/* Skills Section */}
-        <section id="skills" aria-label="Technologien und Fähigkeiten">
-          <SkillsSection />
-        </section>
-
-        {/* About Section */}
-        <section id="about" aria-label="Über Lars Macario">
-          <AboutSection />
-        </section>
-
-        {/* Project Showcase */}
-        <section id="projects" aria-label="Projekt-Portfolio und Referenzen">
+          <StackStrip />
+          <ProblemSolution />
+          <Services />
+          <Process />
+          <Stack />
           <ProjectShowcase />
-        </section>
-
-        {/* Collaboration Process Section */}
-        <section id="process" aria-label="Zusammenarbeit und Projektablauf">
-          <CollaborationProcessSection />
-        </section>
-
-        {/* Call to Action */}
-        <section id="contact" aria-label="Kontakt und Projektanfrage">
-          <CTA />
-        </section>
-      </main>
-
-      {/* Footer */}
-      <Footer />
+          <About />
+          <FinalCTA />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

@@ -3,9 +3,6 @@ import OpenAI from 'openai'
 import { sanitizeForPrompt, sanitizeInput } from '@/lib/security-utils'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 export async function POST(request: NextRequest) {
   try {
@@ -90,6 +87,10 @@ STIL:
 - Maximal 300 Wörter
 
 Antworte NUR mit der optimierten Beschreibung, ohne zusätzliche Kommentare.`
+
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4.1-mini",

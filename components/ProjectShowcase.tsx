@@ -2,45 +2,57 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, CheckCircle, Code2, Database, Bot, Users, Loader2, AlertCircle } from 'lucide-react'
+import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, CheckCircle, Code2, Database, Bot, Users, Loader2, AlertCircle, Globe } from 'lucide-react'
 import { useProjects } from '@/hooks/useProjects'
 import Image from 'next/image'
 
 export default function ProjectShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [filter, setFilter] = useState<'all' | 'client' | 'personal'>('all')
   const [mounted, setMounted] = useState(false)
   const { projects, loading, error } = useProjects()
-
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Index zurücksetzen bei Filteränderung
+  useEffect(() => {
+    setCurrentIndex(0)
+  }, [filter])
+
+  // Filter anwenden
+  const filteredProjects = projects.filter(
+    (p) => filter === 'all' || p.project_category === filter
+  )
+
   const nextProject = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
+    if (filteredProjects.length === 0) return
+    setCurrentIndex((prev) => (prev + 1) % filteredProjects.length)
   }
 
   const prevProject = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    if (filteredProjects.length === 0) return
+    setCurrentIndex((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)
   }
 
   // Prevent hydration mismatch
   if (!mounted) {
     return (
-      <section className="py-20 px-6 bg-black">
+      <section className="py-20 px-6 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-head)' }}>
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
+            <p className="text-xl text-[var(--fg-mute)] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </div>
-          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
-            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-white" />
-            <p className="text-[#e7e7e7]">Wird geladen...</p>
+          <div className="bg-[var(--bg-card)] rounded-3xl p-12 text-center border border-[var(--line)]">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-[var(--accent)]" />
+            <p className="text-[var(--fg-mute)]">Wird geladen...</p>
           </div>
         </div>
       </section>
@@ -50,7 +62,7 @@ export default function ProjectShowcase() {
   // Loading State
   if (loading) {
     return (
-      <section className="py-20 px-6 bg-black">
+      <section className="py-20 px-6 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -59,18 +71,18 @@ export default function ProjectShowcase() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-head)' }}>
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
+            <p className="text-xl text-[var(--fg-mute)] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </motion.div>
           
-          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
-            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-white" />
-            <p className="text-[#e7e7e7]">Projekte werden geladen...</p>
+          <div className="bg-[var(--bg-card)] rounded-3xl p-12 text-center border border-[var(--line)]">
+            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-[var(--accent)]" />
+            <p className="text-[var(--fg-mute)]">Projekte werden geladen...</p>
           </div>
         </div>
       </section>
@@ -80,7 +92,7 @@ export default function ProjectShowcase() {
   // Error State
   if (error) {
     return (
-      <section className="py-20 px-6 bg-black">
+      <section className="py-20 px-6 bg-[var(--bg)]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -89,183 +101,230 @@ export default function ProjectShowcase() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-head)' }}>
               Projekt-Showcase
             </h2>
-            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
+            <p className="text-xl text-[var(--fg-mute)] max-w-3xl mx-auto">
               Entdecke einige meiner erfolgreich umgesetzten Projekte - 
               alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
             </p>
           </motion.div>
           
-          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
-            <AlertCircle className="w-12 h-12 mx-auto mb-4 text-red-400" />
-            <p className="text-[#e7e7e7] mb-4">{error}</p>
-            <p className="text-sm text-[#e7e7e7]">Fallback-Daten werden angezeigt</p>
+          <div className="bg-[var(--bg-card)] rounded-3xl p-12 text-center border border-[var(--line)]">
+            <AlertCircle className="w-12 h-12 mx-auto mb-4 text-[var(--danger)]" />
+            <p className="text-[var(--fg-mute)] mb-4">{error}</p>
+            <p className="text-sm text-[var(--fg-dim)]">Fallback-Daten werden angezeigt</p>
           </div>
         </div>
       </section>
     )
   }
 
-  // No projects available
-  if (!projects || projects.length === 0) {
-    return (
-      <section className="py-20 px-6 bg-black">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Projekt-Showcase
-            </h2>
-            <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
-              Entdecke einige meiner erfolgreich umgesetzten Projekte - 
-              alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
-            </p>
-          </motion.div>
-          
-          <div className="bg-black/50 rounded-3xl p-12 text-center border border-white/10">
-            <Database className="w-12 h-12 mx-auto mb-4 text-[#e7e7e7]" />
-            <p className="text-[#e7e7e7]">Keine Projekte verfügbar</p>
-          </div>
-        </div>
-      </section>
-    )
-  }
-
-  const currentProject = projects[currentIndex]
+  const currentProject = filteredProjects[currentIndex]
 
   return (
-    <section className="py-20 px-6 bg-[#121212]">
+    <section id="projekte" className="py-20 px-6 bg-[var(--bg)]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: 'var(--font-head)' }}>
             Projekt-Showcase
           </h2>
-          <p className="text-xl text-[#e7e7e7] max-w-3xl mx-auto">
+          <p className="text-xl text-[var(--fg-mute)] max-w-3xl mx-auto">
             Entdecke einige meiner erfolgreich umgesetzten Projekte - 
             alle ohne traditionelles Coding, aber mit professionellen Ergebnissen.
           </p>
         </motion.div>
 
-        <div className="relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentProject.id}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
-              className="rounded-3xl overflow-hidden bg-[#121212]"
+        {/* Kategorie-Filter Tabs */}
+        <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+          {(['all', 'client', 'personal'] as const).map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-5 py-2.5 rounded-xl text-xs font-semibold border transition-all duration-300 ${
+                filter === cat
+                  ? 'bg-[var(--accent)] text-[var(--accent-ink)] border-[var(--accent)] shadow-md shadow-[var(--accent-soft)]'
+                  : 'bg-[var(--bg-card)] text-[var(--fg-mute)] border-[var(--line)] hover:text-[var(--fg)] hover:border-[var(--line-strong)]'
+              }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 p-4 md:p-8 lg:p-12 min-h-[400px] md:h-[600px] bg-[#121212] rounded-3xl">
-                {/* Project Info */}
-                <div className="space-y-4 md:space-y-6 flex flex-col justify-between order-2 md:order-1">
-                  <div className="space-y-4 md:space-y-6">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-3 text-[#f6f6f6]">{currentProject.title}</h3>
-                      <p className="text-[#e7e7e7] text-base md:text-lg">{currentProject.description}</p>
-                    </div>
+              {cat === 'all' && 'Alle Projekte'}
+              {cat === 'client' && 'Kundenprojekte'}
+              {cat === 'personal' && 'Eigene Projekte'}
+            </button>
+          ))}
+        </div>
 
-                    <div>
-                      <h4 className="text-sm font-semibold text-[#e7e7e7] mb-3">EINGESETZTE TOOLS</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {currentProject.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="px-2 md:px-3 py-1 rounded-full bg-white/20 text-white text-xs md:text-sm"
-                          >
-                            {tool}
-                          </span>
-                        ))}
+        <div className="relative">
+          {filteredProjects.length === 0 ? (
+            <div className="bg-[var(--bg-card)] rounded-3xl p-16 text-center border border-[var(--line)]">
+              <Database className="w-12 h-12 mx-auto mb-4 text-[var(--fg-dim)]" />
+              <p className="text-[var(--fg-mute)]">In dieser Kategorie sind noch keine Projekte online.</p>
+            </div>
+          ) : (
+            <>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentProject.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4 }}
+                  className="rounded-3xl overflow-hidden bg-[var(--bg-card)] border border-[var(--line)] shadow-xl"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-10 lg:p-12 min-h-[450px]">
+                    {/* Project Info */}
+                    <div className="space-y-6 flex flex-col justify-between order-2 md:order-1">
+                      <div className="space-y-6">
+                        <div className="space-y-2">
+                          <div className="flex flex-wrap items-center gap-3">
+                            <h3 className="text-2xl md:text-3xl font-bold text-[var(--fg)]" style={{ fontFamily: 'var(--font-head)' }}>
+                              {currentProject.title}
+                            </h3>
+                            <span className={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full font-semibold border ${
+                              currentProject.project_category === 'client'
+                                ? 'bg-[var(--accent-soft)] text-[var(--accent)] border-[var(--accent)]/10'
+                                : 'bg-white/10 text-[var(--fg)] border-white/5'
+                            }`}>
+                              {currentProject.project_category === 'client' ? 'Kundenprojekt' : 'Eigenes Projekt'}
+                            </span>
+                          </div>
+                          <p className="text-[var(--fg-mute)] text-sm md:text-base leading-relaxed">
+                            {currentProject.description}
+                          </p>
+                        </div>
+
+                        <div>
+                          <h4 className="text-xs font-mono uppercase tracking-wider text-[var(--fg-dim)] mb-2.5">
+                            EINGESETZTE TOOLS
+                          </h4>
+                          <div className="flex flex-wrap gap-1.5">
+                            {currentProject.tools.map((tool) => (
+                              <span
+                                key={tool}
+                                className="px-2.5 py-1 rounded-lg bg-black/40 border border-[var(--line)] text-[var(--fg-mute)] text-xs font-medium"
+                              >
+                                {tool}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="text-xs font-mono uppercase tracking-wider text-[var(--fg-dim)] mb-2.5">
+                            KEY FEATURES
+                          </h4>
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {currentProject.features.map((feature) => (
+                              <li key={feature} className="flex items-center gap-2 text-xs md:text-sm text-[var(--fg-mute)]">
+                                <Sparkles className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" />
+                                <span>{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
+
+                      {/* Links Buttons */}
+                      {(currentProject.project_url || currentProject.git_url) && (
+                        <div className="flex flex-wrap gap-3 pt-6 border-t border-[var(--line)] mt-6">
+                          {currentProject.project_url && (
+                            <a
+                              href={currentProject.project_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2.5 rounded-full bg-[var(--accent)] px-5 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-[#6ae993] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-card)] cursor-pointer"
+                            >
+                              <Globe className="h-4 w-4 shrink-0" aria-hidden="true" />
+                              Live Webseite
+                            </a>
+                          )}
+                          {currentProject.git_url && (
+                            <a
+                              href={currentProject.git_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2.5 rounded-full border border-[var(--line)] bg-black/40 px-5 py-2.5 text-sm font-semibold text-[var(--fg-mute)] transition-colors hover:border-[var(--line-strong)] hover:text-[var(--fg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--line-strong)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-card)] cursor-pointer"
+                            >
+                              <Code2 className="h-4 w-4 shrink-0" aria-hidden="true" />
+                              Repository
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
 
-                    <div>
-                      <h4 className="text-sm font-semibold text-[#e7e7e7] mb-3">KEY FEATURES</h4>
-                      <ul className="space-y-2">
-                        {currentProject.features.map((feature) => (
-                          <li key={feature} className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-primary flex-shrink-0" />
-                            <span className="text-[#e7e7e7] text-sm md:text-base">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Project Image / Visual */}
+                    <div className="relative order-1 md:order-2 rounded-2xl overflow-hidden aspect-video md:aspect-auto flex items-center justify-center min-h-[220px] bg-black/20 border border-[var(--line)]">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${currentProject.color} opacity-10`} />
+                      {currentProject.image_url ? (
+                        <Image
+                          src={currentProject.image_url}
+                          alt={currentProject.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover"
+                          style={{ objectPosition: 'center center' }}
+                        />
+                      ) : (
+                        <div className="text-center p-6 z-10">
+                          <div className={`w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 bg-gradient-to-br ${currentProject.color} rounded-2xl flex items-center justify-center shadow-lg`}>
+                            {currentProject.project_url ? (
+                              <Globe className="w-9 h-9 md:w-11 md:h-11 text-white" />
+                            ) : (
+                              <Code2 className="w-9 h-9 md:w-11 md:h-11 text-white" />
+                            )}
+                          </div>
+                          <p className="text-[var(--fg)] font-semibold text-sm md:text-base">Projekt-Demo verfügbar</p>
+                          <p className="text-[var(--fg-mute)] text-xs mt-1">Gradients und Icons passen sich dynamisch an.</p>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
+                </motion.div>
+              </AnimatePresence>
 
-                {/* Project Image */}
-                <div className="relative order-1 md:order-2 rounded-2xl p-4 md:p-8 aspect-video flex items-center justify-center">
-                  <div className={`absolute inset-0 bg-gradient-to-r ${currentProject.color} opacity-20 rounded-2xl`} />
-                  {currentProject.image_url ? (
-                    <Image
-                      src={currentProject.image_url}
-                      alt={currentProject.title}
-                      fill
-                      sizes="100vw"
-                      className="object-cover rounded-xl"
-                      style={{ objectPosition: 'center center' }}
-                    />
-                  ) : (
-                    <div className="text-center">
-                      <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 bg-gradient-to-r from-primary to-purple-400 rounded-2xl flex items-center justify-center">
-                        <ExternalLink className="w-12 h-12 md:w-16 md:h-16 text-white" />
-                      </div>
-                      <p className="text-[#e7e7e7] text-sm md:text-base">Projekt-Demo verfügbar</p>
+              {/* Navigation */}
+              {filteredProjects.length > 1 && (
+                <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={prevProject}
+                      className="p-3 rounded-full bg-[var(--bg-card)] border border-[var(--line)] hover:border-[var(--line-strong)] text-[var(--fg-mute)] hover:text-[var(--fg)] transition-all"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    
+                    <div className="flex items-center gap-2">
+                      {filteredProjects.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentIndex(index)}
+                          className={`h-2 rounded-full transition-all duration-300 ${
+                            index === currentIndex 
+                              ? 'w-6 bg-[var(--accent)] shadow-[0_0_8px_var(--accent)]' 
+                              : 'w-2 bg-[var(--line-strong)] hover:bg-[var(--fg-dim)]'
+                          }`}
+                        />
+                      ))}
                     </div>
-                  )}
+
+                    <button
+                      onClick={nextProject}
+                      className="p-3 rounded-full bg-[var(--bg-card)] border border-[var(--line)] hover:border-[var(--line-strong)] text-[var(--fg-mute)] hover:text-[var(--fg)] transition-all"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 md:mt-8">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={prevProject}
-                className="p-2 md:p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
-                disabled={projects.length <= 1}
-              >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-              
-              <div className="flex items-center gap-2">
-                {projects.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`h-2 rounded-full transition-all ${
-                      index === currentIndex 
-                        ? 'w-6 md:w-8 bg-[#d1d1d1]' 
-                        : 'w-2 bg-gray-500 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <button
-                onClick={nextProject}
-                className="p-2 md:p-3 rounded-full bg-[#121212] border border-white/20 hover:bg-white/10 transition-colors"
-                disabled={projects.length <= 1}
-              >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-              </button>
-            </div>
-            
-          </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </section>

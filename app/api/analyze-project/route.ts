@@ -3,9 +3,6 @@ import OpenAI from 'openai'
 import { sanitizeForPrompt, isValidProjectType, isValidBudget, isValidTimeline, isValidPriority } from '@/lib/security-utils'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 export async function POST(request: NextRequest) {
   try {
@@ -69,11 +66,8 @@ export async function POST(request: NextRequest) {
     
     const projectTypes = {
       'business-website': 'Unternehmens-Website',
-      'booking-system': 'Buchungs-/Terminsystem',
-      'customer-portal': 'Kunden-Portal',
-      'internal-tool': 'Internes Tool',
-      'ai-assistant': 'KI-Assistent',
-      automation: 'Automatisierung'
+      'ki-consulting': 'KI Consulting',
+      'web-application': 'Web-Anwendungen',
     }
 
     const priorities = {
@@ -123,6 +117,25 @@ REGELN:
 - Max. 120 Wörter
 - Emojis sparsam verwenden
 `
+    if (!process.env.OPENAI_API_KEY) {
+      const fallbackAnalysis = `
+Hi! Sam hier 👋 die KI-Assistentin von Lars
+
+**Projekt-Check:** Der gewählte Projekttyp passt gut zu deiner Beschreibung.
+
+**Budget & Timeline:** Deine Angaben sind ambitioniert, aber mit modernen Ansätzen durchaus machbar!
+
+**Meine Einschätzung:** Spannendes Projekt mit klarem Mehrwert - Lars freut sich schon darauf!
+
+**Wie geht's weiter?**
+Lars meldet sich zeitnah mit einem detaillierten Angebot zurück.
+      `
+      return NextResponse.json({ analysis: fallbackAnalysis.trim() })
+    }
+
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",

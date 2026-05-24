@@ -22,7 +22,8 @@ import { useState } from 'react'
 
 // Type definitions
 type ToolItem = {
-  logo: string
+  logo?: string
+  icon?: LucideIcon
   title: string
   description: string
   features: string[]
@@ -43,7 +44,7 @@ type CombinedItem = ToolItem | SkillItem
 
 // Type guard functions
 const isToolItem = (item: CombinedItem): item is ToolItem => {
-  return 'logo' in item
+  return tools.some((tool) => tool.title === item.title)
 }
 
 const tools: ToolItem[] = [
@@ -113,11 +114,11 @@ const tools: ToolItem[] = [
     bgColor: 'bg-blue-400/20',
   },
   {
-    logo: '/Logos/openai.svg',
-    title: 'OpenAI API',
-    description: 'KI-Integration für smarte Anwendungen',
+    icon: Brain,
+    title: 'Claude first',
+    description: 'KI-Integration mit Anthropic — Claude first, GPT als Fallback',
     features: [
-      'Aktuelle GPT-Modelle',
+      'Claude & Anthropic API',
       'Text & Chatbots',
       'Automatisierte Analysen',
       'Individuelle KI-Lösungen',
@@ -256,13 +257,17 @@ export default function SkillsSection() {
               <div className="rounded-3xl p-8 border border-white/20 bg-[#121212] hover:bg-[#1a1a1a] transition-all duration-300 shadow-xl">
                 <div className={`w-16 h-16 rounded-2xl ${item.bgColor || `bg-gradient-to-r ${item.color}`} p-3 mb-6 flex items-center justify-center shadow-lg`}>
                   {isToolItem(item) ? (
-                    <Image
-                      src={item.logo}
-                      alt={`${item.title} Logo`}
-                      width={40}
-                      height={40}
-                      className="object-contain"
-                    />
+                    item.icon ? (
+                      <item.icon className="w-8 h-8 text-white" />
+                    ) : (
+                      <Image
+                        src={item.logo!}
+                        alt={`${item.title} Logo`}
+                        width={40}
+                        height={40}
+                        className="object-contain"
+                      />
+                    )
                   ) : (
                     <item.icon className="w-8 h-8 text-white" />
                   )}

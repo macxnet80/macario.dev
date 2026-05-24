@@ -45,7 +45,7 @@ const config: Config = {
         
         /* Accent - Helle Buttons */
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: 'hsl(var(--accent-hsl))',
           foreground: 'hsl(var(--accent-foreground))',
         },
         
@@ -95,6 +95,7 @@ const config: Config = {
         'slide-up': 'slideUp 0.5s ease-out',
         'bounce-in': 'bounceIn 0.6s ease-out',
         'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+        marquee: 'marquee 40s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -114,6 +115,10 @@ const config: Config = {
         pulseGlow: {
           '0%, 100%': { boxShadow: '0 0 20px hsl(var(--primary) / 0.3)' },
           '50%': { boxShadow: '0 0 40px hsl(var(--primary) / 0.5)' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
       },
       

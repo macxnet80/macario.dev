@@ -38,7 +38,7 @@
    - OpenAI Projektanalyse
    - Terminbuchung
    - Erste Person Singular ("ich"/"mir") statt "wir"/"uns"
-   - Webhook-Integration: Alle Daten werden an n8n Webhook gesendet
+   - Direkte Supabase-Speicherung in `project_requests`
 
 3. **WizardLanding** (Standalone Landingpage)
    - ✅ Route `/wizard` für Marketing-Kampagnen
@@ -67,18 +67,17 @@
 
 7. **API Routes**
    - Projektanalyse (OpenAI)
-   - Projektanfrage absenden (mit Webhook-Integration zu n8n)
+   - Projektanfrage absenden (direkt in Supabase `project_requests`)
    - Ideen-Generierung
    - Angebots-Optimierung
    - Briefing-Optimierung
    - Customer Onboarding
 
-8. **Webhook-Integration** (Dezember 2025)
-   - ✅ Webhook `N8N_WEBHOOK_PROJEKT_ANFRAGE` wird bei jeder Projektanfrage ausgelöst
-   - ✅ Sendet alle relevanten Daten: firstName, lastName, email, projectType, timeline, priority, description, features, budget, finalPrice, source, aiAnalysis, privacyAccepted, marketingAccepted
-   - ✅ Labels werden für bessere Lesbarkeit gesendet (z.B. "Moderne Website" statt "website")
-   - ✅ IDs werden zusätzlich mitsendet für Verarbeitung in n8n
-   - ✅ Datenbank speichert nur Label-Felder, keine separaten ID-Felder
+8. **Supabase-Integration für Projektanfragen** (Mai 2026)
+   - ✅ `POST /api/submit-project` speichert direkt in `project_requests`
+   - ✅ Felder: firstName, lastName, email, projectType, timeline, priority, description, features, budget, finalPrice, source, aiAnalysis, privacyAccepted, marketingAccepted
+   - ✅ Labels werden gespeichert (z.B. "Moderne Website" statt "business-website")
+   - ✅ Gemeinsame Submit-Logik für ProjectWizard und WizardLanding
 
 ## Was wurde entfernt
 

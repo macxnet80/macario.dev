@@ -81,7 +81,7 @@ export function useProjects() {
 function getFallbackProjects(): Project[] {
   return [
     {
-      id: 1,
+      id: '1',
       title: 'Unternehmens-Website',
       description: 'Moderne Corporate Website für ein KMU mit Portfolio, Leistungen und Kontaktformular. Responsive Design, SEO-optimiert und in 2 Wochen live.',
       tools: ['Next.js', 'Supabase', 'Tailwind CSS'],
@@ -90,24 +90,30 @@ function getFallbackProjects(): Project[] {
       image_url: null,
       order_index: 0,
       is_active: true,
+      project_category: 'client',
+      project_url: 'https://example.com',
+      git_url: null,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
     {
-      id: 2,
+      id: '2',
       title: 'KI-Kundenservice Bot',
       description: 'Ein intelligenter Chatbot für KMU, der Kundenanfragen automatisch beantwortet und bei Bedarf an menschliche Mitarbeiter weiterleitet.',
-      tools: ['OpenAI', 'n8n', 'Supabase'],
+      tools: ['Claude first', 'n8n', 'Supabase'],
       features: ['24/7 Verfügbarkeit', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Smart Routing'],
       color: 'from-purple-500 to-pink-500',
       image_url: null,
       order_index: 1,
       is_active: true,
+      project_category: 'personal',
+      project_url: null,
+      git_url: 'https://github.com/example/bot',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
     {
-      id: 3,
+      id: '3',
       title: 'Kunden-Portal',
       description: 'Ein Self-Service Portal für Kunden mit Dashboard, Dokumentenzugriff und Kommunikationsfunktionen.',
       tools: ['Next.js', 'Supabase', 'React'],
@@ -116,11 +122,14 @@ function getFallbackProjects(): Project[] {
       image_url: null,
       order_index: 2,
       is_active: true,
+      project_category: 'client',
+      project_url: 'https://example.com',
+      git_url: null,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     },
     {
-      id: 4,
+      id: '4',
       title: 'Automatisierte Workflows',
       description: 'Ein Workflow-System für KMU, das Rechnungen automatisch verarbeitet, E-Mails versendet und CRM-Daten synchronisiert.',
       tools: ['n8n', 'Supabase', 'Make.com'],
@@ -129,6 +138,9 @@ function getFallbackProjects(): Project[] {
       image_url: null,
       order_index: 3,
       is_active: true,
+      project_category: 'personal',
+      project_url: null,
+      git_url: 'https://github.com/example/workflows',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     }

@@ -3,9 +3,6 @@ import OpenAI from 'openai'
 import { sanitizeForPrompt } from '@/lib/security-utils'
 import { checkRateLimit, getClientIp } from '@/lib/rate-limit'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
 
 export async function POST(request: NextRequest) {
   try {
@@ -94,6 +91,10 @@ REGELN:
 - Maximal 2 Sätze
 - Deutsch
 - Motivierend und professionell`
+
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",

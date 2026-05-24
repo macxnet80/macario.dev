@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { buildWizardSubmitPayload, submitProjectRequest } from '@/lib/submit-project-payload'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   ChevronRight, 
@@ -20,23 +21,29 @@ import {
   Mail,
   Phone,
   User,
-  Users,
   UserCircle,
-  Building,
   MessageSquare,
-  Brain
+  Brain,
+  Layers
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+interface TechLogo {
+  src?: string
+  icon?: any
+  alt: string
+  name: string
+}
+
 // Tech Stack Logos
-const techLogos = [
+const techLogos: TechLogo[] = [
   { src: '/Logos/cursor_logo.png', alt: 'Cursor', name: 'Cursor' },
   { src: '/Logos/supabase_logo.png', alt: 'Supabase', name: 'Supabase' },
   { src: '/Logos/n8n-color_logo.png', alt: 'n8n', name: 'n8n' },
   { src: '/Logos/logo-vercel.svg', alt: 'Vercel', name: 'Vercel' },
   { src: '/Logos/React-icon.png', alt: 'React/Next.js', name: 'React' },
-  { src: '/Logos/openai.svg', alt: 'OpenAI', name: 'OpenAI' },
+  { icon: Brain, alt: 'Claude first', name: 'Claude first' },
 ]
 
 interface ProjectData {
@@ -67,57 +74,30 @@ const projectTypes = [
   {
     id: 'business-website',
     title: 'Unternehmens-Website',
-    description: 'Portfolio, Landing Pages oder Firmenpräsenz',
+    description: 'Portfolio, Landing Pages, Firmenpräsenz',
     icon: Globe,
     color: 'from-blue-500 to-cyan-500',
     basePrice: 750,
     features: ['Moderne Designs', 'SEO-Optimierung', 'Mobile-First', 'CMS Integration']
   },
   {
-    id: 'booking-system',
-    title: 'Buchungs-/Terminsystem',
-    description: 'Terminverwaltung mit Erinnerungen und Zahlung',
-    icon: Calendar,
-    color: 'from-purple-500 to-pink-500',
-    basePrice: 1500,
-    features: ['Kalender-Integration', 'Automatische Erinnerungen', 'Zahlungsabwicklung', 'Kundenverwaltung']
-  },
-  {
-    id: 'customer-portal',
-    title: 'Kunden-Portal',
-    description: 'Dashboard, Self-Service und Dokumentenzugriff',
-    icon: Users,
-    color: 'from-green-500 to-emerald-500',
-    basePrice: 2500,
-    features: ['Benutzer-Dashboard', 'Dokumenten-Management', 'Self-Service', 'Kommunikation']
-  },
-  {
-    id: 'internal-tool',
-    title: 'Internes Tool',
-    description: 'Workflows, Datenbanken und Reporting',
-    icon: Building,
-    color: 'from-orange-500 to-red-500',
-    basePrice: 3500,
-    features: ['Prozess-Automatisierung', 'Datenbank-Lösungen', 'Reporting & Analytics', 'Workflow-Management']
-  },
-  {
-    id: 'ai-assistant',
-    title: 'KI-Assistent',
-    description: 'Chatbots, FAQ und Lead-Qualifizierung',
+    id: 'ki-consulting',
+    title: 'KI Consulting',
+    description: 'Strategie, Use Cases und Umsetzung',
     icon: Bot,
     color: 'from-indigo-500 to-purple-500',
-    basePrice: 2000,
-    features: ['24/7 Verfügbar', 'FAQ-Beantwortung', 'Lead-Qualifizierung', 'Smart Routing']
+    basePrice: 1500,
+    features: ['Strategie & Use Cases', 'Machbarkeitsanalyse', 'Umsetzungsplan', 'Prototyping']
   },
   {
-    id: 'automation',
-    title: 'Automatisierung',
-    description: 'Workflows, E-Mail und CRM-Integration',
-    icon: Zap,
-    color: 'from-yellow-500 to-orange-500',
-    basePrice: 750,
-    features: ['E-Mail Automation', 'Rechnungsstellung', 'CRM-Integration', 'Workflow-Design']
-  }
+    id: 'web-application',
+    title: 'Web-Anwendungen',
+    description: 'Portale, interne Tools, Automatisierungen',
+    icon: Layers,
+    color: 'from-green-500 to-emerald-500',
+    basePrice: 2000,
+    features: ['Kundenportale', 'Interne Tools', 'Automatisierungen', 'Buchungssysteme']
+  },
 ]
 
 const timelineOptions = [
@@ -212,15 +192,19 @@ function StartStep({ onNext }: { onNext: () => void }) {
                   transition={{ duration: 0.4, delay: 0.35 + index * 0.05 }}
                   className="flex items-center justify-center"
                 >
-                  <div className="relative w-8 h-8 md:w-10 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300">
-                    <Image
-                      src={logo.src}
-                      alt={logo.alt}
-                      fill
-                      sizes="(max-width: 768px) 32px, 40px"
-                      className="object-contain filter brightness-0 invert opacity-80"
-                      style={{ filter: 'brightness(0) invert(1)' }}
-                    />
+                  <div className="relative w-8 h-8 md:w-10 md:h-10 opacity-60 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    {'icon' in logo && logo.icon ? (
+                      <logo.icon className="w-6 h-6 md:w-7 md:h-7 text-white opacity-80" />
+                    ) : (
+                      <Image
+                        src={logo.src || ''}
+                        alt={logo.alt}
+                        fill
+                        sizes="(max-width: 768px) 32px, 40px"
+                        className="object-contain filter brightness-0 invert opacity-80"
+                        style={{ filter: 'brightness(0) invert(1)' }}
+                      />
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -310,7 +294,7 @@ function ProjectTypeStep({ data, updateData, onNext }: StepProps) {
     <div className="space-y-6">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">Welche Art von Projekt planst du?</h2>
-        <p className="text-[#e7e7e7]">Wähle den Projekttyp, der am besten zu deiner Vision passt</p>
+        <p className="text-[#e7e7e7]">Wähle den Baustein, der am besten zu deiner Vision passt</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -553,8 +537,8 @@ Hast du schon konkrete Vorstellungen oder Referenzen?"
             </h4>
             <div className="space-y-2 text-sm text-[#e7e7e7]">
               <p>• "Ich möchte eine moderne Unternehmens-Website mit Portfolio, Leistungen und Kontaktformular"</p>
-              <p>• "Ein Buchungssystem für meinen Dienstleistungsbetrieb mit Kalenderintegration und automatischen Erinnerungen"</p>
-              <p>• "Ein Kunden-Portal mit Dashboard, Dokumentenzugriff und Self-Service Funktionen"</p>
+              <p>• "KI-Use-Cases für unseren Kundenservice evaluieren und einen konkreten Umsetzungsplan erstellen"</p>
+              <p>• "Ein Kundenportal mit Dashboard, Buchungssystem und automatischen E-Mail-Workflows"</p>
             </div>
           </div>
         </div>
@@ -631,32 +615,24 @@ function ContactStep({ data, updateData, onNext, onPrev, isLast }: StepProps) {
     setEmailError('') // Fehler zurücksetzen
     setIsSubmitting(true)
     
-    // Transform data for webhook with German labels
-    const selectedType = projectTypes.find(t => t.id === data.projectType)
-    const timelineOption = timelineOptions.find(t => t.id === data.timeline)
-    const priorityOption = priorityOptions.find(p => p.id === data.priority)
-    const sourceOption = sourceOptions.find(s => s.id === data.source)
-    
-    const transformedData = {
-      ...data,
-      projectType: selectedType?.title || data.projectType,
-      timeline: timelineOption?.label || data.timeline,
-      priority: priorityOption?.label || data.priority,
-      source: sourceOption?.label || data.source,
-      finalPrice,
-      aiAnalysis,
-      // firstName und lastName werden bereits von data übernommen
-    }
-    
+    const transformedData = buildWizardSubmitPayload(
+      { ...data, privacyAccepted },
+      {
+        projectTypes,
+        timelineOptions,
+        priorityOptions,
+        sourceOptions,
+        finalPrice,
+        aiAnalysis,
+      }
+    )
+
     try {
-      await fetch('/api/submit-project', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(transformedData)
-      })
+      await submitProjectRequest(transformedData)
       onNext() // Go to success step
     } catch (error) {
       console.error('Fehler beim Senden:', error)
+      setEmailError('Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut.')
     } finally {
       setIsSubmitting(false)
     }

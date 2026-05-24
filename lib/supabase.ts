@@ -3,6 +3,10 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key'
 
+if (typeof window !== 'undefined') {
+  console.log('Supabase init URL in Browser:', supabaseUrl)
+}
+
 export const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Check if Supabase is properly configured
@@ -14,7 +18,7 @@ export const isSupabaseConfigured = () => {
 
 // TypeScript Typen für die Datenbank
 export interface Project {
-  id: number
+  id: string
   title: string
   description: string
   tools: string[]
@@ -23,6 +27,9 @@ export interface Project {
   image_url: string | null
   order_index: number
   is_active: boolean
+  project_category: 'personal' | 'client'
+  project_url: string | null
+  git_url: string | null
   created_at: string
   updated_at: string
 }
@@ -35,11 +42,17 @@ export interface ProjectRequest {
   priority: string
   description: string
   features: string[]
+  first_name: string | null
+  last_name: string | null
   name: string
   email: string
   company: string | null
   phone: string | null
   ai_analysis: string | null
+  final_price: number | null
+  source: string | null
+  privacy_accepted: boolean
+  marketing_accepted: boolean
   status: 'new' | 'contacted' | 'in_progress' | 'completed' | 'cancelled'
   notes: string | null
   
@@ -229,7 +242,20 @@ export const projectsApi = {
     return data as Project[]
   },
 
-  // Admin-Funktion entfernt
+  // Alle Projekte abrufen (für Admin)
+  async getAllProjects() {
+    if (!isSupabaseConfigured()) {
+      throw new Error('Supabase not configured')
+    }
+    
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .order('order_index')
+    
+    if (error) throw error
+    return data as Project[]
+  },
 
   // Projekt erstellen
   async createProject(project: Omit<Project, 'id' | 'created_at' | 'updated_at'>) {
@@ -248,7 +274,7 @@ export const projectsApi = {
   },
 
   // Projekt aktualisieren
-  async updateProject(id: number, updates: Partial<Omit<Project, 'id' | 'created_at' | 'updated_at'>>) {
+  async updateProject(id: string, updates: Partial<Omit<Project, 'id' | 'created_at' | 'updated_at'>>) {
     if (!isSupabaseConfigured()) {
       throw new Error('Supabase not configured')
     }
@@ -265,7 +291,7 @@ export const projectsApi = {
   },
 
   // Projekt löschen
-  async deleteProject(id: number) {
+  async deleteProject(id: string) {
     if (!isSupabaseConfigured()) {
       throw new Error('Supabase not configured')
     }
@@ -279,7 +305,7 @@ export const projectsApi = {
   },
 
   // Projekt-Reihenfolge aktualisieren
-  async updateProjectOrder(projectUpdates: { id: number; order_index: number }[]) {
+  async updateProjectOrder(projectUpdates: { id: string; order_index: number }[]) {
     if (!isSupabaseConfigured()) {
       throw new Error('Supabase not configured')
     }

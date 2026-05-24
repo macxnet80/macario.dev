@@ -36,6 +36,8 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
     "use-stick-to-bottom": "^1.1.1",
+    "web-streams-polyfill": "^4.3.0",
+    "webidl-conversions": "^8.0.1",
     "zod": "^3.25.76"
   },
   "devDependencies": {
