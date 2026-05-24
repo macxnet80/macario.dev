@@ -36,6 +36,10 @@ export async function captureScreenshot(url: string): Promise<Buffer | null> {
       screenshot: 'true',
       meta: 'false',
       embed: 'screenshot.url',
+      // 16:10 Viewport – passt zur ProjectPreview im Showcase
+      'viewport.width': '1280',
+      'viewport.height': '800',
+      'viewport.deviceScaleFactor': '2',
     })
 
     const headers: Record<string, string> = {

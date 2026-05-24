@@ -5,6 +5,69 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, ExternalLink, Sparkles, Zap, CheckCircle, Code2, Database, Bot, Users, Loader2, AlertCircle, Globe } from 'lucide-react'
 import { useProjects } from '@/hooks/useProjects'
 import Image from 'next/image'
+import type { Project } from '@/lib/supabase'
+
+function getProjectHostname(url: string | null): string | null {
+  if (!url) return null
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return null
+  }
+}
+
+function ProjectPreview({ project }: { project: Project }) {
+  const hostname = getProjectHostname(project.project_url)
+
+  return (
+    <div className="order-1 md:order-2 w-full md:sticky md:top-24">
+      <div className="overflow-hidden rounded-2xl border border-[var(--line)] bg-[#080808] shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+        <div className="flex items-center gap-3 border-b border-[var(--line)] bg-black/70 px-4 py-3">
+          <div className="flex shrink-0 gap-1.5" aria-hidden="true">
+            <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          </div>
+          <div className="min-w-0 flex-1 rounded-md border border-[var(--line)] bg-black/50 px-3 py-1.5 text-center">
+            <span className="block truncate font-mono text-[11px] text-[var(--fg-dim)]">
+              {hostname || project.title}
+            </span>
+          </div>
+        </div>
+
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#111111]">
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-[0.08]`} />
+
+          {project.image_url ? (
+            <Image
+              src={project.image_url}
+              alt={`Screenshot von ${project.title}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
+          ) : (
+            <div className="relative z-10 flex h-full flex-col items-center justify-center p-8 text-center">
+              <div
+                className={`mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${project.color} shadow-lg md:h-24 md:w-24`}
+              >
+                {project.project_url ? (
+                  <Globe className="h-9 w-9 text-white md:h-11 md:w-11" />
+                ) : (
+                  <Code2 className="h-9 w-9 text-white md:h-11 md:w-11" />
+                )}
+              </div>
+              <p className="text-sm font-semibold text-[var(--fg)] md:text-base">Projekt-Demo verfügbar</p>
+              <p className="mt-1 text-xs text-[var(--fg-mute)]">Screenshot oder Live-Link im Admin hinterlegen.</p>
+            </div>
+          )}
+
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/35 to-transparent" />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function ProjectShowcase() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -177,7 +240,7 @@ export default function ProjectShowcase() {
                   transition={{ duration: 0.4 }}
                   className="rounded-3xl overflow-hidden bg-[var(--bg-card)] border border-[var(--line)] shadow-xl"
                 >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 md:p-10 lg:p-12 min-h-[450px]">
+                  <div className="grid grid-cols-1 items-start gap-8 p-6 md:grid-cols-2 md:p-10 lg:p-12">
                     {/* Project Info */}
                     <div className="space-y-6 flex flex-col justify-between order-2 md:order-1">
                       <div className="space-y-6">
@@ -259,32 +322,7 @@ export default function ProjectShowcase() {
                       )}
                     </div>
 
-                    {/* Project Image / Visual */}
-                    <div className="relative order-1 md:order-2 rounded-2xl overflow-hidden aspect-video md:aspect-auto flex items-center justify-center min-h-[220px] bg-black/20 border border-[var(--line)]">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${currentProject.color} opacity-10`} />
-                      {currentProject.image_url ? (
-                        <Image
-                          src={currentProject.image_url}
-                          alt={currentProject.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover"
-                          style={{ objectPosition: 'center center' }}
-                        />
-                      ) : (
-                        <div className="text-center p-6 z-10">
-                          <div className={`w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 bg-gradient-to-br ${currentProject.color} rounded-2xl flex items-center justify-center shadow-lg`}>
-                            {currentProject.project_url ? (
-                              <Globe className="w-9 h-9 md:w-11 md:h-11 text-white" />
-                            ) : (
-                              <Code2 className="w-9 h-9 md:w-11 md:h-11 text-white" />
-                            )}
-                          </div>
-                          <p className="text-[var(--fg)] font-semibold text-sm md:text-base">Projekt-Demo verfügbar</p>
-                          <p className="text-[var(--fg-mute)] text-xs mt-1">Gradients und Icons passen sich dynamisch an.</p>
-                        </div>
-                      )}
-                    </div>
+                    <ProjectPreview project={currentProject} />
                   </div>
                 </motion.div>
               </AnimatePresence>
